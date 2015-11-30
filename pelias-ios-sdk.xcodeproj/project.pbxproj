@@ -1,0 +1,409 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		DBF601961C0C997900EEEE98 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBF601951C0C997900EEEE98 /* AppDelegate.swift */; };
+		DBF601981C0C997900EEEE98 /* FirstViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBF601971C0C997900EEEE98 /* FirstViewController.swift */; };
+		DBF6019A1C0C997900EEEE98 /* SecondViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBF601991C0C997900EEEE98 /* SecondViewController.swift */; };
+		DBF6019D1C0C997900EEEE98 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DBF6019B1C0C997900EEEE98 /* Main.storyboard */; };
+		DBF6019F1C0C997900EEEE98 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DBF6019E1C0C997900EEEE98 /* Assets.xcassets */; };
+		DBF601A21C0C997900EEEE98 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DBF601A01C0C997900EEEE98 /* LaunchScreen.storyboard */; };
+		DBF601AD1C0C997900EEEE98 /* pelias_ios_sdkTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBF601AC1C0C997900EEEE98 /* pelias_ios_sdkTests.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		DBF601A91C0C997900EEEE98 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = DBF6018A1C0C997900EEEE98 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = DBF601911C0C997900EEEE98;
+			remoteInfo = "pelias-ios-sdk";
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		DBF601921C0C997900EEEE98 /* pelias-ios-sdk.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "pelias-ios-sdk.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		DBF601951C0C997900EEEE98 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		DBF601971C0C997900EEEE98 /* FirstViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstViewController.swift; sourceTree = "<group>"; };
+		DBF601991C0C997900EEEE98 /* SecondViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondViewController.swift; sourceTree = "<group>"; };
+		DBF6019C1C0C997900EEEE98 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		DBF6019E1C0C997900EEEE98 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		DBF601A11C0C997900EEEE98 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		DBF601A31C0C997900EEEE98 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		DBF601A81C0C997900EEEE98 /* pelias-ios-sdkTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "pelias-ios-sdkTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		DBF601AC1C0C997900EEEE98 /* pelias_ios_sdkTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = pelias_ios_sdkTests.swift; sourceTree = "<group>"; };
+		DBF601AE1C0C997900EEEE98 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		DBF6018F1C0C997900EEEE98 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		DBF601A51C0C997900EEEE98 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		DBF601891C0C997900EEEE98 = {
+			isa = PBXGroup;
+			children = (
+				DBF601941C0C997900EEEE98 /* pelias-ios-sdk */,
+				DBF601AB1C0C997900EEEE98 /* pelias-ios-sdkTests */,
+				DBF601931C0C997900EEEE98 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		DBF601931C0C997900EEEE98 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				DBF601921C0C997900EEEE98 /* pelias-ios-sdk.app */,
+				DBF601A81C0C997900EEEE98 /* pelias-ios-sdkTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		DBF601941C0C997900EEEE98 /* pelias-ios-sdk */ = {
+			isa = PBXGroup;
+			children = (
+				DBF601951C0C997900EEEE98 /* AppDelegate.swift */,
+				DBF601971C0C997900EEEE98 /* FirstViewController.swift */,
+				DBF601991C0C997900EEEE98 /* SecondViewController.swift */,
+				DBF6019B1C0C997900EEEE98 /* Main.storyboard */,
+				DBF6019E1C0C997900EEEE98 /* Assets.xcassets */,
+				DBF601A01C0C997900EEEE98 /* LaunchScreen.storyboard */,
+				DBF601A31C0C997900EEEE98 /* Info.plist */,
+			);
+			path = "pelias-ios-sdk";
+			sourceTree = "<group>";
+		};
+		DBF601AB1C0C997900EEEE98 /* pelias-ios-sdkTests */ = {
+			isa = PBXGroup;
+			children = (
+				DBF601AC1C0C997900EEEE98 /* pelias_ios_sdkTests.swift */,
+				DBF601AE1C0C997900EEEE98 /* Info.plist */,
+			);
+			path = "pelias-ios-sdkTests";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		DBF601911C0C997900EEEE98 /* pelias-ios-sdk */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = DBF601B11C0C997900EEEE98 /* Build configuration list for PBXNativeTarget "pelias-ios-sdk" */;
+			buildPhases = (
+				DBF6018E1C0C997900EEEE98 /* Sources */,
+				DBF6018F1C0C997900EEEE98 /* Frameworks */,
+				DBF601901C0C997900EEEE98 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "pelias-ios-sdk";
+			productName = "pelias-ios-sdk";
+			productReference = DBF601921C0C997900EEEE98 /* pelias-ios-sdk.app */;
+			productType = "com.apple.product-type.application";
+		};
+		DBF601A71C0C997900EEEE98 /* pelias-ios-sdkTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = DBF601B41C0C997900EEEE98 /* Build configuration list for PBXNativeTarget "pelias-ios-sdkTests" */;
+			buildPhases = (
+				DBF601A41C0C997900EEEE98 /* Sources */,
+				DBF601A51C0C997900EEEE98 /* Frameworks */,
+				DBF601A61C0C997900EEEE98 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				DBF601AA1C0C997900EEEE98 /* PBXTargetDependency */,
+			);
+			name = "pelias-ios-sdkTests";
+			productName = "pelias-ios-sdkTests";
+			productReference = DBF601A81C0C997900EEEE98 /* pelias-ios-sdkTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		DBF6018A1C0C997900EEEE98 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0710;
+				LastUpgradeCheck = 0710;
+				ORGANIZATIONNAME = Mapzen;
+				TargetAttributes = {
+					DBF601911C0C997900EEEE98 = {
+						CreatedOnToolsVersion = 7.1.1;
+						DevelopmentTeam = D382UW8GW4;
+					};
+					DBF601A71C0C997900EEEE98 = {
+						CreatedOnToolsVersion = 7.1.1;
+						DevelopmentTeam = D382UW8GW4;
+						TestTargetID = DBF601911C0C997900EEEE98;
+					};
+				};
+			};
+			buildConfigurationList = DBF6018D1C0C997900EEEE98 /* Build configuration list for PBXProject "pelias-ios-sdk" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = DBF601891C0C997900EEEE98;
+			productRefGroup = DBF601931C0C997900EEEE98 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				DBF601911C0C997900EEEE98 /* pelias-ios-sdk */,
+				DBF601A71C0C997900EEEE98 /* pelias-ios-sdkTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		DBF601901C0C997900EEEE98 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DBF601A21C0C997900EEEE98 /* LaunchScreen.storyboard in Resources */,
+				DBF6019F1C0C997900EEEE98 /* Assets.xcassets in Resources */,
+				DBF6019D1C0C997900EEEE98 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		DBF601A61C0C997900EEEE98 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		DBF6018E1C0C997900EEEE98 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DBF6019A1C0C997900EEEE98 /* SecondViewController.swift in Sources */,
+				DBF601961C0C997900EEEE98 /* AppDelegate.swift in Sources */,
+				DBF601981C0C997900EEEE98 /* FirstViewController.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		DBF601A41C0C997900EEEE98 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DBF601AD1C0C997900EEEE98 /* pelias_ios_sdkTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		DBF601AA1C0C997900EEEE98 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = DBF601911C0C997900EEEE98 /* pelias-ios-sdk */;
+			targetProxy = DBF601A91C0C997900EEEE98 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		DBF6019B1C0C997900EEEE98 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				DBF6019C1C0C997900EEEE98 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		DBF601A01C0C997900EEEE98 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				DBF601A11C0C997900EEEE98 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		DBF601AF1C0C997900EEEE98 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.1;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		DBF601B01C0C997900EEEE98 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.1;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		DBF601B21C0C997900EEEE98 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = "pelias-ios-sdk/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.mapzen.pelias-ios-sdk";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		DBF601B31C0C997900EEEE98 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = "pelias-ios-sdk/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.mapzen.pelias-ios-sdk";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+		DBF601B51C0C997900EEEE98 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				INFOPLIST_FILE = "pelias-ios-sdkTests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.mapzen.pelias-ios-sdkTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/pelias-ios-sdk.app/pelias-ios-sdk";
+			};
+			name = Debug;
+		};
+		DBF601B61C0C997900EEEE98 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				INFOPLIST_FILE = "pelias-ios-sdkTests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.mapzen.pelias-ios-sdkTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/pelias-ios-sdk.app/pelias-ios-sdk";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		DBF6018D1C0C997900EEEE98 /* Build configuration list for PBXProject "pelias-ios-sdk" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				DBF601AF1C0C997900EEEE98 /* Debug */,
+				DBF601B01C0C997900EEEE98 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		DBF601B11C0C997900EEEE98 /* Build configuration list for PBXNativeTarget "pelias-ios-sdk" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				DBF601B21C0C997900EEEE98 /* Debug */,
+				DBF601B31C0C997900EEEE98 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		DBF601B41C0C997900EEEE98 /* Build configuration list for PBXNativeTarget "pelias-ios-sdkTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				DBF601B51C0C997900EEEE98 /* Debug */,
+				DBF601B61C0C997900EEEE98 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = DBF6018A1C0C997900EEEE98 /* Project object */;
+}
