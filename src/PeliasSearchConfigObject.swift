@@ -3,7 +3,7 @@
 //  PlayMap
 //
 //  Created by Matt on 11/24/15.
-//  Copyright © 2015 Matt. All rights reserved.
+//  Copyright © 2015 Mapzen. All rights reserved.
 //
 
 import Foundation
