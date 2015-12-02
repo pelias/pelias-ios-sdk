@@ -8,6 +8,16 @@
 
 import Foundation
 
-public class PeliasSearchConfigObject : BaseSearchConfigObject {
+public struct PeliasSearchConfig : SearchAPIConfigData {
+  let urlEndpoint: NSURL
+  let apiKey: String
   
+  var searchText: String
+  var numberOfResults: Int?
+  var boundaryCountry: String?
+  var boundaryRect: SearchBoundaryRect?
+  var boundaryCircle: SearchBoundaryCircle?
+  var focusPoint: GeoPoint?
+  var dataSources: [SearchSource]?
+  var layers: [LayerFilter]?
 }

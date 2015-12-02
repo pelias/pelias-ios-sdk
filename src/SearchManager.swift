@@ -24,12 +24,12 @@ public final class SearchManager {
     locationManager.requestWhenInUseAuthorization()
   }
   
-  public func performSearch(searchConfig: PeliasSearchConfigObject) -> SearchOperation{
+  public func performSearch(searchConfig: PeliasSearchConfig) -> SearchOperation{
     //TBD - Do error checking to make sure we can actually perform the search
     return executeSearchQuery(searchConfig);
   }
 
-  private func executeSearchQuery(searchConfig: PeliasSearchConfigObject) -> SearchOperation{
+  private func executeSearchQuery(searchConfig: PeliasSearchConfig) -> SearchOperation{
     //Build a search operation
     let searchOp = SearchOperation(searchConfig: searchConfig)
     
@@ -43,7 +43,7 @@ public final class SearchManager {
 
 public class SearchOperation: NSOperation{
   
-  init(searchConfig: PeliasSearchConfigObject) {
+  init(searchConfig: PeliasSearchConfig) {
     //TBD - Set initial params based off config object
   }
   
