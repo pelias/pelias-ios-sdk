@@ -8,6 +8,14 @@
 
 import Foundation
 
-public class PeliasSearchResponse : BaseSearchResponse {
+public struct PeliasSearchResponse {
+  let data: NSData?
+  let response: NSURLResponse?
+  let error: NSError?
   
+  init(data: NSData?, response: NSURLResponse?, error: NSError?){
+    self.data = data
+    self.response = response
+    self.error = error
+  }
 }

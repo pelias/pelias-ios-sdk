@@ -36,11 +36,12 @@ enum LayerFilter{
 
 protocol APIConfigData {
   var urlEndpoint: NSURL { get }
-  var apiKey: String { get }
+  var apiKey: String? { get }
 }
 
 protocol SearchAPIConfigData : APIConfigData {
   var searchText: String { get set }
+  
   var numberOfResults: Int? { get set }
   var boundaryCountry: String? { get set }
   var boundaryRect: SearchBoundaryRect? { get set }
@@ -48,4 +49,5 @@ protocol SearchAPIConfigData : APIConfigData {
   var focusPoint: GeoPoint? { get set }
   var dataSources: [SearchSource]? { get set }
   var layers: [LayerFilter]? { get set }
+  var completionHandler: (PeliasSearchResponse) -> Void { get set }
 }

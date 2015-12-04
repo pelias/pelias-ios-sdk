@@ -17,11 +17,14 @@ public final class SearchManager {
   let operationQueue = NSOperationQueue()
   let locationManager = CLLocationManager()
   
-  var authToken: NSString?
+  var apiKey: String?
+  
+  var baseUrl: NSURL
   
   private init() {
     operationQueue.maxConcurrentOperationCount = 4
     locationManager.requestWhenInUseAuthorization()
+    baseUrl = NSURL.init(string: "https://search.mapzen.com")! // Force the unwrap because we must have a base URL to operate
   }
   
   public func performSearch(searchConfig: PeliasSearchConfig) -> SearchOperation{
@@ -43,10 +46,19 @@ public final class SearchManager {
 
 public class SearchOperation: NSOperation{
   
+  let searchConfig: PeliasSearchConfig
+  
   init(searchConfig: PeliasSearchConfig) {
-    //TBD - Set initial params based off config object
+    self.searchConfig = searchConfig
   }
   
-  //TBD - Implement main func
-  
+  override public func main() {
+    print(searchConfig)
+    NSURLSession.sharedSession().dataTaskWithURL(searchConfig.urlEndpoint) { (data: NSData?, response: NSURLResponse?, error: NSError?) -> Void in
+      let searchResponse = PeliasSearchResponse(data: data, response: response, error: error)
+      dispatch_async(dispatch_get_main_queue(), { () -> Void in
+        self.searchConfig.completionHandler(searchResponse)
+      })
+    }.resume()
+  }
 }
