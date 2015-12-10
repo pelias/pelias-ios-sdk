@@ -23,20 +23,30 @@ struct GeoPoint {
   var longitude: Float
 }
 
-enum SearchSource {
-  case OpenStreetMap
-  case OpenAddresses
-  case Quattroshapes
-  case GeoNames
+enum SearchSource: String {
+  case OpenStreetMap = "osm"
+  case OpenAddresses = "oa"
+  case Quattroshapes = "qs"
+  case GeoNames = "ga"
+  
+  static func dataSourceString(sourceList: [SearchSource]) -> String {
+    return sourceList.map{$0.rawValue}.joinWithSeparator(",")
+  }
 }
 
-enum LayerFilter{
-  case Venue, Address, Country, Region, County, Locality, Localadmin, Neighborhood
+enum LayerFilter: String {
+  case venue, address, country, region, county, locality, localadmin, neighbourhood, coarse
+  
+  static func layerString(layers: [LayerFilter]) -> String {
+    return layers.map{$0.rawValue}.joinWithSeparator(",")
+  }
 }
 
 protocol APIConfigData {
   var urlEndpoint: NSURL { get }
   var apiKey: String? { get }
+  
+  func searchUrl() -> NSURL
 }
 
 protocol SearchAPIConfigData : APIConfigData {

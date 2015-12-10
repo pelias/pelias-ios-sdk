@@ -14,8 +14,7 @@ public final class SearchManager {
   //! Singleton access
   static let sharedInstance = SearchManager()
   
-  let operationQueue = NSOperationQueue()
-  let locationManager = CLLocationManager()
+  private let operationQueue = NSOperationQueue()
   
   var apiKey: String?
   
@@ -23,7 +22,6 @@ public final class SearchManager {
   
   private init() {
     operationQueue.maxConcurrentOperationCount = 4
-    locationManager.requestWhenInUseAuthorization()
     baseUrl = NSURL.init(string: "https://search.mapzen.com")! // Force the unwrap because we must have a base URL to operate
   }
   
@@ -53,8 +51,7 @@ public class SearchOperation: NSOperation{
   }
   
   override public func main() {
-    print(searchConfig)
-    NSURLSession.sharedSession().dataTaskWithURL(searchConfig.urlEndpoint) { (data: NSData?, response: NSURLResponse?, error: NSError?) -> Void in
+    NSURLSession.sharedSession().dataTaskWithURL(searchConfig.searchUrl()) { (data: NSData?, response: NSURLResponse?, error: NSError?) -> Void in
       let searchResponse = PeliasSearchResponse(data: data, response: response, error: error)
       dispatch_async(dispatch_get_main_queue(), { () -> Void in
         self.searchConfig.completionHandler(searchResponse)
