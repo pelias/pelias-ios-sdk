@@ -8,19 +8,46 @@
 
 import Foundation
 
-struct SearchBoundaryRect {
+struct SearchBoundaryRect : Equatable{
   var minLatLong: GeoPoint
   var maxLatLong: GeoPoint
+  
+  init(minLatLong: GeoPoint, maxLatLong: GeoPoint){
+    self.minLatLong = minLatLong
+    self.maxLatLong = maxLatLong
+  }
 }
 
-struct SearchBoundaryCircle {
+func ==(lhs: SearchBoundaryRect, rhs: SearchBoundaryRect) -> Bool {
+  return ((lhs.minLatLong == rhs.minLatLong) && (lhs.maxLatLong == rhs.maxLatLong))
+}
+
+struct SearchBoundaryCircle : Equatable {
   var center: GeoPoint
   var radius: Float
+  
+  init(center: GeoPoint, radius: Float){
+    self.center = center
+    self.radius = radius
+  }
 }
 
-struct GeoPoint {
+func ==(lhs: SearchBoundaryCircle, rhs: SearchBoundaryCircle) -> Bool {
+  return (lhs.radius == rhs.radius && lhs.center == rhs.center)
+}
+
+struct GeoPoint : Equatable {
   var latitude: Float
   var longitude: Float
+  
+  init(latitude: Float, longitude: Float){
+    self.latitude = latitude
+    self.longitude = longitude
+  }
+}
+
+func ==(lhs: GeoPoint, rhs: GeoPoint) -> Bool {
+  return ((lhs.longitude == rhs.longitude) && (lhs.latitude == rhs.latitude))
 }
 
 enum SearchSource: String {
