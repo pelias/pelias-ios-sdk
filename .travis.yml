@@ -1,0 +1,13 @@
+language: objective-c
+
+branches:
+ only:
+ - master
+
+xcode_project: pelias-ios-sdk.xcodeproj
+xcode_scheme: pelias-ios-sdk
+osx_image: xcode7.2
+xcode_sdk: iphonesimulator9.2
+
+script:
+- xcodebuild clean build test -project pelias-ios-sdk.xcodeproj -scheme pelias-ios-sdk
