@@ -88,3 +88,9 @@ protocol SearchAPIConfigData : APIConfigData {
   var layers: [LayerFilter]? { get set }
   var completionHandler: (PeliasSearchResponse) -> Void { get set }
 }
+
+protocol APIResponse {
+  var data: NSData? { get }
+  var response: NSURLResponse? { get }
+  var error: NSError? { get }
+}

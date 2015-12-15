@@ -27,20 +27,7 @@ class FirstViewController: UIViewController {
     
     if let searchText = searchField.text{
       let searchConfig = PeliasSearchConfig(searchText: searchText, completionHandler: { (searchResponse) -> Void in
-        let JSONData = searchResponse.data!
-        do {
-          let JSON = try NSJSONSerialization.JSONObjectWithData(JSONData, options:NSJSONReadingOptions(rawValue: 0))
-          guard let JSONDictionary :NSDictionary = JSON as? NSDictionary else {
-            print("Not a Dictionary")
-            // put in function
-            return
-          }
-          print("JSONDictionary! \(JSONDictionary)")
-          self.responseTextView.text = NSString.init(format: "%@", JSONDictionary) as String
-        }
-        catch let JSONError as NSError {
-          print("\(JSONError)")
-        }
+        self.responseTextView.text = NSString.init(format: "%@", searchResponse.parsedResponse!) as String
       })
       SearchManager.sharedInstance.performSearch(searchConfig)
     }
