@@ -24,9 +24,9 @@ func ==(lhs: SearchBoundaryRect, rhs: SearchBoundaryRect) -> Bool {
 
 struct SearchBoundaryCircle : Equatable {
   var center: GeoPoint
-  var radius: Float
+  var radius: Double
   
-  init(center: GeoPoint, radius: Float){
+  init(center: GeoPoint, radius: Double){
     self.center = center
     self.radius = radius
   }
@@ -37,10 +37,10 @@ func ==(lhs: SearchBoundaryCircle, rhs: SearchBoundaryCircle) -> Bool {
 }
 
 struct GeoPoint : Equatable {
-  var latitude: Float
-  var longitude: Float
+  var latitude: Double
+  var longitude: Double
   
-  init(latitude: Float, longitude: Float){
+  init(latitude: Double, longitude: Double){
     self.latitude = latitude
     self.longitude = longitude
   }
