@@ -25,43 +25,55 @@ public struct PeliasSearchConfig : SearchAPIConfigData {
   
   var apiKey: String? {
     didSet {
-      appendQueryItem("api_key", value: apiKey)
+      if let key = apiKey where apiKey?.isEmpty == false {
+        appendQueryItem("api_key", value: key)
+      }
     }
   }
   
   var numberOfResults: Int? {
     didSet {
-      appendQueryItem("size", value: String(numberOfResults))
+      if let size = numberOfResults where numberOfResults > 0 {
+        appendQueryItem("size", value: String(size))
+      }
     }
   }
   
   var boundaryCountry: String? {
     didSet {
-      appendQueryItem("boundary.country", value: apiKey)
+      if let country = boundaryCountry where boundaryCountry?.isEmpty == false{
+        appendQueryItem("boundary.country", value: country)
+      }
     }
   }
   
   var boundaryRect: SearchBoundaryRect? {
     didSet {
-      appendQueryItem("boundary.rect.min_lat", value: String(boundaryRect?.minLatLong.latitude))
-      appendQueryItem("boundary.rect.min_lon", value: String(boundaryRect?.minLatLong.longitude))
-      appendQueryItem("boundary.rect.max_lat", value: String(boundaryRect?.maxLatLong.latitude))
-      appendQueryItem("boundary.rect.max_lon", value: String(boundaryRect?.maxLatLong.longitude))
+      if let rect = boundaryRect {
+        appendQueryItem("boundary.rect.min_lat", value: String(rect.minLatLong.latitude))
+        appendQueryItem("boundary.rect.min_lon", value: String(rect.minLatLong.longitude))
+        appendQueryItem("boundary.rect.max_lat", value: String(rect.maxLatLong.latitude))
+        appendQueryItem("boundary.rect.max_lon", value: String(rect.maxLatLong.longitude))
+      }
     }
   }
   
   var boundaryCircle: SearchBoundaryCircle? {
     didSet {
-      appendQueryItem("boundary.cirle.lat", value: String(boundaryCircle?.center.latitude))
-      appendQueryItem("boundary.circle.lon", value: String(boundaryCircle?.center.longitude))
-      appendQueryItem("boundary.circle.radius", value: String(boundaryCircle?.radius))
+      if let circle = boundaryCircle {
+        appendQueryItem("boundary.cirle.lat", value: String(circle.center.latitude))
+        appendQueryItem("boundary.circle.lon", value: String(circle.center.longitude))
+        appendQueryItem("boundary.circle.radius", value: String(circle.radius))
+      }
     }
   }
   
   var focusPoint: GeoPoint? {
     didSet {
-      appendQueryItem("focus.point.lat", value: String(focusPoint?.latitude))
-      appendQueryItem("focus.point.lon", value: String(focusPoint?.longitude))
+      if let point = focusPoint {
+        appendQueryItem("focus.point.lat", value: String(point.latitude))
+        appendQueryItem("focus.point.lon", value: String(point.longitude))
+      }
     }
   }
   
