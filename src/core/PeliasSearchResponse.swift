@@ -38,4 +38,4 @@ public struct PeliasSearchResponse: APIResponse {
     }
     return nil
   }
-  }
+}

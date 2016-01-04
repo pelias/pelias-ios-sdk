@@ -10,7 +10,6 @@
 		DB96FA6D1C0DE65D00477BD3 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DB96FA6C1C0DE65D00477BD3 /* CoreLocation.framework */; };
 		DB96FA951C1219EA00477BD3 /* PeliasSearchConfigTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB96FA941C1219EA00477BD3 /* PeliasSearchConfigTests.swift */; };
 		DB96FA9A1C1B711800477BD3 /* ConfigProtocolTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB96FA991C1B711800477BD3 /* ConfigProtocolTests.swift */; };
-		DBB667191C3AD0AA003AD8E0 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DBB667181C3AD0AA003AD8E0 /* MapKit.framework */; };
 		DBB6671F1C3AD785003AD8E0 /* ConfigProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBB6671B1C3AD785003AD8E0 /* ConfigProtocol.swift */; };
 		DBB667201C3AD785003AD8E0 /* PeliasSearchConfigObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBB6671C1C3AD785003AD8E0 /* PeliasSearchConfigObject.swift */; };
 		DBB667211C3AD785003AD8E0 /* PeliasSearchResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBB6671D1C3AD785003AD8E0 /* PeliasSearchResponse.swift */; };
@@ -27,6 +26,8 @@
 		DBF6019D1C0C997900EEEE98 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DBF6019B1C0C997900EEEE98 /* Main.storyboard */; };
 		DBF6019F1C0C997900EEEE98 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DBF6019E1C0C997900EEEE98 /* Assets.xcassets */; };
 		DBF601A21C0C997900EEEE98 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DBF601A01C0C997900EEEE98 /* LaunchScreen.storyboard */; };
+		DBFC11E11C3B0EDE00087FC9 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DBB667181C3AD0AA003AD8E0 /* MapKit.framework */; };
+		DBFC11E31C3B126E00087FC9 /* Contacts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DBFC11E21C3B126E00087FC9 /* Contacts.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -59,6 +60,7 @@
 		DBF601A31C0C997900EEEE98 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		DBF601A81C0C997900EEEE98 /* pelias-ios-sdkTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "pelias-ios-sdkTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		DBF601AE1C0C997900EEEE98 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		DBFC11E21C3B126E00087FC9 /* Contacts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Contacts.framework; path = System/Library/Frameworks/Contacts.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -66,7 +68,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				DBB667191C3AD0AA003AD8E0 /* MapKit.framework in Frameworks */,
+				DBFC11E31C3B126E00087FC9 /* Contacts.framework in Frameworks */,
+				DBFC11E11C3B0EDE00087FC9 /* MapKit.framework in Frameworks */,
 				DB96FA6D1C0DE65D00477BD3 /* CoreLocation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -112,6 +115,7 @@
 		DBF601891C0C997900EEEE98 = {
 			isa = PBXGroup;
 			children = (
+				DBFC11E21C3B126E00087FC9 /* Contacts.framework */,
 				DBB667181C3AD0AA003AD8E0 /* MapKit.framework */,
 				DB96FA6C1C0DE65D00477BD3 /* CoreLocation.framework */,
 				DBF601941C0C997900EEEE98 /* pelias-ios-sdk */,
