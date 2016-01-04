@@ -81,4 +81,10 @@ class PeliasSearchConfigTests: XCTestCase {
     XCTAssert(config.queryItems["focus.point.lat"]?.value == "40.713008", "boundary.cirle.lat not set correctly")
     XCTAssert(config.queryItems["focus.point.lon"]?.value == "-74.013169", "boundary.cirle.lon not set correctly")
   }
+
+  func testBasicSearchURL(){
+    let validURL = "https://search.mapzen.com/v1/search?text=test&api_key=1234"
+    let testUrl = config.searchUrl()
+    XCTAssert(testUrl.absoluteString == validURL)
+  }
 }
