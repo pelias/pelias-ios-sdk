@@ -89,3 +89,17 @@ extension PeliasSearchResponse {
     return mapItems;
   }
 }
+
+extension MKMapItem: MKAnnotation {
+  public var coordinate: CLLocationCoordinate2D{
+    get {
+      return self.placemark.coordinate
+    }
+  }
+  
+  public var title: String?{
+    get {
+      return self.name
+    }
+  }
+}
