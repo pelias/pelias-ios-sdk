@@ -85,7 +85,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="Lq2-rk-0h1">
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="Lq2-rk-0h1">
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="551"/>
                             </mapView>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="ezh-C6-0lm">
@@ -99,8 +99,12 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="Lq2-rk-0h1" firstAttribute="top" secondItem="L7p-HK-0SC" secondAttribute="bottom" constant="-20" id="5Ek-mW-i1z"/>
+                            <constraint firstItem="Djb-ko-YwX" firstAttribute="top" secondItem="Lq2-rk-0h1" secondAttribute="bottom" id="6cn-5t-fFd"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="Lq2-rk-0h1" secondAttribute="trailing" constant="-20" id="RTO-lG-NvH"/>
                             <constraint firstAttribute="leadingMargin" secondItem="ezh-C6-0lm" secondAttribute="leading" id="Rgl-3B-xw6"/>
                             <constraint firstItem="ezh-C6-0lm" firstAttribute="top" secondItem="L7p-HK-0SC" secondAttribute="bottom" constant="8" id="eH0-6g-nx7"/>
+                            <constraint firstItem="Lq2-rk-0h1" firstAttribute="leading" secondItem="QS5-Rx-YEW" secondAttribute="leadingMargin" constant="-20" id="sbG-h5-QCF"/>
                             <constraint firstAttribute="trailingMargin" secondItem="ezh-C6-0lm" secondAttribute="trailing" id="xCo-3z-UCJ"/>
                         </constraints>
                     </view>
