@@ -17,19 +17,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="H6h-FP-4Rz">
-                                <rect key="frame" x="20" y="37" width="418" height="30"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="329" id="3CI-Hk-UVc"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
-                                <variation key="default">
-                                    <mask key="constraints">
-                                        <exclude reference="3CI-Hk-UVc"/>
-                                    </mask>
-                                </variation>
-                            </textField>
                             <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1rB-jS-vFn">
                                 <rect key="frame" x="501" y="37" width="48" height="30"/>
                                 <state key="normal" title="Search"/>
@@ -43,6 +30,19 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="H6h-FP-4Rz">
+                                <rect key="frame" x="20" y="37" width="418" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="329" id="3CI-Hk-UVc"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="3CI-Hk-UVc"/>
+                                    </mask>
+                                </variation>
+                            </textField>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
@@ -88,12 +88,26 @@
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="Lq2-rk-0h1">
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="551"/>
                             </mapView>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ezh-C6-0lm">
+                                <rect key="frame" x="20" y="28" width="560" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" keyboardType="webSearch" returnKeyType="search"/>
+                                <connections>
+                                    <outlet property="delegate" destination="8rJ-Kc-sve" id="XZm-Wc-hCT"/>
+                                </connections>
+                            </textField>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="leadingMargin" secondItem="ezh-C6-0lm" secondAttribute="leading" id="Rgl-3B-xw6"/>
+                            <constraint firstItem="ezh-C6-0lm" firstAttribute="top" secondItem="L7p-HK-0SC" secondAttribute="bottom" constant="8" id="eH0-6g-nx7"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="ezh-C6-0lm" secondAttribute="trailing" id="xCo-3z-UCJ"/>
+                        </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="Second" image="second" id="cPa-gy-q4n"/>
                     <connections>
                         <outlet property="mapView" destination="Lq2-rk-0h1" id="b5d-Qt-1WJ"/>
+                        <outlet property="searchBox" destination="ezh-C6-0lm" id="dE1-iL-zKZ"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4Nw-L8-lE0" sceneMemberID="firstResponder"/>
