@@ -109,13 +109,15 @@ extension SearchBoundaryRect {
     //Since we get a coordinate anda size, we need to convert this into the bounding box pelias expects.
     //First convert the origin point to the min lat/long
     let minCoordinate = MKCoordinateForMapPoint(mapRect.origin)
-    self.minLatLong = GeoPoint(latitude: minCoordinate.latitude, longitude: minCoordinate.longitude)
-    
+
     //Now we need to figure out the other map point that represents the max
-    let mapPointMaxX = mapRect.origin.x + mapRect.size.height
-    let mapPointMaxY = mapRect.origin.y + mapRect.size.width
+    let mapPointMaxX = mapRect.origin.x + mapRect.size.width
+    let mapPointMaxY = mapRect.origin.y + mapRect.size.height
     let mapPointMax = MKMapPoint(x: mapPointMaxX, y: mapPointMaxY)
     let maxCoordinate = MKCoordinateForMapPoint(mapPointMax)
-    self.maxLatLong = GeoPoint(latitude: maxCoordinate.latitude, longitude: maxCoordinate.longitude)
+
+    //We use the origin point latitude for max, and subsequently the computed maxLat for pelias's minimum, because pelias wants lower left and upper right points of the rect.
+    self.maxLatLong = GeoPoint(latitude: minCoordinate.latitude, longitude: maxCoordinate.longitude)
+    self.minLatLong = GeoPoint(latitude: maxCoordinate.latitude, longitude: minCoordinate.longitude)
   }
 }
