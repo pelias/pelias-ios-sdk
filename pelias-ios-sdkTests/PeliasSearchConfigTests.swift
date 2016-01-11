@@ -20,7 +20,7 @@ class PeliasSearchConfigTests: XCTestCase {
   }
   
   override class func setUp(){
-    SearchManager.sharedInstance.apiKey = "1234"
+    PeliasSearchManager.sharedInstance.apiKey = "1234"
   }
   
   override func tearDown() {

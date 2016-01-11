@@ -10,7 +10,7 @@ import Foundation
 
 public struct PeliasSearchConfig : SearchAPIConfigData {
 
-  var urlEndpoint = NSURL.init(string: "/v1/search", relativeToURL: SearchManager.sharedInstance.baseUrl)!
+  var urlEndpoint = NSURL.init(string: "/v1/search", relativeToURL: PeliasSearchManager.sharedInstance.baseUrl)!
 
   var searchText: String{
     didSet {
@@ -96,7 +96,7 @@ public struct PeliasSearchConfig : SearchAPIConfigData {
   init(searchText: String, completionHandler: (PeliasSearchResponse) -> Void){
     self.searchText = searchText
     self.completionHandler = completionHandler
-    apiKey = SearchManager.sharedInstance.apiKey
+    apiKey = PeliasSearchManager.sharedInstance.apiKey
     defer {
       //didSet will not fire because self is not setup so we have to do this manually
       appendQueryItem("text", value: searchText)

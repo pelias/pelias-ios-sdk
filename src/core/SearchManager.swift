@@ -8,10 +8,10 @@
 
 import Foundation
 
-public final class SearchManager {
+public final class PeliasSearchManager {
   
   //! Singleton access
-  static let sharedInstance = SearchManager()
+  static let sharedInstance = PeliasSearchManager()
   
   private let operationQueue = NSOperationQueue()
   

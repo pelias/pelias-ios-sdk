@@ -48,7 +48,7 @@ class SecondViewController: UIViewController, UITextFieldDelegate{
         }
       })
       searchConfig.boundaryRect = searchRect
-      SearchManager.sharedInstance.performSearch(searchConfig)
+      PeliasSearchManager.sharedInstance.performSearch(searchConfig)
     }
     searchBox.resignFirstResponder()
     return true

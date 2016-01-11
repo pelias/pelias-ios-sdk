@@ -19,7 +19,6 @@
 		DBB667261C3AD79F003AD8E0 /* PeliasSearchResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBB6671D1C3AD785003AD8E0 /* PeliasSearchResponse.swift */; };
 		DBB667271C3AD7A2003AD8E0 /* SearchManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBB6671E1C3AD785003AD8E0 /* SearchManager.swift */; };
 		DBB667291C3AD7F3003AD8E0 /* MapkitExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBB667281C3AD7F3003AD8E0 /* MapkitExtensions.swift */; };
-		DBB6672A1C3AD7F3003AD8E0 /* MapkitExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBB667281C3AD7F3003AD8E0 /* MapkitExtensions.swift */; };
 		DBF601961C0C997900EEEE98 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBF601951C0C997900EEEE98 /* AppDelegate.swift */; };
 		DBF601981C0C997900EEEE98 /* FirstViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBF601971C0C997900EEEE98 /* FirstViewController.swift */; };
 		DBF6019A1C0C997900EEEE98 /* SecondViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBF601991C0C997900EEEE98 /* SecondViewController.swift */; };
@@ -277,7 +276,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				DBB667251C3AD79B003AD8E0 /* PeliasSearchConfigObject.swift in Sources */,
-				DBB6672A1C3AD7F3003AD8E0 /* MapkitExtensions.swift in Sources */,
 				DBB667261C3AD79F003AD8E0 /* PeliasSearchResponse.swift in Sources */,
 				DB96FA951C1219EA00477BD3 /* PeliasSearchConfigTests.swift in Sources */,
 				DBB667271C3AD7A2003AD8E0 /* SearchManager.swift in Sources */,
