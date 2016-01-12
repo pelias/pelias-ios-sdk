@@ -25,7 +25,6 @@ public final class PeliasSearchManager {
   }
   
   public func performSearch(searchConfig: PeliasSearchConfig) -> SearchOperation{
-    //TBD - Do error checking to make sure we can actually perform the search
     return executeSearchQuery(searchConfig);
   }
 
