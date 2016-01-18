@@ -12,11 +12,8 @@ public final class PeliasSearchManager {
   
   //! Singleton access
   static let sharedInstance = PeliasSearchManager()
-  
   private let operationQueue = NSOperationQueue()
-  
   var apiKey: String?
-  
   var baseUrl: NSURL
   
   private init() {
@@ -37,10 +34,9 @@ public final class PeliasSearchManager {
     
     return searchOp;
   }
-  
 }
 
-public class SearchOperation: NSOperation{
+public class SearchOperation: NSOperation {
   
   let searchConfig: PeliasSearchConfig
   
@@ -52,9 +48,6 @@ public class SearchOperation: NSOperation{
     NSURLSession.sharedSession().dataTaskWithURL(searchConfig.searchUrl()) { (data: NSData?, response: NSURLResponse?, error: NSError?) -> Void in
       let searchResponse = PeliasSearchResponse(data: data, response: response, error: error)
       NSOperationQueue.mainQueue().addOperationWithBlock({ () -> Void in
-        self.searchConfig.completionHandler(searchResponse)
-      })
-      dispatch_async(dispatch_get_main_queue(), { () -> Void in
         self.searchConfig.completionHandler(searchResponse)
       })
     }.resume()

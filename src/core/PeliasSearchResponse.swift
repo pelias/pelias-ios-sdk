@@ -8,13 +8,13 @@
 
 import Foundation
 
-public struct PeliasSearchResponse: APIResponse {
+public class PeliasSearchResponse: APIResponse {
   let data: NSData?
   let response: NSURLResponse?
   let error: NSError?
   var parsedResponse: NSDictionary?
   
-  init(data: NSData?, response: NSURLResponse?, error: NSError?){
+  init(data: NSData?, response: NSURLResponse?, error: NSError?) {
     self.data = data
     self.response = response
     self.error = error

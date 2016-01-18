@@ -27,4 +27,8 @@ Pod::Spec.new do |s|
     mk.frameworks   = 'MapKit', 'Contacts', 'CoreLocation'
     mk.dependency     'Pelias/Core'
   end
+
+  s.subspec 'ObjectiveCompat' do |objc|
+    objc.source_files = 'src/objc-compat/ObjectiveCompatibility.swift'
+    objc.dependency     'Pelias/Core'
 end
