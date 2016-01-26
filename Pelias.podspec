@@ -31,4 +31,5 @@ Pod::Spec.new do |s|
   s.subspec 'ObjectiveCompat' do |objc|
     objc.source_files = 'src/objc-compat/ObjectiveCompatibility.swift'
     objc.dependency     'Pelias/Core'
+  end
 end
