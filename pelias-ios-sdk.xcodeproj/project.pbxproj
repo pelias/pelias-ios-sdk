@@ -12,6 +12,8 @@
 		DB96FA6D1C0DE65D00477BD3 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DB96FA6C1C0DE65D00477BD3 /* CoreLocation.framework */; };
 		DB96FA951C1219EA00477BD3 /* PeliasSearchConfigTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB96FA941C1219EA00477BD3 /* PeliasSearchConfigTests.swift */; };
 		DB96FA9A1C1B711800477BD3 /* ConfigProtocolTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB96FA991C1B711800477BD3 /* ConfigProtocolTests.swift */; };
+		DBA27FAD1C4D4130009F1927 /* ObjectiveCompatibility.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBA27FAC1C4D4130009F1927 /* ObjectiveCompatibility.swift */; };
+		DBA27FAE1C4D4130009F1927 /* ObjectiveCompatibility.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBA27FAC1C4D4130009F1927 /* ObjectiveCompatibility.swift */; };
 		DBB6671F1C3AD785003AD8E0 /* ConfigProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBB6671B1C3AD785003AD8E0 /* ConfigProtocol.swift */; };
 		DBB667201C3AD785003AD8E0 /* PeliasSearchConfigObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBB6671C1C3AD785003AD8E0 /* PeliasSearchConfigObject.swift */; };
 		DBB667211C3AD785003AD8E0 /* PeliasSearchResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBB6671D1C3AD785003AD8E0 /* PeliasSearchResponse.swift */; };
@@ -44,6 +46,7 @@
 		DB96FA6C1C0DE65D00477BD3 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		DB96FA941C1219EA00477BD3 /* PeliasSearchConfigTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PeliasSearchConfigTests.swift; sourceTree = "<group>"; };
 		DB96FA991C1B711800477BD3 /* ConfigProtocolTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConfigProtocolTests.swift; sourceTree = "<group>"; };
+		DBA27FAC1C4D4130009F1927 /* ObjectiveCompatibility.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ObjectiveCompatibility.swift; sourceTree = "<group>"; };
 		DBB667181C3AD0AA003AD8E0 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		DBB6671B1C3AD785003AD8E0 /* ConfigProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConfigProtocol.swift; sourceTree = "<group>"; };
 		DBB6671C1C3AD785003AD8E0 /* PeliasSearchConfigObject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PeliasSearchConfigObject.swift; sourceTree = "<group>"; };
@@ -86,11 +89,20 @@
 		DB96FA7E1C0DE81800477BD3 /* src */ = {
 			isa = PBXGroup;
 			children = (
+				DBA27FAB1C4D40DB009F1927 /* objc-compat */,
 				DBB667231C3AD78D003AD8E0 /* convenience */,
 				DBB6671A1C3AD785003AD8E0 /* core */,
 			);
 			path = src;
 			sourceTree = SOURCE_ROOT;
+		};
+		DBA27FAB1C4D40DB009F1927 /* objc-compat */ = {
+			isa = PBXGroup;
+			children = (
+				DBA27FAC1C4D4130009F1927 /* ObjectiveCompatibility.swift */,
+			);
+			path = "objc-compat";
+			sourceTree = "<group>";
 		};
 		DBB6671A1C3AD785003AD8E0 /* core */ = {
 			isa = PBXGroup;
@@ -262,6 +274,7 @@
 			files = (
 				DBF6019A1C0C997900EEEE98 /* SecondViewController.swift in Sources */,
 				DBB667211C3AD785003AD8E0 /* PeliasSearchResponse.swift in Sources */,
+				DBA27FAD1C4D4130009F1927 /* ObjectiveCompatibility.swift in Sources */,
 				DBF601961C0C997900EEEE98 /* AppDelegate.swift in Sources */,
 				DBB667201C3AD785003AD8E0 /* PeliasSearchConfigObject.swift in Sources */,
 				DBF601981C0C997900EEEE98 /* FirstViewController.swift in Sources */,
@@ -276,6 +289,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				DBB667251C3AD79B003AD8E0 /* PeliasSearchConfigObject.swift in Sources */,
+				DBA27FAE1C4D4130009F1927 /* ObjectiveCompatibility.swift in Sources */,
 				DBB667261C3AD79F003AD8E0 /* PeliasSearchResponse.swift in Sources */,
 				DB96FA951C1219EA00477BD3 /* PeliasSearchConfigTests.swift in Sources */,
 				DB72E1701C4480EE00872C9D /* PeliasSearchManager.swift in Sources */,

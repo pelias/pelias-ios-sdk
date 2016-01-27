@@ -8,11 +8,11 @@
 
 import Foundation
 
-struct SearchBoundaryRect : Equatable{
-  var minLatLong: GeoPoint
-  var maxLatLong: GeoPoint
+struct SearchBoundaryRect : Equatable {
+  let minLatLong: GeoPoint
+  let maxLatLong: GeoPoint
   
-  init(minLatLong: GeoPoint, maxLatLong: GeoPoint){
+  init(minLatLong: GeoPoint, maxLatLong: GeoPoint) {
     self.minLatLong = minLatLong
     self.maxLatLong = maxLatLong
   }
@@ -23,10 +23,10 @@ func ==(lhs: SearchBoundaryRect, rhs: SearchBoundaryRect) -> Bool {
 }
 
 struct SearchBoundaryCircle : Equatable {
-  var center: GeoPoint
-  var radius: Double
+  let center: GeoPoint
+  let radius: Double
   
-  init(center: GeoPoint, radius: Double){
+  init(center: GeoPoint, radius: Double) {
     self.center = center
     self.radius = radius
   }
@@ -37,10 +37,10 @@ func ==(lhs: SearchBoundaryCircle, rhs: SearchBoundaryCircle) -> Bool {
 }
 
 struct GeoPoint : Equatable {
-  var latitude: Double
-  var longitude: Double
+  let latitude: Double
+  let longitude: Double
   
-  init(latitude: Double, longitude: Double){
+  init(latitude: Double, longitude: Double) {
     self.latitude = latitude
     self.longitude = longitude
   }
