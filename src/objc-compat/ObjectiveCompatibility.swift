@@ -267,7 +267,7 @@ public class PeliasSearchConfigWrapper: NSObject {
     }
   }
   
-  init(searchText: String, completionHandler: (PeliasSearchResponse) -> Void){
+  init(searchText: String, completionHandler: (PeliasResponse) -> Void){
     self.configObject = PeliasSearchConfig(searchText: searchText, completionHandler: completionHandler)
   }
 }

@@ -72,8 +72,27 @@ enum LayerFilter: String {
 protocol APIConfigData {
   var urlEndpoint: NSURL { get }
   var apiKey: String? { get }
+  var queryItems: [String:NSURLQueryItem] { get set }
   
   func searchUrl() -> NSURL
+  mutating func appendQueryItem(name: String, value: String?)
+  var completionHandler: (PeliasResponse) -> Void { get set }
+}
+
+extension APIConfigData {
+  mutating func appendQueryItem(name: String, value: String?) {
+    if let queryValue = value where queryValue.isEmpty == false{
+      let queryItem = NSURLQueryItem(name: name, value: queryValue)
+      queryItems[name] = queryItem;
+      
+    }
+  }
+  
+  func searchUrl() -> NSURL {
+    let urlComponents = NSURLComponents(URL: urlEndpoint, resolvingAgainstBaseURL: true)
+    urlComponents?.queryItems = Array(queryItems.values)
+    return urlComponents!.URL!
+  }
 }
 
 protocol SearchAPIConfigData : APIConfigData {
@@ -86,7 +105,14 @@ protocol SearchAPIConfigData : APIConfigData {
   var focusPoint: GeoPoint? { get set }
   var dataSources: [SearchSource]? { get set }
   var layers: [LayerFilter]? { get set }
-  var completionHandler: (PeliasSearchResponse) -> Void { get set }
+}
+
+protocol ReverseAPIConfigData: APIConfigData {
+  var point: GeoPoint { get set }
+  var numberOfResults: Int? { get set }
+  var dataSources: [SearchSource]? { get set }
+  var boundaryCountry: String? { get set }
+  var layers: [LayerFilter]? { get set }
 }
 
 protocol APIResponse {

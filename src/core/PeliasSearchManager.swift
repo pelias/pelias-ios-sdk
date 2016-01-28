@@ -21,13 +21,17 @@ public final class PeliasSearchManager {
     baseUrl = NSURL.init(string: "https://search.mapzen.com")! // Force the unwrap because we must have a base URL to operate
   }
   
-  public func performSearch(searchConfig: PeliasSearchConfig) -> SearchOperation{
-    return executeSearchQuery(searchConfig);
+  public func performSearch(config: PeliasSearchConfig) -> PeliasOperation {
+    return executeOperation(config);
   }
-
-  private func executeSearchQuery(searchConfig: PeliasSearchConfig) -> SearchOperation{
-    //Build a search operation
-    let searchOp = SearchOperation(searchConfig: searchConfig)
+  
+  public func reverseGeocode(config: PeliasReverseConfig) -> PeliasOperation {
+    return executeOperation(config);
+  }
+  
+  private func executeOperation(config: APIConfigData) -> PeliasOperation {
+    //Build a operation
+    let searchOp = PeliasOperation(config: config)
     
     //Enqueue search object so it can begin processing
     operationQueue.addOperation(searchOp);
@@ -36,20 +40,52 @@ public final class PeliasSearchManager {
   }
 }
 
-public class SearchOperation: NSOperation {
+public class PeliasOperation: NSOperation {
   
-  let searchConfig: PeliasSearchConfig
+  let config: APIConfigData
   
-  init(searchConfig: PeliasSearchConfig) {
-    self.searchConfig = searchConfig
+  init(config: APIConfigData) {
+    self.config = config
   }
   
   override public func main() {
-    NSURLSession.sharedSession().dataTaskWithURL(searchConfig.searchUrl()) { (data: NSData?, response: NSURLResponse?, error: NSError?) -> Void in
-      let searchResponse = PeliasSearchResponse(data: data, response: response, error: error)
+    NSURLSession.sharedSession().dataTaskWithURL(config.searchUrl()) { (data: NSData?, response: NSURLResponse?, error: NSError?) -> Void in
+      let searchResponse = PeliasResponse(data: data, response: response, error: error)
       NSOperationQueue.mainQueue().addOperationWithBlock({ () -> Void in
-        self.searchConfig.completionHandler(searchResponse)
+        self.config.completionHandler(searchResponse)
       })
     }.resume()
+  }
+}
+
+public class PeliasResponse: APIResponse {
+  let data: NSData?
+  let response: NSURLResponse?
+  let error: NSError?
+  var parsedResponse: NSDictionary?
+  
+  init(data: NSData?, response: NSURLResponse?, error: NSError?) {
+    self.data = data
+    self.response = response
+    self.error = error
+    parsedResponse = parseData(data)
+  }
+  
+  private func parseData(data: NSData?) -> NSDictionary? {
+    let JSONData = data!
+    do {
+      let JSON = try NSJSONSerialization.JSONObjectWithData(JSONData, options:NSJSONReadingOptions(rawValue: 0))
+      guard let JSONDictionary :NSDictionary = JSON as? NSDictionary else {
+        print("Not a Dictionary")
+        // put in function
+        return nil
+      }
+      print("JSONDictionary! \(JSONDictionary)")
+      return JSONDictionary
+    }
+    catch let JSONError as NSError {
+      print("\(JSONError)")
+    }
+    return nil
   }
 }
