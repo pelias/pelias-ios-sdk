@@ -58,7 +58,7 @@ Example:
 
 */
 
-extension PeliasSearchResponse {
+extension PeliasResponse {
   func parsedMapItems() -> [MKMapItem]? {
     //TODO: This should get refactored into eventually being a real GeoJSON decoder, and split out the MapItem creation
     var mapItems = [MKMapItem]()

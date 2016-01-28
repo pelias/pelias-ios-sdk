@@ -18,10 +18,9 @@ public struct PeliasSearchConfig : SearchAPIConfigData {
     }
   }
   
-  var completionHandler: (PeliasSearchResponse) -> Void
-  
-  //Optional Query Params
   var queryItems = [String:NSURLQueryItem]()
+  
+  var completionHandler: (PeliasResponse) -> Void
   
   var apiKey: String? {
     didSet {
@@ -30,6 +29,8 @@ public struct PeliasSearchConfig : SearchAPIConfigData {
       }
     }
   }
+  
+  //Optional Query Params
   
   var numberOfResults: Int? {
     didSet {
@@ -93,7 +94,7 @@ public struct PeliasSearchConfig : SearchAPIConfigData {
     }
   }
   
-  init(searchText: String, completionHandler: (PeliasSearchResponse) -> Void){
+  init(searchText: String, completionHandler: (PeliasResponse) -> Void){
     self.searchText = searchText
     self.completionHandler = completionHandler
     apiKey = PeliasSearchManager.sharedInstance.apiKey
@@ -102,19 +103,5 @@ public struct PeliasSearchConfig : SearchAPIConfigData {
       appendQueryItem("text", value: searchText)
       appendQueryItem("api_key", value: apiKey)
     }
-  }
-  
-  mutating func appendQueryItem(name: String, value: String?) {
-    if let queryValue = value where queryValue.isEmpty == false{
-      let queryItem = NSURLQueryItem(name: name, value: queryValue)
-      queryItems[name] = queryItem;
-      
-    }
-  }
-  
-  func searchUrl() -> NSURL {
-    let urlComponents = NSURLComponents(URL: urlEndpoint, resolvingAgainstBaseURL: true)
-    urlComponents?.queryItems = Array(queryItems.values)
-    return urlComponents!.URL!
   }
 }
