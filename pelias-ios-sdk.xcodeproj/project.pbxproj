@@ -11,6 +11,9 @@
 		DB72E1701C4480EE00872C9D /* PeliasSearchManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB72E16E1C4480EE00872C9D /* PeliasSearchManager.swift */; };
 		DB7409981C59544000D88EC3 /* PeliasReverseGeoConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB7409971C59544000D88EC3 /* PeliasReverseGeoConfig.swift */; };
 		DB7409991C59544000D88EC3 /* PeliasReverseGeoConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB7409971C59544000D88EC3 /* PeliasReverseGeoConfig.swift */; };
+		DB74099B1C5AB9D000D88EC3 /* PeliasAutocompleteConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB74099A1C5AB9D000D88EC3 /* PeliasAutocompleteConfig.swift */; };
+		DB74099C1C5AB9D000D88EC3 /* PeliasAutocompleteConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB74099A1C5AB9D000D88EC3 /* PeliasAutocompleteConfig.swift */; };
+		DB7409A41C5AC98900D88EC3 /* AutocompleteTableVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB7409A31C5AC98900D88EC3 /* AutocompleteTableVC.swift */; };
 		DB96FA6D1C0DE65D00477BD3 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DB96FA6C1C0DE65D00477BD3 /* CoreLocation.framework */; };
 		DB96FA951C1219EA00477BD3 /* PeliasSearchConfigTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB96FA941C1219EA00477BD3 /* PeliasSearchConfigTests.swift */; };
 		DB96FA9A1C1B711800477BD3 /* ConfigProtocolTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB96FA991C1B711800477BD3 /* ConfigProtocolTests.swift */; };
@@ -44,6 +47,8 @@
 /* Begin PBXFileReference section */
 		DB72E16E1C4480EE00872C9D /* PeliasSearchManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PeliasSearchManager.swift; sourceTree = "<group>"; };
 		DB7409971C59544000D88EC3 /* PeliasReverseGeoConfig.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PeliasReverseGeoConfig.swift; sourceTree = "<group>"; };
+		DB74099A1C5AB9D000D88EC3 /* PeliasAutocompleteConfig.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PeliasAutocompleteConfig.swift; sourceTree = "<group>"; };
+		DB7409A31C5AC98900D88EC3 /* AutocompleteTableVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AutocompleteTableVC.swift; sourceTree = "<group>"; };
 		DB96FA6C1C0DE65D00477BD3 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		DB96FA941C1219EA00477BD3 /* PeliasSearchConfigTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PeliasSearchConfigTests.swift; sourceTree = "<group>"; };
 		DB96FA991C1B711800477BD3 /* ConfigProtocolTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConfigProtocolTests.swift; sourceTree = "<group>"; };
@@ -111,6 +116,7 @@
 				DBB6671C1C3AD785003AD8E0 /* PeliasSearchConfigObject.swift */,
 				DB72E16E1C4480EE00872C9D /* PeliasSearchManager.swift */,
 				DB7409971C59544000D88EC3 /* PeliasReverseGeoConfig.swift */,
+				DB74099A1C5AB9D000D88EC3 /* PeliasAutocompleteConfig.swift */,
 			);
 			path = core;
 			sourceTree = "<group>";
@@ -151,6 +157,7 @@
 				DBF601951C0C997900EEEE98 /* AppDelegate.swift */,
 				DBF601971C0C997900EEEE98 /* FirstViewController.swift */,
 				DBF601991C0C997900EEEE98 /* SecondViewController.swift */,
+				DB7409A31C5AC98900D88EC3 /* AutocompleteTableVC.swift */,
 				DBF6019B1C0C997900EEEE98 /* Main.storyboard */,
 				DBF6019E1C0C997900EEEE98 /* Assets.xcassets */,
 				DBF601A01C0C997900EEEE98 /* LaunchScreen.storyboard */,
@@ -279,6 +286,8 @@
 				DBF601981C0C997900EEEE98 /* FirstViewController.swift in Sources */,
 				DB7409981C59544000D88EC3 /* PeliasReverseGeoConfig.swift in Sources */,
 				DBB6671F1C3AD785003AD8E0 /* ConfigProtocol.swift in Sources */,
+				DB7409A41C5AC98900D88EC3 /* AutocompleteTableVC.swift in Sources */,
+				DB74099B1C5AB9D000D88EC3 /* PeliasAutocompleteConfig.swift in Sources */,
 				DB72E16F1C4480EE00872C9D /* PeliasSearchManager.swift in Sources */,
 				DBB667291C3AD7F3003AD8E0 /* MapkitExtensions.swift in Sources */,
 			);
@@ -295,6 +304,7 @@
 				DB72E1701C4480EE00872C9D /* PeliasSearchManager.swift in Sources */,
 				DBB667241C3AD798003AD8E0 /* ConfigProtocol.swift in Sources */,
 				DB96FA9A1C1B711800477BD3 /* ConfigProtocolTests.swift in Sources */,
+				DB74099C1C5AB9D000D88EC3 /* PeliasAutocompleteConfig.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
