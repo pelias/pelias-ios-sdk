@@ -13,11 +13,13 @@ public final class PeliasSearchManager {
   //! Singleton access
   static let sharedInstance = PeliasSearchManager()
   private let operationQueue = NSOperationQueue()
+  private let autocompleteOperationQueue = NSOperationQueue()
   var apiKey: String?
   var baseUrl: NSURL
   
   private init() {
     operationQueue.maxConcurrentOperationCount = 4
+    autocompleteOperationQueue.maxConcurrentOperationCount = 1
     baseUrl = NSURL.init(string: "https://search.mapzen.com")! // Force the unwrap because we must have a base URL to operate
   }
   
@@ -27,6 +29,11 @@ public final class PeliasSearchManager {
   
   public func reverseGeocode(config: PeliasReverseConfig) -> PeliasOperation {
     return executeOperation(config);
+  }
+  
+  public func autocompleteQuery(config: PeliasAutocompleteConfig) -> PeliasOperation {
+    //TODO: Implement Rate Limiting
+    return executeOperation(config)
   }
   
   private func executeOperation(config: APIConfigData) -> PeliasOperation {

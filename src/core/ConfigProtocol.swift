@@ -95,14 +95,21 @@ extension APIConfigData {
   }
 }
 
-protocol SearchAPIConfigData : APIConfigData {
+protocol GenericSearchAPIConfigData : APIConfigData {
   var searchText: String { get set }
+}
+
+protocol AutocompleteAPIConfigData: GenericSearchAPIConfigData {
+  var focusPoint: GeoPoint { get set }
+}
+
+protocol SearchAPIConfigData : GenericSearchAPIConfigData {
   
+  var focusPoint: GeoPoint? { get set }
   var numberOfResults: Int? { get set }
   var boundaryCountry: String? { get set }
   var boundaryRect: SearchBoundaryRect? { get set }
   var boundaryCircle: SearchBoundaryCircle? { get set }
-  var focusPoint: GeoPoint? { get set }
   var dataSources: [SearchSource]? { get set }
   var layers: [LayerFilter]? { get set }
 }
