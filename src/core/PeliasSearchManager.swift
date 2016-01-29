@@ -14,6 +14,9 @@ public final class PeliasSearchManager {
   static let sharedInstance = PeliasSearchManager()
   private let operationQueue = NSOperationQueue()
   private let autocompleteOperationQueue = NSOperationQueue()
+  private var autocompleteQueryTimer: NSTimer?
+  private var queuedAutocompleteOp: PeliasOperation?
+  public var autocompleteTimeDelay: Double = 0.0 //In seconds
   var apiKey: String?
   var baseUrl: NSURL
   
@@ -32,8 +35,8 @@ public final class PeliasSearchManager {
   }
   
   public func autocompleteQuery(config: PeliasAutocompleteConfig) -> PeliasOperation {
-    //TODO: Implement Rate Limiting
-    return executeOperation(config)
+    
+    return executeAutocompleteOperation(config)
   }
   
   private func executeOperation(config: APIConfigData) -> PeliasOperation {
@@ -41,9 +44,43 @@ public final class PeliasSearchManager {
     let searchOp = PeliasOperation(config: config)
     
     //Enqueue search object so it can begin processing
-    operationQueue.addOperation(searchOp);
+    operationQueue.addOperation(searchOp)
     
     return searchOp;
+  }
+  
+  private func executeAutocompleteOperation(config: PeliasAutocompleteConfig) -> PeliasOperation {
+    //Rate Limiter
+    //First we check to see if we have a delay stored - if not, we use the existing operation queue to immediately fire
+    if (autocompleteTimeDelay <= 0) {
+      return executeOperation(config)
+    }
+    
+    let operation = PeliasOperation(config: config)
+    queuedAutocompleteOp = operation
+    // We may be executing an existing operation, so lets see if we have a timer
+    // Conceivably this could get called from multiple threads, in which case we should probably synchronize on the timer variable. We'll deal with that if it comes to that
+    if autocompleteQueryTimer == nil {
+      //We don't have a timer, so lets boot one up and start the engine ticking
+      self.autocompleteTimerExecute()
+    }
+    
+    return operation
+  }
+  
+  @objc private func autocompleteTimerExecute() {
+    //Check to see if we have an operation waiting for us
+    if let operation = queuedAutocompleteOp {
+      //We have one! Lets fire it, and then create a new timer that will fire once in whatever delay there is from now
+      print("Engaging Rate limiter")
+      autocompleteOperationQueue.addOperation(operation)
+      queuedAutocompleteOp = nil
+      autocompleteQueryTimer = NSTimer.scheduledTimerWithTimeInterval(autocompleteTimeDelay, target: self, selector: "autocompleteTimerExecute", userInfo: nil, repeats: false)
+    }
+    else {
+      //We don't have one! Set it to nil so we come back into this function
+      autocompleteQueryTimer = nil
+    }
   }
 }
 
