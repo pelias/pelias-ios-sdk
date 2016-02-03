@@ -19,17 +19,17 @@ Pod::Spec.new do |s|
   ### Subspecs
 
   s.subspec 'Core' do |cs|
-    cs.source_files   = 'src/core/*.swift'
+    cs.source_files   = 'src/*.swift'
   end
 
   s.subspec 'MapKitExtras' do |mk|
-    mk.source_files = 'src/convenience/MapkitExtensions.swift'
+    mk.source_files = 'extras/convenience/MapkitExtensions.swift'
     mk.frameworks   = 'MapKit', 'Contacts', 'CoreLocation'
     mk.dependency     'Pelias/Core'
   end
 
   s.subspec 'ObjectiveCompat' do |objc|
-    objc.source_files = 'src/objc-compat/ObjectiveCompatibility.swift'
+    objc.source_files = 'extras/objc-compat/ObjectiveCompatibility.swift'
     objc.dependency     'Pelias/Core'
   end
 end
