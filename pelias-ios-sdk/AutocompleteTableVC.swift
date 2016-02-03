@@ -94,6 +94,11 @@ class AutocompleteTableVC: UITableViewController, UISearchResultsUpdating, UISea
     print(error)
   }
   
+  override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+    searchController.searchBar.resignFirstResponder()
+    tableView.deselectRowAtIndexPath(indexPath, animated: true)
+  }
+  
   
   /*
   // Override to support conditional editing of the table view.
