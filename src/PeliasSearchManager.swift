@@ -39,6 +39,11 @@ public final class PeliasSearchManager {
     return executeAutocompleteOperation(config)
   }
   
+  public func cancelOperations() {
+    self.operationQueue.cancelAllOperations()
+    self.autocompleteOperationQueue.cancelAllOperations()
+  }
+  
   private func executeOperation(config: APIConfigData) -> PeliasOperation {
     //Build a operation
     let searchOp = PeliasOperation(config: config)
@@ -93,9 +98,18 @@ public class PeliasOperation: NSOperation {
   }
   
   override public func main() {
+    if self.cancelled {
+      return
+    }
     NSURLSession.sharedSession().dataTaskWithURL(config.searchUrl()) { (data: NSData?, response: NSURLResponse?, error: NSError?) -> Void in
+      if self.cancelled {
+        return
+      }
       let searchResponse = PeliasResponse(data: data, response: response, error: error)
       NSOperationQueue.mainQueue().addOperationWithBlock({ () -> Void in
+        if self.cancelled {
+          return
+        }
         self.config.completionHandler(searchResponse)
       })
     }.resume()
