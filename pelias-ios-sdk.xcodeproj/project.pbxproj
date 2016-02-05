@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		DB1C978A1C6546890034648D /* PeliasSearchManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB1C97891C6546890034648D /* PeliasSearchManagerTests.swift */; };
 		DB7409A41C5AC98900D88EC3 /* AutocompleteTableVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB7409A31C5AC98900D88EC3 /* AutocompleteTableVC.swift */; };
 		DB96FA6D1C0DE65D00477BD3 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DB96FA6C1C0DE65D00477BD3 /* CoreLocation.framework */; };
 		DB96FA951C1219EA00477BD3 /* PeliasSearchConfigTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB96FA941C1219EA00477BD3 /* PeliasSearchConfigTests.swift */; };
@@ -40,6 +41,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		DB1C97891C6546890034648D /* PeliasSearchManagerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PeliasSearchManagerTests.swift; sourceTree = "<group>"; };
 		DB7409A31C5AC98900D88EC3 /* AutocompleteTableVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AutocompleteTableVC.swift; sourceTree = "<group>"; };
 		DB96FA6C1C0DE65D00477BD3 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		DB96FA941C1219EA00477BD3 /* PeliasSearchConfigTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PeliasSearchConfigTests.swift; sourceTree = "<group>"; };
@@ -170,6 +172,7 @@
 				DBF601AE1C0C997900EEEE98 /* Info.plist */,
 				DB96FA941C1219EA00477BD3 /* PeliasSearchConfigTests.swift */,
 				DB96FA991C1B711800477BD3 /* ConfigProtocolTests.swift */,
+				DB1C97891C6546890034648D /* PeliasSearchManagerTests.swift */,
 			);
 			path = "pelias-ios-sdkTests";
 			sourceTree = "<group>";
@@ -297,6 +300,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				DB96FA951C1219EA00477BD3 /* PeliasSearchConfigTests.swift in Sources */,
+				DB1C978A1C6546890034648D /* PeliasSearchManagerTests.swift in Sources */,
 				DB96FA9A1C1B711800477BD3 /* ConfigProtocolTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

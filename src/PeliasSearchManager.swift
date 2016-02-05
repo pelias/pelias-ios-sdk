@@ -15,7 +15,7 @@ public final class PeliasSearchManager {
   private let operationQueue = NSOperationQueue()
   private let autocompleteOperationQueue = NSOperationQueue()
   private var autocompleteQueryTimer: NSTimer?
-  private var queuedAutocompleteOp: PeliasOperation?
+  internal var queuedAutocompleteOp: PeliasOperation?
   public var autocompleteTimeDelay: Double = 0.0 //In seconds
   var apiKey: String?
   var baseUrl: NSURL
