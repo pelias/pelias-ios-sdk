@@ -53,4 +53,16 @@ class PeliasSearchManagerTests: XCTestCase {
       opToCancel.cancel()
     }
   }
+    
+  func testResponseObjectEncoding() {
+    let seed:[String:AnyObject] = ["SuperSweetKey":"SuperSweetValue"]
+    
+    let testResponse = PeliasSearchResponse(parsedResponse: seed)
+    
+    PeliasSearchResponse.encode(testResponse)
+    
+    let decodedObject = PeliasSearchResponse.decode()
+    XCTAssert(testResponse.parsedResponse == decodedObject?.parsedResponse)
+  }
+    
 }

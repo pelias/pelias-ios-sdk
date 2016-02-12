@@ -120,13 +120,15 @@ public class PeliasResponse: APIResponse {
   let data: NSData?
   let response: NSURLResponse?
   let error: NSError?
-  var parsedResponse: NSDictionary?
+  var parsedResponse: PeliasSearchResponse?
   
   init(data: NSData?, response: NSURLResponse?, error: NSError?) {
     self.data = data
     self.response = response
     self.error = error
-    parsedResponse = parseData(data)
+    if let dictResponse = parseData(data) {
+      parsedResponse = PeliasSearchResponse(parsedResponse: dictResponse)
+    }
   }
   
   private func parseData(data: NSData?) -> NSDictionary? {
@@ -145,5 +147,57 @@ public class PeliasResponse: APIResponse {
       print("\(JSONError)")
     }
     return nil
+  }
+}
+
+public struct PeliasSearchResponse {
+  let parsedResponse: NSDictionary
+  
+  init(parsedResponse: NSDictionary) {
+    self.parsedResponse = parsedResponse
+  }
+  
+  static func encode(response: PeliasSearchResponse) {
+    let personClassObject = HelperClass(response: response)
+    
+    NSKeyedArchiver.archiveRootObject(personClassObject, toFile: HelperClass.path())
+  }
+  
+  static func decode() -> PeliasSearchResponse? {
+    let responseClassObject = NSKeyedUnarchiver.unarchiveObjectWithFile(HelperClass.path()) as? HelperClass
+    
+    return responseClassObject?.response
+  }
+}
+
+extension PeliasSearchResponse {
+  
+  //TODO: I'm still not sure of this approach - might be better to implement something more like a proper protocol like http://redqueencoder.com/property-lists-and-user-defaults-in-swift but this works for now
+  class HelperClass: NSObject, NSCoding {
+    
+    var response: PeliasSearchResponse?
+    
+    init(response: PeliasSearchResponse) {
+      self.response = response
+      super.init()
+    }
+    
+    class func path() -> String {
+      let documentsPath = NSSearchPathForDirectoriesInDomains(NSSearchPathDirectory.DocumentDirectory, NSSearchPathDomainMask.UserDomainMask, true).first
+      let path = documentsPath?.stringByAppendingString("/Response")
+      return path!
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+      guard let parsedResponse = aDecoder.decodeObjectForKey("parsedResponse") as? NSDictionary else { response = nil; super.init(); return nil }
+      
+      response = PeliasSearchResponse(parsedResponse: parsedResponse)
+      
+      super.init()
+    }
+    
+    func encodeWithCoder(aCoder: NSCoder) {
+      aCoder.encodeObject(response!.parsedResponse, forKey: "parsedResponse")
+    }
   }
 }

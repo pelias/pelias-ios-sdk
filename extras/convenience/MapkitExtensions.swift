@@ -62,7 +62,7 @@ extension PeliasResponse {
   func parsedMapItems() -> [MKMapItem]? {
     //TODO: This should get refactored into eventually being a real GeoJSON decoder, and split out the MapItem creation
     var mapItems = [MKMapItem]()
-    if let jsonDictionary = parsedResponse {
+    if let jsonDictionary = parsedResponse?.parsedResponse {
       let featuresArray = jsonDictionary["features"] as! [[String:AnyObject]]
       for feature in featuresArray {
         //Address Dictionary for Placemark Creation
