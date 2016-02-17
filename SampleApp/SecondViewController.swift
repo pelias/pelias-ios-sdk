@@ -10,7 +10,7 @@ import UIKit
 import MapKit
 import CoreLocation
 
-class SecondViewController: UIViewController, UITextFieldDelegate, CLLocationManagerDelegate {
+class SecondViewController: UIViewController, UITextFieldDelegate, CLLocationManagerDelegate, MKMapViewDelegate {
 
   @IBOutlet var mapView: MKMapView!
   @IBOutlet var searchBox: UITextField!
@@ -19,7 +19,7 @@ class SecondViewController: UIViewController, UITextFieldDelegate, CLLocationMan
   
   let regionRadius: CLLocationDistance = 100
   let initialLocation = CLLocation(latitude: 40.7312973034393, longitude: -73.99896644276561)
-  var storedAnnotations: [MKMapItem]?
+  var storedAnnotations: [PeliasMapkitAnnotation]?
   
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -28,6 +28,7 @@ class SecondViewController: UIViewController, UITextFieldDelegate, CLLocationMan
     let coordinateRegion = MKCoordinateRegionMakeWithDistance(initialLocation.coordinate,
       regionRadius * 16.0, regionRadius * 16.0)
     mapView.setRegion(coordinateRegion, animated: true)
+    mapView.delegate = self
   }
 
   override func didReceiveMemoryWarning() {
@@ -107,6 +108,31 @@ class SecondViewController: UIViewController, UITextFieldDelegate, CLLocationMan
   
   func locationManager(manager: CLLocationManager, didFailWithError error: NSError) {
     print(error)
+  }
+  
+  //Mapview Delegate
+  func mapView(mapView: MKMapView, viewForAnnotation annotation: MKAnnotation) -> MKAnnotationView? {
+    if annotation.isKindOfClass(MKUserLocation) {
+      return nil
+    }
+    
+    let annotationView = MKPinAnnotationView(annotation: annotation, reuseIdentifier: "pin_loc")
+    annotationView.canShowCallout = true
+    annotationView.rightCalloutAccessoryView = UIButton(type: .DetailDisclosure)
+    
+    return annotationView
+  }
+  
+  func mapView(mapView: MKMapView, annotationView view: MKAnnotationView, calloutAccessoryControlTapped control: UIControl) {
+    if let annotation = view.annotation {
+      guard let mapAnnotation = annotation as? PeliasMapkitAnnotation else { return }
+      guard let queryItem = PeliasPlaceQueryItem(annotation: mapAnnotation, layer: LayerFilter.address) else { return }
+      
+      let config = PeliasPlaceConfig(places: [queryItem], completionHandler: { (response) -> Void in
+        print(response)
+      })
+      PeliasSearchManager.sharedInstance.placeQuery(config)
+    }
   }
 }
 

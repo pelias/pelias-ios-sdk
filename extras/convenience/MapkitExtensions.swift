@@ -9,7 +9,6 @@
 import Foundation
 import MapKit
 import CoreLocation
-import Contacts
 
 /*
 
@@ -58,18 +57,46 @@ Example:
 
 */
 
+public let PeliasIDKey: String = "PeliasOSMIDKey"
+public let PeliasDataSourceKey: String = "PeliasDataSourceKey"
+
+class PeliasMapkitAnnotation: NSObject, MKAnnotation {
+  
+  let coordinate: CLLocationCoordinate2D
+  let title: String?
+  let subtitle: String?
+  let data: [String: AnyObject]?
+  
+  init(coordinate: CLLocationCoordinate2D, title: String?, subtitle: String?, data: [String:AnyObject]?) {
+    self.coordinate = coordinate
+    self.title = title
+    self.subtitle = subtitle
+    self.data = data
+  }
+}
+
+extension PeliasPlaceQueryItem {
+  init?(annotation: PeliasMapkitAnnotation, layer: LayerFilter) {
+    guard let place = annotation.data?[PeliasIDKey] as? String else { return nil }
+    guard let source = SearchSource(rawValue: annotation.data?[PeliasDataSourceKey] as? String ?? "") else { return nil }
+    self.placeId = place
+    self.dataSource = source
+    self.layer = layer
+  }
+}
+
 extension PeliasResponse {
-  func parsedMapItems() -> [MKMapItem]? {
+  func parsedMapItems() -> [PeliasMapkitAnnotation]? {
     //TODO: This should get refactored into eventually being a real GeoJSON decoder, and split out the MapItem creation
-    var mapItems = [MKMapItem]()
+    var mapItems = [PeliasMapkitAnnotation]()
     if let jsonDictionary = parsedResponse?.parsedResponse {
       let featuresArray = jsonDictionary["features"] as! [[String:AnyObject]]
       for feature in featuresArray {
         //Address Dictionary for Placemark Creation
         let featureProperties = feature["properties"] as! [String:AnyObject]
         var addressDictionary = [String:String]()
-        addressDictionary[CNPostalAddressCountryKey] = featureProperties["country"] as? String
-        
+        addressDictionary[PeliasIDKey] = featureProperties["id"] as? String
+        addressDictionary[PeliasDataSourceKey] = featureProperties["source"] as? String
         
         //Coordinate Creation
         let featureGeometry = feature["geometry"] as! [String:AnyObject]
@@ -77,13 +104,10 @@ extension PeliasResponse {
         let coordinate = CLLocationCoordinate2DMake(geometryPosition[1], geometryPosition[0])
         
         //MKPlacemark
-        let placemark = MKPlacemark(coordinate: coordinate, addressDictionary: addressDictionary)
+        let name = featureProperties["label"] as? String
+        let mapAnnotation = PeliasMapkitAnnotation(coordinate: coordinate, title: name, subtitle: nil, data: addressDictionary)
         
-        //MKMapItem
-        let mapItem = MKMapItem(placemark: placemark)
-        mapItem.name = featureProperties["label"] as? String
-        
-        mapItems.append(mapItem)
+        mapItems.append(mapAnnotation)
       }
     }
     return mapItems;

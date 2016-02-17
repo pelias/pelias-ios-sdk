@@ -39,6 +39,10 @@ public final class PeliasSearchManager {
     return executeAutocompleteOperation(config)
   }
   
+  public func placeQuery(config: PeliasPlaceConfig) -> PeliasOperation {
+    return executeOperation(config)
+  }
+  
   public func cancelOperations() {
     self.operationQueue.cancelAllOperations()
     self.autocompleteOperationQueue.cancelAllOperations()

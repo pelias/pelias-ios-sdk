@@ -24,7 +24,7 @@ Pod::Spec.new do |s|
 
   s.subspec 'MapKitExtras' do |mk|
     mk.source_files = 'extras/convenience/MapkitExtensions.swift'
-    mk.frameworks   = 'MapKit', 'Contacts', 'CoreLocation'
+    mk.frameworks   = 'MapKit', 'CoreLocation'
     mk.dependency     'Pelias/Core'
   end
 
