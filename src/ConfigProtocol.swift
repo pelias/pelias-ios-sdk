@@ -54,7 +54,7 @@ enum SearchSource: String {
   case OpenStreetMap = "osm"
   case OpenAddresses = "oa"
   case Quattroshapes = "qs"
-  case GeoNames = "ga"
+  case GeoNames = "gn"
   
   static func dataSourceString(sourceList: [SearchSource]) -> String {
     return sourceList.map{$0.rawValue}.joinWithSeparator(",")
@@ -73,10 +73,10 @@ protocol APIConfigData {
   var urlEndpoint: NSURL { get }
   var apiKey: String? { get }
   var queryItems: [String:NSURLQueryItem] { get set }
+  var completionHandler: (PeliasResponse) -> Void { get set }
   
   func searchUrl() -> NSURL
   mutating func appendQueryItem(name: String, value: String?)
-  var completionHandler: (PeliasResponse) -> Void { get set }
 }
 
 extension APIConfigData {
@@ -120,6 +120,16 @@ protocol ReverseAPIConfigData: APIConfigData {
   var dataSources: [SearchSource]? { get set }
   var boundaryCountry: String? { get set }
   var layers: [LayerFilter]? { get set }
+}
+
+protocol PlaceAPIConfigData: APIConfigData {
+  var places: [PlaceAPIQueryItem] { get set }
+}
+
+protocol PlaceAPIQueryItem {
+  var placeId: String { get set }
+  var dataSource: SearchSource { get set }
+  var layer: LayerFilter { get set }
 }
 
 protocol APIResponse {

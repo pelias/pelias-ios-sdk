@@ -13,7 +13,7 @@ import CoreLocation
 class AutocompleteTableVC: UITableViewController, UISearchResultsUpdating, UISearchBarDelegate, CLLocationManagerDelegate {
   
   let searchController = UISearchController(searchResultsController: nil)
-  var results: [MKMapItem]?
+  var results: [PeliasMapkitAnnotation]?
   let manager = CLLocationManager()
   var currentLocation: CLLocation?
   
