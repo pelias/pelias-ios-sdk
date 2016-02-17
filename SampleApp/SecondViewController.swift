@@ -11,6 +11,8 @@ import MapKit
 import CoreLocation
 
 class SecondViewController: UIViewController, UITextFieldDelegate, CLLocationManagerDelegate, MKMapViewDelegate {
+  
+  let PinReuseIdentifier = "pin_loc"
 
   @IBOutlet var mapView: MKMapView!
   @IBOutlet var searchBox: UITextField!
@@ -92,7 +94,7 @@ class SecondViewController: UIViewController, UITextFieldDelegate, CLLocationMan
     PeliasSearchManager.sharedInstance.reverseGeocode(config)
   }
   
-  // CoreLocation Manager Delegate
+  // MARK: - CoreLocation Manager Delegate
   func locationManager(manager: CLLocationManager,
     didChangeAuthorizationStatus status: CLAuthorizationStatus)
   {
@@ -110,13 +112,13 @@ class SecondViewController: UIViewController, UITextFieldDelegate, CLLocationMan
     print(error)
   }
   
-  //Mapview Delegate
+  // MARK: - Mapview Delegate
   func mapView(mapView: MKMapView, viewForAnnotation annotation: MKAnnotation) -> MKAnnotationView? {
     if annotation.isKindOfClass(MKUserLocation) {
       return nil
     }
     
-    let annotationView = MKPinAnnotationView(annotation: annotation, reuseIdentifier: "pin_loc")
+    let annotationView = MKPinAnnotationView(annotation: annotation, reuseIdentifier: PinReuseIdentifier)
     annotationView.canShowCallout = true
     annotationView.rightCalloutAccessoryView = UIButton(type: .DetailDisclosure)
     
