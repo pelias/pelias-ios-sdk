@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name             =  'Pelias'
-  s.version          =  '0.3.1'
+  s.version          =  '0.4.0'
   s.summary          =  'A distributed full-text geographic search engine. An open source project sponsored by Mapzen.'
   s.homepage         =  'https://github.com/pelias/pelias-ios-sdk'
   s.social_media_url =  'https://twitter.com/mapzen'
