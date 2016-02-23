@@ -129,16 +129,17 @@
                     <connections>
                         <outlet property="mapView" destination="Lq2-rk-0h1" id="b5d-Qt-1WJ"/>
                         <outlet property="searchBox" destination="ezh-C6-0lm" id="dE1-iL-zKZ"/>
+                        <segue destination="5XN-TR-Ozv" kind="presentation" identifier="showPlace" id="ZRg-ao-LkK"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4Nw-L8-lE0" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="711" y="360"/>
         </scene>
-        <!--View Controller-->
+        <!--Pin DetailVC-->
         <scene sceneID="9GA-G1-x4o">
             <objects>
-                <viewController id="5XN-TR-Ozv" sceneMemberID="viewController">
+                <viewController id="5XN-TR-Ozv" customClass="PinDetailVC" customModule="pelias_ios_sdk" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="JmJ-SQ-UUI"/>
                         <viewControllerLayoutGuide type="bottom" id="4nV-lT-EPc"/>
@@ -146,12 +147,51 @@
                     <view key="view" contentMode="scaleToFill" id="GyV-rN-jyk">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0lv-UG-A74">
+                                <rect key="frame" x="0.0" y="556" width="600" height="44"/>
+                                <items>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="By2-Gf-3lx"/>
+                                    <barButtonItem systemItem="done" id="2CQ-K7-BoV">
+                                        <connections>
+                                            <action selector="doneTapped:" destination="5XN-TR-Ozv" id="8XH-zo-1Xu"/>
+                                        </connections>
+                                    </barButtonItem>
+                                </items>
+                            </toolbar>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Place Information" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="G6Y-PR-ho2">
+                                <rect key="frame" x="233" y="51" width="134" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" text="Text that should get replaced by your /place API search" textAlignment="natural" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NED-hK-4xc">
+                                <rect key="frame" x="20" y="91" width="560" height="433"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="leadingMargin" secondItem="NED-hK-4xc" secondAttribute="leading" id="FhH-z4-Hdt"/>
+                            <constraint firstItem="0lv-UG-A74" firstAttribute="leading" secondItem="GyV-rN-jyk" secondAttribute="leadingMargin" constant="-20" id="ID3-KJ-1k0"/>
+                            <constraint firstItem="0lv-UG-A74" firstAttribute="top" secondItem="NED-hK-4xc" secondAttribute="bottom" constant="32" id="iwE-Ho-iA1"/>
+                            <constraint firstItem="NED-hK-4xc" firstAttribute="top" secondItem="G6Y-PR-ho2" secondAttribute="bottom" constant="19" id="jhC-ad-Yid"/>
+                            <constraint firstItem="G6Y-PR-ho2" firstAttribute="centerX" secondItem="GyV-rN-jyk" secondAttribute="centerX" id="kMq-ls-cRs"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="0lv-UG-A74" secondAttribute="trailing" constant="-20" id="kzE-df-l2v"/>
+                            <constraint firstItem="4nV-lT-EPc" firstAttribute="top" secondItem="0lv-UG-A74" secondAttribute="bottom" id="nGm-wj-W6j"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="NED-hK-4xc" secondAttribute="trailing" id="ugr-oO-FUm"/>
+                            <constraint firstItem="G6Y-PR-ho2" firstAttribute="top" secondItem="JmJ-SQ-UUI" secondAttribute="bottom" constant="31" id="xuc-aq-INy"/>
+                        </constraints>
                     </view>
+                    <connections>
+                        <outlet property="textView" destination="NED-hK-4xc" id="hJW-5a-yR9"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ngJ-c5-YiI" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1360" y="360"/>
+            <point key="canvasLocation" x="1469" y="360"/>
         </scene>
         <!--Autocomplete-->
         <scene sceneID="ZJd-aZ-j54">

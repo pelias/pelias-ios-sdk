@@ -11,6 +11,7 @@
 		DB7409A41C5AC98900D88EC3 /* AutocompleteTableVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB7409A31C5AC98900D88EC3 /* AutocompleteTableVC.swift */; };
 		DB7A338E1C737332009CC743 /* PeliasPlaceConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB7A338D1C737332009CC743 /* PeliasPlaceConfig.swift */; };
 		DB7A33901C74F1D5009CC743 /* PeliasPlaceConfigTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB7A338F1C74F1D5009CC743 /* PeliasPlaceConfigTests.swift */; };
+		DB7A33C31C7CB1DE009CC743 /* PinDetailVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB7A33C21C7CB1DE009CC743 /* PinDetailVC.swift */; };
 		DB96FA6D1C0DE65D00477BD3 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DB96FA6C1C0DE65D00477BD3 /* CoreLocation.framework */; };
 		DB96FA951C1219EA00477BD3 /* PeliasSearchConfigTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB96FA941C1219EA00477BD3 /* PeliasSearchConfigTests.swift */; };
 		DB96FA9A1C1B711800477BD3 /* ConfigProtocolTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB96FA991C1B711800477BD3 /* ConfigProtocolTests.swift */; };
@@ -46,6 +47,7 @@
 		DB7409A31C5AC98900D88EC3 /* AutocompleteTableVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AutocompleteTableVC.swift; sourceTree = "<group>"; };
 		DB7A338D1C737332009CC743 /* PeliasPlaceConfig.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PeliasPlaceConfig.swift; sourceTree = "<group>"; };
 		DB7A338F1C74F1D5009CC743 /* PeliasPlaceConfigTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PeliasPlaceConfigTests.swift; sourceTree = "<group>"; };
+		DB7A33C21C7CB1DE009CC743 /* PinDetailVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PinDetailVC.swift; sourceTree = "<group>"; };
 		DB96FA6C1C0DE65D00477BD3 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		DB96FA941C1219EA00477BD3 /* PeliasSearchConfigTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PeliasSearchConfigTests.swift; sourceTree = "<group>"; };
 		DB96FA991C1B711800477BD3 /* ConfigProtocolTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConfigProtocolTests.swift; sourceTree = "<group>"; };
@@ -158,6 +160,7 @@
 				DBF601971C0C997900EEEE98 /* FirstViewController.swift */,
 				DBF601991C0C997900EEEE98 /* SecondViewController.swift */,
 				DB7409A31C5AC98900D88EC3 /* AutocompleteTableVC.swift */,
+				DB7A33C21C7CB1DE009CC743 /* PinDetailVC.swift */,
 				DBF6019B1C0C997900EEEE98 /* Main.storyboard */,
 				DBF6019E1C0C997900EEEE98 /* Assets.xcassets */,
 				DBF601A01C0C997900EEEE98 /* LaunchScreen.storyboard */,
@@ -284,6 +287,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				DBF6019A1C0C997900EEEE98 /* SecondViewController.swift in Sources */,
+				DB7A33C31C7CB1DE009CC743 /* PinDetailVC.swift in Sources */,
 				DBF601961C0C997900EEEE98 /* AppDelegate.swift in Sources */,
 				DBCB7E891C6244200090FDCD /* PeliasReverseGeoConfig.swift in Sources */,
 				DB7A338E1C737332009CC743 /* PeliasPlaceConfig.swift in Sources */,

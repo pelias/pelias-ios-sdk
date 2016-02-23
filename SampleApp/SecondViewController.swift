@@ -22,6 +22,7 @@ class SecondViewController: UIViewController, UITextFieldDelegate, CLLocationMan
   let regionRadius: CLLocationDistance = 100
   let initialLocation = CLLocation(latitude: 40.7312973034393, longitude: -73.99896644276561)
   var storedAnnotations: [PeliasMapkitAnnotation]?
+  var selectedAnnotation: PeliasMapkitAnnotation?
   
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -31,6 +32,14 @@ class SecondViewController: UIViewController, UITextFieldDelegate, CLLocationMan
       regionRadius * 16.0, regionRadius * 16.0)
     mapView.setRegion(coordinateRegion, animated: true)
     mapView.delegate = self
+  }
+  
+  
+  override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+    if (segue.destinationViewController.isKindOfClass(PinDetailVC)){
+      guard let vc = segue.destinationViewController as? PinDetailVC else { return }
+      vc.annotation = selectedAnnotation
+    }
   }
 
   override func didReceiveMemoryWarning() {
@@ -128,12 +137,8 @@ class SecondViewController: UIViewController, UITextFieldDelegate, CLLocationMan
   func mapView(mapView: MKMapView, annotationView view: MKAnnotationView, calloutAccessoryControlTapped control: UIControl) {
     if let annotation = view.annotation {
       guard let mapAnnotation = annotation as? PeliasMapkitAnnotation else { return }
-      guard let queryItem = PeliasPlaceQueryItem(annotation: mapAnnotation, layer: LayerFilter.address) else { return }
-      
-      let config = PeliasPlaceConfig(places: [queryItem], completionHandler: { (response) -> Void in
-        print(response)
-      })
-      PeliasSearchManager.sharedInstance.placeQuery(config)
+      self.selectedAnnotation = mapAnnotation
+      self.performSegueWithIdentifier("showPlace", sender: self)
     }
   }
 }
