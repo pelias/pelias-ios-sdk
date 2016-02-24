@@ -10,14 +10,14 @@ import Foundation
 
 public struct PeliasPlaceConfig : PlaceAPIConfigData {
   
-  var urlEndpoint = NSURL.init(string: "/v1/place", relativeToURL: PeliasSearchManager.sharedInstance.baseUrl)!
+  var urlEndpoint = NSURL.init(string: Constants.URL.place, relativeToURL: PeliasSearchManager.sharedInstance.baseUrl)!
   var queryItems = [String:NSURLQueryItem]()
   var completionHandler: (PeliasResponse) -> Void
   
   var apiKey: String? {
     didSet {
       if let key = apiKey where apiKey?.isEmpty == false {
-        appendQueryItem("api_key", value: key)
+        appendQueryItem(Constants.API.key, value: key)
       }
     }
   }
@@ -35,7 +35,7 @@ public struct PeliasPlaceConfig : PlaceAPIConfigData {
     
     defer {
       //didSet will not fire because self is not setup so we have to do this manually
-      appendQueryItem("api_key", value: apiKey)
+      appendQueryItem(Constants.API.key, value: apiKey)
       buildPlaceQueryItem()
     }
   }
@@ -54,7 +54,7 @@ public struct PeliasPlaceConfig : PlaceAPIConfigData {
       }
     }
     
-    appendQueryItem("ids", value: queryString)
+    appendQueryItem(Constants.API.ids, value: queryString)
   }
 }
 

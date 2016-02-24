@@ -23,7 +23,7 @@ public final class PeliasSearchManager {
   private init() {
     operationQueue.maxConcurrentOperationCount = 4
     autocompleteOperationQueue.maxConcurrentOperationCount = 1
-    baseUrl = NSURL.init(string: "https://search.mapzen.com")! // Force the unwrap because we must have a base URL to operate
+    baseUrl = NSURL.init(string: Constants.URL.base)! // Force the unwrap because we must have a base URL to operate
   }
   
   public func performSearch(config: PeliasSearchConfig) -> PeliasOperation {

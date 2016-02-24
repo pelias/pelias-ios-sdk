@@ -9,12 +9,12 @@
 import Foundation
 
 public struct PeliasReverseConfig : ReverseAPIConfigData {
-  var urlEndpoint = NSURL.init(string: "/v1/reverse", relativeToURL: PeliasSearchManager.sharedInstance.baseUrl)!
+  var urlEndpoint = NSURL.init(string: Constants.URL.reverse, relativeToURL: PeliasSearchManager.sharedInstance.baseUrl)!
   
   var apiKey: String? {
     didSet {
       if let key = apiKey where apiKey?.isEmpty == false {
-        appendQueryItem("api_key", value: key)
+        appendQueryItem(Constants.API.key, value: key)
       }
     }
   }
@@ -25,8 +25,8 @@ public struct PeliasReverseConfig : ReverseAPIConfigData {
   
   var point: GeoPoint {
     didSet {
-      appendQueryItem("point.lat", value: String(point.latitude))
-      appendQueryItem("point.lon", value: String(point.longitude))
+      appendQueryItem(Constants.API.pointLat, value: String(point.latitude))
+      appendQueryItem(Constants.API.pointLon, value: String(point.longitude))
     }
   }
 
@@ -35,7 +35,7 @@ public struct PeliasReverseConfig : ReverseAPIConfigData {
   var numberOfResults: Int? {
     didSet {
       if let size = numberOfResults where numberOfResults > 0 {
-        appendQueryItem("size", value: String(size))
+        appendQueryItem(Constants.API.size, value: String(size))
       }
     }
   }
@@ -43,7 +43,7 @@ public struct PeliasReverseConfig : ReverseAPIConfigData {
   var boundaryCountry: String? {
     didSet {
       if let country = boundaryCountry where boundaryCountry?.isEmpty == false{
-        appendQueryItem("boundary.country", value: country)
+        appendQueryItem(Constants.Boundary.country, value: country)
       }
     }
   }
@@ -51,7 +51,7 @@ public struct PeliasReverseConfig : ReverseAPIConfigData {
   var dataSources: [SearchSource]? {
     didSet {
       if let sources = dataSources where dataSources?.isEmpty == false {
-        appendQueryItem("sources", value: SearchSource.dataSourceString(sources))
+        appendQueryItem(Constants.API.sources, value: SearchSource.dataSourceString(sources))
       }
     }
   }
@@ -59,7 +59,7 @@ public struct PeliasReverseConfig : ReverseAPIConfigData {
   var layers: [LayerFilter]? {
     didSet {
       if let layerArray = layers where layers?.isEmpty == false {
-        appendQueryItem("layers", value: LayerFilter.layerString(layerArray))
+        appendQueryItem(Constants.API.layers, value: LayerFilter.layerString(layerArray))
       }
     }
   }
@@ -69,9 +69,9 @@ public struct PeliasReverseConfig : ReverseAPIConfigData {
     apiKey = PeliasSearchManager.sharedInstance.apiKey
     defer {
       //didSet will not fire because self is not setup so we have to do this manually
-      appendQueryItem("point.lat", value: String(point.latitude))
-      appendQueryItem("point.lon", value: String(point.longitude))
-      appendQueryItem("api_key", value: apiKey)
+      appendQueryItem(Constants.API.pointLat, value: String(point.latitude))
+      appendQueryItem(Constants.API.pointLon, value: String(point.longitude))
+      appendQueryItem(Constants.API.key, value: apiKey)
     }
   }
 }
