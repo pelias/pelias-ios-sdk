@@ -34,21 +34,21 @@ class PeliasSearchConfigTests: XCTestCase {
   }
   
   func testTextQueryItem(){
-    XCTAssert(config.queryItems["text"]?.value == "test", "Text is not the expected string")
+    XCTAssert(config.queryItems[Constants.API.text]?.value == "test", "Text is not the expected string")
   }
   
   func testApiKeyQueryItem(){
-    XCTAssert(config.queryItems["api_key"]?.value == "1234", "apiKey not set correctly")
+    XCTAssert(config.queryItems[Constants.API.key]?.value == "1234", "apiKey not set correctly")
   }
   
   func testNumberOfResults(){
     config.numberOfResults = 5;
-    XCTAssert(config.queryItems["size"]?.value == "5", "numberOfResults not set correctly")
+    XCTAssert(config.queryItems[Constants.API.size]?.value == "5", "numberOfResults not set correctly")
   }
   
   func testBoundaryCountry(){
     config.boundaryCountry = "USA"
-    XCTAssert(config.queryItems["boundary.country"]?.value == "USA", "boundaryCountry not set correctly")
+    XCTAssert(config.queryItems[Constants.Boundary.country]?.value == "USA", "boundaryCountry not set correctly")
   }
   
   func testBoundaryRect(){
@@ -57,10 +57,10 @@ class PeliasSearchConfigTests: XCTestCase {
       minLatLong: GeoPoint(latitude: 40.713008, longitude: -74.013169),
       maxLatLong: GeoPoint(latitude: 40.706866, longitude: -74.011319))
     config.boundaryRect = boundaryRect
-    XCTAssert(config.queryItems["boundary.rect.min_lat"]?.value == "40.713008", "boundary.rect.min_lat not set correctly")
-    XCTAssert(config.queryItems["boundary.rect.min_lon"]?.value == "-74.013169", "boundary.rect.min_lon not set correctly")
-    XCTAssert(config.queryItems["boundary.rect.max_lat"]?.value == "40.706866", "boundary.rect.max_lat not set correctly")
-    XCTAssert(config.queryItems["boundary.rect.max_lon"]?.value == "-74.011319", "boundary.rect.max_lon not set correctly")
+    XCTAssert(config.queryItems[Constants.Boundary.Rect.minLat]?.value == "40.713008", "boundary.rect.min_lat not set correctly")
+    XCTAssert(config.queryItems[Constants.Boundary.Rect.minLon]?.value == "-74.013169", "boundary.rect.min_lon not set correctly")
+    XCTAssert(config.queryItems[Constants.Boundary.Rect.maxLat]?.value == "40.706866", "boundary.rect.max_lat not set correctly")
+    XCTAssert(config.queryItems[Constants.Boundary.Rect.maxLon]?.value == "-74.011319", "boundary.rect.max_lon not set correctly")
   }
   
   func testBoundardCircle(){
@@ -69,17 +69,17 @@ class PeliasSearchConfigTests: XCTestCase {
       center: GeoPoint(latitude: 40.713008, longitude: -74.013169),
       radius: 300)
     config.boundaryCircle = boundaryCircle
-    XCTAssert(config.queryItems["boundary.cirle.lat"]?.value == "40.713008", "boundary.cirle.lat not set correctly")
-    XCTAssert(config.queryItems["boundary.circle.lon"]?.value == "-74.013169", "boundary.cirle.lon not set correctly")
-    XCTAssert(config.queryItems["boundary.circle.radius"]?.value == "300.0", "boundary.circle.radius not set correctly")
+    XCTAssert(config.queryItems[Constants.Boundary.Circle.lat]?.value == "40.713008", "boundary.cirle.lat not set correctly")
+    XCTAssert(config.queryItems[Constants.Boundary.Circle.lon]?.value == "-74.013169", "boundary.cirle.lon not set correctly")
+    XCTAssert(config.queryItems[Constants.Boundary.Circle.radius]?.value == "300.0", "boundary.circle.radius not set correctly")
   }
   
   func testFocusPoint() {
     var focusPoint: GeoPoint?
     focusPoint = GeoPoint(latitude: 40.713008, longitude: -74.013169)
     config.focusPoint = focusPoint
-    XCTAssert(config.queryItems["focus.point.lat"]?.value == "40.713008", "boundary.cirle.lat not set correctly")
-    XCTAssert(config.queryItems["focus.point.lon"]?.value == "-74.013169", "boundary.cirle.lon not set correctly")
+    XCTAssert(config.queryItems[Constants.API.focusPointLat]?.value == "40.713008", "boundary.cirle.lat not set correctly")
+    XCTAssert(config.queryItems[Constants.API.focusPointLon]?.value == "-74.013169", "boundary.cirle.lon not set correctly")
   }
 
   func testBasicSearchURL(){

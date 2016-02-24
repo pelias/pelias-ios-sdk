@@ -25,7 +25,7 @@ class PeliasPlaceConfigTests: XCTestCase {
       print("Neat")
     }
     
-    let queryItem = place.queryItems["ids"]
+    let queryItem = place.queryItems[Constants.API.ids]
     let queryString = queryItem?.value
     XCTAssert(queryString == "gn:address:1234", "String is not equal - \(queryString)")
   }

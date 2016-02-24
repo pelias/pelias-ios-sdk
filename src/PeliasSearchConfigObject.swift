@@ -10,11 +10,11 @@ import Foundation
 
 public struct PeliasSearchConfig : SearchAPIConfigData {
 
-  var urlEndpoint = NSURL.init(string: "/v1/search", relativeToURL: PeliasSearchManager.sharedInstance.baseUrl)!
+  var urlEndpoint = NSURL.init(string: Constants.URL.search, relativeToURL: PeliasSearchManager.sharedInstance.baseUrl)!
 
   var searchText: String{
     didSet {
-      appendQueryItem("text", value: searchText)
+      appendQueryItem(Constants.API.text, value: searchText)
     }
   }
   
@@ -25,7 +25,7 @@ public struct PeliasSearchConfig : SearchAPIConfigData {
   var apiKey: String? {
     didSet {
       if let key = apiKey where apiKey?.isEmpty == false {
-        appendQueryItem("api_key", value: key)
+        appendQueryItem(Constants.API.key, value: key)
       }
     }
   }
@@ -35,7 +35,7 @@ public struct PeliasSearchConfig : SearchAPIConfigData {
   var numberOfResults: Int? {
     didSet {
       if let size = numberOfResults where numberOfResults > 0 {
-        appendQueryItem("size", value: String(size))
+        appendQueryItem(Constants.API.size, value: String(size))
       }
     }
   }
@@ -43,7 +43,7 @@ public struct PeliasSearchConfig : SearchAPIConfigData {
   var boundaryCountry: String? {
     didSet {
       if let country = boundaryCountry where boundaryCountry?.isEmpty == false{
-        appendQueryItem("boundary.country", value: country)
+        appendQueryItem(Constants.Boundary.country, value: country)
       }
     }
   }
@@ -51,10 +51,10 @@ public struct PeliasSearchConfig : SearchAPIConfigData {
   var boundaryRect: SearchBoundaryRect? {
     didSet {
       if let rect = boundaryRect {
-        appendQueryItem("boundary.rect.min_lat", value: String(rect.minLatLong.latitude))
-        appendQueryItem("boundary.rect.min_lon", value: String(rect.minLatLong.longitude))
-        appendQueryItem("boundary.rect.max_lat", value: String(rect.maxLatLong.latitude))
-        appendQueryItem("boundary.rect.max_lon", value: String(rect.maxLatLong.longitude))
+        appendQueryItem(Constants.Boundary.Rect.minLat, value: String(rect.minLatLong.latitude))
+        appendQueryItem(Constants.Boundary.Rect.minLon, value: String(rect.minLatLong.longitude))
+        appendQueryItem(Constants.Boundary.Rect.maxLat, value: String(rect.maxLatLong.latitude))
+        appendQueryItem(Constants.Boundary.Rect.maxLon, value: String(rect.maxLatLong.longitude))
       }
     }
   }
@@ -62,9 +62,9 @@ public struct PeliasSearchConfig : SearchAPIConfigData {
   var boundaryCircle: SearchBoundaryCircle? {
     didSet {
       if let circle = boundaryCircle {
-        appendQueryItem("boundary.cirle.lat", value: String(circle.center.latitude))
-        appendQueryItem("boundary.circle.lon", value: String(circle.center.longitude))
-        appendQueryItem("boundary.circle.radius", value: String(circle.radius))
+        appendQueryItem(Constants.Boundary.Circle.lat, value: String(circle.center.latitude))
+        appendQueryItem(Constants.Boundary.Circle.lon, value: String(circle.center.longitude))
+        appendQueryItem(Constants.Boundary.Circle.radius, value: String(circle.radius))
       }
     }
   }
@@ -72,8 +72,8 @@ public struct PeliasSearchConfig : SearchAPIConfigData {
   var focusPoint: GeoPoint? {
     didSet {
       if let point = focusPoint {
-        appendQueryItem("focus.point.lat", value: String(point.latitude))
-        appendQueryItem("focus.point.lon", value: String(point.longitude))
+        appendQueryItem(Constants.API.focusPointLat, value: String(point.latitude))
+        appendQueryItem(Constants.API.focusPointLon, value: String(point.longitude))
       }
     }
   }
@@ -81,7 +81,7 @@ public struct PeliasSearchConfig : SearchAPIConfigData {
   var dataSources: [SearchSource]? {
     didSet {
       if let sources = dataSources where dataSources?.isEmpty == false {
-        appendQueryItem("sources", value: SearchSource.dataSourceString(sources))
+        appendQueryItem(Constants.API.sources, value: SearchSource.dataSourceString(sources))
       }
     }
   }
@@ -89,7 +89,7 @@ public struct PeliasSearchConfig : SearchAPIConfigData {
   var layers: [LayerFilter]? {
     didSet {
       if let layerArray = layers where layers?.isEmpty == false {
-        appendQueryItem("layers", value: LayerFilter.layerString(layerArray))
+        appendQueryItem(Constants.API.layers, value: LayerFilter.layerString(layerArray))
       }
     }
   }
@@ -100,8 +100,8 @@ public struct PeliasSearchConfig : SearchAPIConfigData {
     apiKey = PeliasSearchManager.sharedInstance.apiKey
     defer {
       //didSet will not fire because self is not setup so we have to do this manually
-      appendQueryItem("text", value: searchText)
-      appendQueryItem("api_key", value: apiKey)
+      appendQueryItem(Constants.API.text, value: searchText)
+      appendQueryItem(Constants.API.key, value: apiKey)
     }
   }
 }
