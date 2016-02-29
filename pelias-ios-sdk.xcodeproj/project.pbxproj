@@ -13,6 +13,7 @@
 		DB7A33901C74F1D5009CC743 /* PeliasPlaceConfigTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB7A338F1C74F1D5009CC743 /* PeliasPlaceConfigTests.swift */; };
 		DB7A33C31C7CB1DE009CC743 /* PinDetailVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB7A33C21C7CB1DE009CC743 /* PinDetailVC.swift */; };
 		DB7A33C51C7D0A1E009CC743 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB7A33C41C7D0A1E009CC743 /* Constants.swift */; };
+		DB7A33C81C84DB80009CC743 /* error_response.json in Resources */ = {isa = PBXBuildFile; fileRef = DB7A33C71C84DB80009CC743 /* error_response.json */; };
 		DB96FA6D1C0DE65D00477BD3 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DB96FA6C1C0DE65D00477BD3 /* CoreLocation.framework */; };
 		DB96FA951C1219EA00477BD3 /* PeliasSearchConfigTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB96FA941C1219EA00477BD3 /* PeliasSearchConfigTests.swift */; };
 		DB96FA9A1C1B711800477BD3 /* ConfigProtocolTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB96FA991C1B711800477BD3 /* ConfigProtocolTests.swift */; };
@@ -50,6 +51,7 @@
 		DB7A338F1C74F1D5009CC743 /* PeliasPlaceConfigTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PeliasPlaceConfigTests.swift; sourceTree = "<group>"; };
 		DB7A33C21C7CB1DE009CC743 /* PinDetailVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PinDetailVC.swift; sourceTree = "<group>"; };
 		DB7A33C41C7D0A1E009CC743 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		DB7A33C71C84DB80009CC743 /* error_response.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = error_response.json; sourceTree = "<group>"; };
 		DB96FA6C1C0DE65D00477BD3 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		DB96FA941C1219EA00477BD3 /* PeliasSearchConfigTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PeliasSearchConfigTests.swift; sourceTree = "<group>"; };
 		DB96FA991C1B711800477BD3 /* ConfigProtocolTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConfigProtocolTests.swift; sourceTree = "<group>"; };
@@ -94,6 +96,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		DB7A33C61C84DB80009CC743 /* json_fixtures */ = {
+			isa = PBXGroup;
+			children = (
+				DB7A33C71C84DB80009CC743 /* error_response.json */,
+			);
+			path = json_fixtures;
+			sourceTree = "<group>";
+		};
 		DBCB7E7A1C6244200090FDCD /* extras */ = {
 			isa = PBXGroup;
 			children = (
@@ -176,6 +186,7 @@
 		DBF601AB1C0C997900EEEE98 /* pelias-ios-sdkTests */ = {
 			isa = PBXGroup;
 			children = (
+				DB7A33C61C84DB80009CC743 /* json_fixtures */,
 				DBF601AE1C0C997900EEEE98 /* Info.plist */,
 				DB96FA941C1219EA00477BD3 /* PeliasSearchConfigTests.swift */,
 				DB96FA991C1B711800477BD3 /* ConfigProtocolTests.swift */,
@@ -279,6 +290,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DB7A33C81C84DB80009CC743 /* error_response.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
