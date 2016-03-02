@@ -79,9 +79,7 @@ extension PeliasPlaceQueryItem {
   init?(annotation: PeliasMapkitAnnotation, layer: LayerFilter) {
     guard let place = annotation.data?[PeliasIDKey] as? String else { return nil }
     guard let source = SearchSource(rawValue: annotation.data?[PeliasDataSourceKey] as? String ?? "") else { return nil }
-    self.placeId = place
-    self.dataSource = source
-    self.layer = layer
+    self.init(placeId: place, dataSource: source, layer: layer)
   }
 }
 

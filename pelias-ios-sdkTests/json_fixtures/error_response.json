@@ -1,0 +1,12 @@
+{
+	"meta": {
+		"status_code": 429,
+		"version": 1
+	},
+	"results": {
+		"error": {
+			"message": "Queries per second exceeded: Queries exceeded (6 allowed).",
+			"type": "QpsExceededError"
+		}
+	}
+}

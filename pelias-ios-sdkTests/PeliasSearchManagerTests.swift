@@ -64,5 +64,14 @@ class PeliasSearchManagerTests: XCTestCase {
     let decodedObject = PeliasSearchResponse.decode()
     XCTAssert(testResponse.parsedResponse == decodedObject?.parsedResponse)
   }
-    
+  
+  func testErrorHandling() {
+    //Little known fact: Getting the tests bundle that contains the fixtures is not done the normal NSBundle.mainBundle() route, because that will still yield the application bundle
+    let testBundle = NSBundle.init(forClass: PeliasSearchManagerTests.self)
+    let jsonData: NSData? = NSData(contentsOfFile: testBundle.pathForResource("error_response", ofType: "json")!)
+    let testResponse = PeliasResponse(data: jsonData, response: nil, error: nil)
+    XCTAssertNotNil(testResponse.parsedError)
+    XCTAssertNil(testResponse.parsedResponse)
+  }
+  
 }

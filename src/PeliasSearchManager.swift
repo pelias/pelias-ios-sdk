@@ -125,18 +125,37 @@ public class PeliasResponse: APIResponse {
   let response: NSURLResponse?
   let error: NSError?
   var parsedResponse: PeliasSearchResponse?
+  var parsedError: PeliasError?
   
   init(data: NSData?, response: NSURLResponse?, error: NSError?) {
     self.data = data
     self.response = response
     self.error = error
     if let dictResponse = parseData(data) {
+      if let peliasError = parseErrorFromJSON(dictResponse) {
+        self.parsedError = peliasError
+        return
+      }
       parsedResponse = PeliasSearchResponse(parsedResponse: dictResponse)
     }
   }
   
+  private func parseErrorFromJSON(json: NSDictionary) -> PeliasError? {
+    //First get the error code
+    guard let meta = json["meta"] as? NSDictionary else { return nil }
+    guard let status_code = meta["status_code"] as? Int else { return nil }
+    
+    //Next the message
+    guard let results = json["results"] as? NSDictionary else { return nil }
+    guard let error = results["error"] as? NSDictionary else { return nil }
+    guard let message = error["message"] as? String else { return nil }
+    
+    let peliasError = PeliasError(code: String(status_code), message: message)
+    return peliasError
+  }
+  
   private func parseData(data: NSData?) -> NSDictionary? {
-    let JSONData = data!
+    guard let JSONData = data else { return nil }
     do {
       let JSON = try NSJSONSerialization.JSONObjectWithData(JSONData, options:NSJSONReadingOptions(rawValue: 0))
       guard let JSONDictionary :NSDictionary = JSON as? NSDictionary else {
@@ -171,6 +190,15 @@ public struct PeliasSearchResponse {
     let responseClassObject = NSKeyedUnarchiver.unarchiveObjectWithFile(HelperClass.path()) as? HelperClass
     
     return responseClassObject?.response
+  }
+}
+
+public struct PeliasError {
+  let code: String
+  let message: String
+  init (code: String, message: String) {
+    self.code = code
+    self.message = message
   }
 }
 
