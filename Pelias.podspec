@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name             =  'Pelias'
-  s.version          =  '0.4.0'
+  s.version          =  '1.0.0-beta1'
   s.summary          =  'A distributed full-text geographic search engine. An open source project sponsored by Mapzen.'
   s.homepage         =  'https://github.com/pelias/pelias-ios-sdk'
   s.social_media_url =  'https://twitter.com/mapzen'
@@ -20,16 +20,5 @@ Pod::Spec.new do |s|
 
   s.subspec 'Core' do |cs|
     cs.source_files   = 'src/*.swift'
-  end
-
-  s.subspec 'MapKitExtras' do |mk|
-    mk.source_files = 'extras/convenience/MapkitExtensions.swift'
-    mk.frameworks   = 'MapKit', 'CoreLocation'
-    mk.dependency     'Pelias/Core'
-  end
-
-  s.subspec 'ObjectiveCompat' do |objc|
-    objc.source_files = 'extras/objc-compat/ObjectiveCompatibility.swift'
-    objc.dependency     'Pelias/Core'
   end
 end
