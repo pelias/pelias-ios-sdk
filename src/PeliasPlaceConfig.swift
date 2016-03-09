@@ -10,11 +10,11 @@ import Foundation
 
 public struct PeliasPlaceConfig : PlaceAPIConfigData {
   
-  var urlEndpoint = NSURL.init(string: Constants.URL.place, relativeToURL: PeliasSearchManager.sharedInstance.baseUrl)!
-  var queryItems = [String:NSURLQueryItem]()
-  var completionHandler: (PeliasResponse) -> Void
+  public var urlEndpoint = NSURL.init(string: Constants.URL.place, relativeToURL: PeliasSearchManager.sharedInstance.baseUrl)!
+  public var queryItems = [String:NSURLQueryItem]()
+  public var completionHandler: (PeliasResponse) -> Void
   
-  var apiKey: String? {
+  public var apiKey: String? {
     didSet {
       if let key = apiKey where apiKey?.isEmpty == false {
         appendQueryItem(Constants.API.key, value: key)
@@ -22,13 +22,13 @@ public struct PeliasPlaceConfig : PlaceAPIConfigData {
     }
   }
   
-  var places: [PlaceAPIQueryItem] {
+  public var places: [PlaceAPIQueryItem] {
     didSet {
       buildPlaceQueryItem()
     }
   }
   
-  init(places: [PlaceAPIQueryItem], completionHandler: (PeliasResponse) -> Void){
+  public init(places: [PlaceAPIQueryItem], completionHandler: (PeliasResponse) -> Void){
     self.places = places
     self.completionHandler = completionHandler
     apiKey = PeliasSearchManager.sharedInstance.apiKey
@@ -59,11 +59,11 @@ public struct PeliasPlaceConfig : PlaceAPIConfigData {
 }
 
 public struct PeliasPlaceQueryItem : PlaceAPIQueryItem {
-  var placeId: String
-  var dataSource: SearchSource
-  var layer: LayerFilter
+  public var placeId: String
+  public var dataSource: SearchSource
+  public var layer: LayerFilter
   
-  init(placeId: String, dataSource: SearchSource, layer: LayerFilter) {
+  public init(placeId: String, dataSource: SearchSource, layer: LayerFilter) {
     self.placeId = placeId
     self.dataSource = dataSource
     self.layer = layer

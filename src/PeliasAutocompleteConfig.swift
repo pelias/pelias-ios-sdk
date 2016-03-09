@@ -10,21 +10,21 @@ import Foundation
 
 public struct PeliasAutocompleteConfig : AutocompleteAPIConfigData {
   
-  var focusPoint: GeoPoint {
+  public var focusPoint: GeoPoint {
     didSet {
       appendQueryItem(Constants.API.focusPointLat, value: String(focusPoint.latitude))
       appendQueryItem(Constants.API.focusPointLon, value: String(focusPoint.longitude))
     }
   }
-  var urlEndpoint = NSURL.init(string: Constants.URL.autocomplete, relativeToURL: PeliasSearchManager.sharedInstance.baseUrl)!
+  public var urlEndpoint = NSURL.init(string: Constants.URL.autocomplete, relativeToURL: PeliasSearchManager.sharedInstance.baseUrl)!
   
-  var searchText: String{
+  public var searchText: String{
     didSet {
       appendQueryItem(Constants.API.text, value: searchText)
     }
   }
   
-  var apiKey: String? {
+  public var apiKey: String? {
     didSet {
       if let key = apiKey where apiKey?.isEmpty == false {
         appendQueryItem(Constants.API.key, value: key)
@@ -32,11 +32,11 @@ public struct PeliasAutocompleteConfig : AutocompleteAPIConfigData {
     }
   }
   
-  var queryItems = [String:NSURLQueryItem]()
+  public var queryItems = [String:NSURLQueryItem]()
   
-  var completionHandler: (PeliasResponse) -> Void
+  public var completionHandler: (PeliasResponse) -> Void
   
-  init(searchText: String, focusPoint: GeoPoint, completionHandler: (PeliasResponse) -> Void){
+  public init(searchText: String, focusPoint: GeoPoint, completionHandler: (PeliasResponse) -> Void){
     self.searchText = searchText
     self.completionHandler = completionHandler
     self.focusPoint = focusPoint

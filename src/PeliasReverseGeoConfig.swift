@@ -9,9 +9,9 @@
 import Foundation
 
 public struct PeliasReverseConfig : ReverseAPIConfigData {
-  var urlEndpoint = NSURL.init(string: Constants.URL.reverse, relativeToURL: PeliasSearchManager.sharedInstance.baseUrl)!
+  public var urlEndpoint = NSURL.init(string: Constants.URL.reverse, relativeToURL: PeliasSearchManager.sharedInstance.baseUrl)!
   
-  var apiKey: String? {
+  public var apiKey: String? {
     didSet {
       if let key = apiKey where apiKey?.isEmpty == false {
         appendQueryItem(Constants.API.key, value: key)
@@ -19,11 +19,11 @@ public struct PeliasReverseConfig : ReverseAPIConfigData {
     }
   }
   
-  var queryItems = [String:NSURLQueryItem]()
+  public var queryItems = [String:NSURLQueryItem]()
   
-  var completionHandler: (PeliasResponse) -> Void
+  public var completionHandler: (PeliasResponse) -> Void
   
-  var point: GeoPoint {
+  public var point: GeoPoint {
     didSet {
       appendQueryItem(Constants.API.pointLat, value: String(point.latitude))
       appendQueryItem(Constants.API.pointLon, value: String(point.longitude))
@@ -32,7 +32,7 @@ public struct PeliasReverseConfig : ReverseAPIConfigData {
 
   //Optional Query Params
 
-  var numberOfResults: Int? {
+  public var numberOfResults: Int? {
     didSet {
       if let size = numberOfResults where numberOfResults > 0 {
         appendQueryItem(Constants.API.size, value: String(size))
@@ -40,7 +40,7 @@ public struct PeliasReverseConfig : ReverseAPIConfigData {
     }
   }
   
-  var boundaryCountry: String? {
+  public var boundaryCountry: String? {
     didSet {
       if let country = boundaryCountry where boundaryCountry?.isEmpty == false{
         appendQueryItem(Constants.Boundary.country, value: country)
@@ -48,7 +48,7 @@ public struct PeliasReverseConfig : ReverseAPIConfigData {
     }
   }
   
-  var dataSources: [SearchSource]? {
+  public var dataSources: [SearchSource]? {
     didSet {
       if let sources = dataSources where dataSources?.isEmpty == false {
         appendQueryItem(Constants.API.sources, value: SearchSource.dataSourceString(sources))
@@ -56,14 +56,15 @@ public struct PeliasReverseConfig : ReverseAPIConfigData {
     }
   }
   
-  var layers: [LayerFilter]? {
+  public var layers: [LayerFilter]? {
     didSet {
       if let layerArray = layers where layers?.isEmpty == false {
         appendQueryItem(Constants.API.layers, value: LayerFilter.layerString(layerArray))
       }
     }
   }
-  init(point: GeoPoint, completionHandler: (PeliasResponse) -> Void){
+  
+  public init(point: GeoPoint, completionHandler: (PeliasResponse) -> Void){
     self.point = point
     self.completionHandler = completionHandler
     apiKey = PeliasSearchManager.sharedInstance.apiKey

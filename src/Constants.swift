@@ -8,44 +8,44 @@
 
 import Foundation
 
-struct Constants {
-  struct API {
-    static let focusPointLat = "focus.\(pointLat)"
-    static let focusPointLon = "focus.\(pointLon)"
-    static let text = "text"
-    static let key = "api_key"
-    static let pointLat = "point.lat"
-    static let pointLon = "point.lon"
-    static let size = "size"
-    static let sources = "sources"
-    static let layers = "layers"
-    static let ids = "ids"
+public struct Constants {
+  public struct API {
+    public static let focusPointLat = "focus.\(pointLat)"
+    public static let focusPointLon = "focus.\(pointLon)"
+    public static let text = "text"
+    public static let key = "api_key"
+    public static let pointLat = "point.lat"
+    public static let pointLon = "point.lon"
+    public static let size = "size"
+    public static let sources = "sources"
+    public static let layers = "layers"
+    public static let ids = "ids"
   }
   
-  struct Boundary {
-    static let boundary = "boundary"
-    static let country = "\(boundary).country"
-    struct Rect {
-      static let rect = "\(boundary).rect"
-      static let minLat = "\(rect).min_lat"
-      static let minLon = "\(rect).min_lon"
-      static let maxLat = "\(rect).max_lat"
-      static let maxLon = "\(rect).max_lon"
+  public struct Boundary {
+    public static let boundary = "boundary"
+    public static let country = "\(boundary).country"
+    public struct Rect {
+      public static let rect = "\(boundary).rect"
+      public static let minLat = "\(rect).min_lat"
+      public static let minLon = "\(rect).min_lon"
+      public static let maxLat = "\(rect).max_lat"
+      public static let maxLon = "\(rect).max_lon"
     }
-    struct Circle {
-      static let circle = "\(boundary).circle"
-      static let lat = "\(circle).lat"
-      static let lon = "\(circle).lon"
-      static let radius = "\(circle).radius"
+    public struct Circle {
+      public static let circle = "\(boundary).circle"
+      public static let lat = "\(circle).lat"
+      public static let lon = "\(circle).lon"
+      public static let radius = "\(circle).radius"
     }
   }
   
-  struct URL {
-    static let base = "https://search.mapzen.com"
-    static let baseVersion = "v1/"
-    static let autocomplete = "\(baseVersion)autocomplete"
-    static let reverse = "\(baseVersion)reverse"
-    static let search = "\(baseVersion)search"
-    static let place = "\(baseVersion)place"
+  public struct URL {
+    public static let base = "https://search.mapzen.com"
+    public static let baseVersion = "v1/"
+    public static let autocomplete = "\(baseVersion)autocomplete"
+    public static let reverse = "\(baseVersion)reverse"
+    public static let search = "\(baseVersion)search"
+    public static let place = "\(baseVersion)place"
   }
 }

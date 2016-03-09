@@ -11,14 +11,14 @@ import Foundation
 public final class PeliasSearchManager {
   
   //! Singleton access
-  static let sharedInstance = PeliasSearchManager()
+  public static let sharedInstance = PeliasSearchManager()
   private let operationQueue = NSOperationQueue()
   private let autocompleteOperationQueue = NSOperationQueue()
   private var autocompleteQueryTimer: NSTimer?
   internal var queuedAutocompleteOp: PeliasOperation?
   public var autocompleteTimeDelay: Double = 0.0 //In seconds
-  var apiKey: String?
-  var baseUrl: NSURL
+  public var apiKey: String?
+  public var baseUrl: NSURL
   
   private init() {
     operationQueue.maxConcurrentOperationCount = 4
@@ -97,7 +97,7 @@ public class PeliasOperation: NSOperation {
   
   let config: APIConfigData
   
-  init(config: APIConfigData) {
+  public init(config: APIConfigData) {
     self.config = config
   }
   
@@ -121,13 +121,13 @@ public class PeliasOperation: NSOperation {
 }
 
 public class PeliasResponse: APIResponse {
-  let data: NSData?
-  let response: NSURLResponse?
-  let error: NSError?
-  var parsedResponse: PeliasSearchResponse?
-  var parsedError: PeliasError?
+  public let data: NSData?
+  public let response: NSURLResponse?
+  public let error: NSError?
+  public var parsedResponse: PeliasSearchResponse?
+  public var parsedError: PeliasError?
   
-  init(data: NSData?, response: NSURLResponse?, error: NSError?) {
+  public init(data: NSData?, response: NSURLResponse?, error: NSError?) {
     self.data = data
     self.response = response
     self.error = error
@@ -174,9 +174,9 @@ public class PeliasResponse: APIResponse {
 }
 
 public struct PeliasSearchResponse {
-  let parsedResponse: NSDictionary
+  public let parsedResponse: NSDictionary
   
-  init(parsedResponse: NSDictionary) {
+  public init(parsedResponse: NSDictionary) {
     self.parsedResponse = parsedResponse
   }
   
@@ -194,9 +194,10 @@ public struct PeliasSearchResponse {
 }
 
 public struct PeliasError {
-  let code: String
-  let message: String
-  init (code: String, message: String) {
+  public let code: String
+  public let message: String
+  
+  public init (code: String, message: String) {
     self.code = code
     self.message = message
   }
@@ -205,11 +206,11 @@ public struct PeliasError {
 extension PeliasSearchResponse {
   
   //TODO: I'm still not sure of this approach - might be better to implement something more like a proper protocol like http://redqueencoder.com/property-lists-and-user-defaults-in-swift but this works for now
-  class HelperClass: NSObject, NSCoding {
+  public class HelperClass: NSObject, NSCoding {
     
-    var response: PeliasSearchResponse?
+    public var response: PeliasSearchResponse?
     
-    init(response: PeliasSearchResponse) {
+    public init(response: PeliasSearchResponse) {
       self.response = response
       super.init()
     }
@@ -220,7 +221,7 @@ extension PeliasSearchResponse {
       return path!
     }
     
-    required init?(coder aDecoder: NSCoder) {
+    public required init?(coder aDecoder: NSCoder) {
       guard let parsedResponse = aDecoder.decodeObjectForKey("parsedResponse") as? NSDictionary else { response = nil; super.init(); return nil }
       
       response = PeliasSearchResponse(parsedResponse: parsedResponse)
@@ -228,7 +229,7 @@ extension PeliasSearchResponse {
       super.init()
     }
     
-    func encodeWithCoder(aCoder: NSCoder) {
+    public func encodeWithCoder(aCoder: NSCoder) {
       aCoder.encodeObject(response!.parsedResponse, forKey: "parsedResponse")
     }
   }

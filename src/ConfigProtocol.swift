@@ -8,68 +8,68 @@
 
 import Foundation
 
-struct SearchBoundaryRect : Equatable {
+public struct SearchBoundaryRect : Equatable {
   let minLatLong: GeoPoint
   let maxLatLong: GeoPoint
   
-  init(minLatLong: GeoPoint, maxLatLong: GeoPoint) {
+  public init(minLatLong: GeoPoint, maxLatLong: GeoPoint) {
     self.minLatLong = minLatLong
     self.maxLatLong = maxLatLong
   }
 }
 
-func ==(lhs: SearchBoundaryRect, rhs: SearchBoundaryRect) -> Bool {
+public func ==(lhs: SearchBoundaryRect, rhs: SearchBoundaryRect) -> Bool {
   return ((lhs.minLatLong == rhs.minLatLong) && (lhs.maxLatLong == rhs.maxLatLong))
 }
 
-struct SearchBoundaryCircle : Equatable {
+public struct SearchBoundaryCircle : Equatable {
   let center: GeoPoint
   let radius: Double
   
-  init(center: GeoPoint, radius: Double) {
+  public init(center: GeoPoint, radius: Double) {
     self.center = center
     self.radius = radius
   }
 }
 
-func ==(lhs: SearchBoundaryCircle, rhs: SearchBoundaryCircle) -> Bool {
+public func ==(lhs: SearchBoundaryCircle, rhs: SearchBoundaryCircle) -> Bool {
   return (lhs.radius == rhs.radius && lhs.center == rhs.center)
 }
 
-struct GeoPoint : Equatable {
+public struct GeoPoint : Equatable {
   let latitude: Double
   let longitude: Double
   
-  init(latitude: Double, longitude: Double) {
+  public init(latitude: Double, longitude: Double) {
     self.latitude = latitude
     self.longitude = longitude
   }
 }
 
-func ==(lhs: GeoPoint, rhs: GeoPoint) -> Bool {
+public func ==(lhs: GeoPoint, rhs: GeoPoint) -> Bool {
   return ((lhs.longitude == rhs.longitude) && (lhs.latitude == rhs.latitude))
 }
 
-enum SearchSource: String {
+public enum SearchSource: String {
   case OpenStreetMap = "osm"
   case OpenAddresses = "oa"
   case Quattroshapes = "qs"
   case GeoNames = "gn"
   
-  static func dataSourceString(sourceList: [SearchSource]) -> String {
+  public static func dataSourceString(sourceList: [SearchSource]) -> String {
     return sourceList.map{$0.rawValue}.joinWithSeparator(",")
   }
 }
 
-enum LayerFilter: String {
+public enum LayerFilter: String {
   case venue, address, country, region, county, locality, localadmin, neighbourhood, coarse
   
-  static func layerString(layers: [LayerFilter]) -> String {
+  public static func layerString(layers: [LayerFilter]) -> String {
     return layers.map{$0.rawValue}.joinWithSeparator(",")
   }
 }
 
-protocol APIConfigData {
+public protocol APIConfigData {
   var urlEndpoint: NSURL { get }
   var apiKey: String? { get }
   var queryItems: [String:NSURLQueryItem] { get set }
@@ -79,8 +79,8 @@ protocol APIConfigData {
   mutating func appendQueryItem(name: String, value: String?)
 }
 
-extension APIConfigData {
-  mutating func appendQueryItem(name: String, value: String?) {
+public extension APIConfigData {
+  mutating public func appendQueryItem(name: String, value: String?) {
     if let queryValue = value where queryValue.isEmpty == false{
       let queryItem = NSURLQueryItem(name: name, value: queryValue)
       queryItems[name] = queryItem;
@@ -88,22 +88,22 @@ extension APIConfigData {
     }
   }
   
-  func searchUrl() -> NSURL {
+  public func searchUrl() -> NSURL {
     let urlComponents = NSURLComponents(URL: urlEndpoint, resolvingAgainstBaseURL: true)
     urlComponents?.queryItems = Array(queryItems.values)
     return urlComponents!.URL!
   }
 }
 
-protocol GenericSearchAPIConfigData : APIConfigData {
+public protocol GenericSearchAPIConfigData : APIConfigData {
   var searchText: String { get set }
 }
 
-protocol AutocompleteAPIConfigData: GenericSearchAPIConfigData {
+public protocol AutocompleteAPIConfigData: GenericSearchAPIConfigData {
   var focusPoint: GeoPoint { get set }
 }
 
-protocol SearchAPIConfigData : GenericSearchAPIConfigData {
+public protocol SearchAPIConfigData : GenericSearchAPIConfigData {
   
   var focusPoint: GeoPoint? { get set }
   var numberOfResults: Int? { get set }
@@ -114,7 +114,7 @@ protocol SearchAPIConfigData : GenericSearchAPIConfigData {
   var layers: [LayerFilter]? { get set }
 }
 
-protocol ReverseAPIConfigData: APIConfigData {
+public protocol ReverseAPIConfigData: APIConfigData {
   var point: GeoPoint { get set }
   var numberOfResults: Int? { get set }
   var dataSources: [SearchSource]? { get set }
@@ -122,17 +122,17 @@ protocol ReverseAPIConfigData: APIConfigData {
   var layers: [LayerFilter]? { get set }
 }
 
-protocol PlaceAPIConfigData: APIConfigData {
+public protocol PlaceAPIConfigData: APIConfigData {
   var places: [PlaceAPIQueryItem] { get set }
 }
 
-protocol PlaceAPIQueryItem {
+public protocol PlaceAPIQueryItem {
   var placeId: String { get set }
   var dataSource: SearchSource { get set }
   var layer: LayerFilter { get set }
 }
 
-protocol APIResponse {
+public protocol APIResponse {
   var data: NSData? { get }
   var response: NSURLResponse? { get }
   var error: NSError? { get }
