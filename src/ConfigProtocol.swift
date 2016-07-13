@@ -9,8 +9,8 @@
 import Foundation
 
 public struct SearchBoundaryRect : Equatable {
-  let minLatLong: GeoPoint
-  let maxLatLong: GeoPoint
+  public let minLatLong: GeoPoint
+  public let maxLatLong: GeoPoint
   
   public init(minLatLong: GeoPoint, maxLatLong: GeoPoint) {
     self.minLatLong = minLatLong
