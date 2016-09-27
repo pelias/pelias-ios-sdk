@@ -84,7 +84,7 @@ public final class PeliasSearchManager {
       print("Engaging Rate limiter")
       autocompleteOperationQueue.addOperation(operation)
       queuedAutocompleteOp = nil
-      autocompleteQueryTimer = NSTimer.scheduledTimerWithTimeInterval(autocompleteTimeDelay, target: self, selector: "autocompleteTimerExecute", userInfo: nil, repeats: false)
+      autocompleteQueryTimer = NSTimer.scheduledTimerWithTimeInterval(autocompleteTimeDelay, target: self, selector: #selector(PeliasSearchManager.autocompleteTimerExecute), userInfo: nil, repeats: false)
     }
     else {
       //We don't have one! Set it to nil so we come back into this function
