@@ -1,4 +1,4 @@
-# Pelias iOS SDK [![Build Status](https://travis-ci.org/pelias/pelias-ios-sdk.svg?branch=master)](https://travis-ci.org/pelias/pelias-ios-sdk)
+# Pelias iOS SDK [![CircleCI](https://circleci.com/gh/pelias/pelias-ios-sdk.svg?style=svg)](https://circleci.com/gh/pelias/pelias-ios-sdk)
 
 This is the iOS SDK wrapper and convenience framework to make interacting with a
 Pelias Geocoder instance (https://github.com/pelias/pelias) easier / faster /
