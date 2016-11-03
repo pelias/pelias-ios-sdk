@@ -1,3 +1,3 @@
-# Contributing to Pelias for Android
+# Contributing to Pelias for iOS
 
-Contributor guidelines for the Pelias Android SDK.
+Contributor guidelines for the Pelias iOS SDK.
