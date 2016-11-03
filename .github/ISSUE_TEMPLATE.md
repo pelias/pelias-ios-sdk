@@ -2,4 +2,4 @@
 
 ### Steps to Reproduce
 
-### Pelias & Android Version
+### Pelias & iOS Version
