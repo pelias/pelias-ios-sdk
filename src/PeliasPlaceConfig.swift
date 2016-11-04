@@ -14,14 +14,6 @@ public struct PeliasPlaceConfig : PlaceAPIConfigData {
   public var queryItems = [String:NSURLQueryItem]()
   public var completionHandler: (PeliasResponse) -> Void
   
-  public var apiKey: String? {
-    didSet {
-      if let key = apiKey where apiKey?.isEmpty == false {
-        appendQueryItem(Constants.API.key, value: key)
-      }
-    }
-  }
-  
   public var places: [PlaceAPIQueryItem] {
     didSet {
       buildPlaceQueryItem()
@@ -31,11 +23,9 @@ public struct PeliasPlaceConfig : PlaceAPIConfigData {
   public init(places: [PlaceAPIQueryItem], completionHandler: (PeliasResponse) -> Void){
     self.places = places
     self.completionHandler = completionHandler
-    apiKey = PeliasSearchManager.sharedInstance.apiKey
-    
+
     defer {
       //didSet will not fire because self is not setup so we have to do this manually
-      appendQueryItem(Constants.API.key, value: apiKey)
       buildPlaceQueryItem()
     }
   }

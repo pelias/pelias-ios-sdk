@@ -71,7 +71,6 @@ public enum LayerFilter: String {
 
 public protocol APIConfigData {
   var urlEndpoint: NSURL { get }
-  var apiKey: String? { get }
   var queryItems: [String:NSURLQueryItem] { get set }
   var completionHandler: (PeliasResponse) -> Void { get set }
   

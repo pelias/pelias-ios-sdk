@@ -17,8 +17,8 @@ public final class PeliasSearchManager {
   private var autocompleteQueryTimer: NSTimer?
   internal var queuedAutocompleteOp: PeliasOperation?
   public var autocompleteTimeDelay: Double = 0.0 //In seconds
-  public var apiKey: String?
   public var baseUrl: NSURL
+  public var urlQueryItems: [NSURLQueryItem]?
   
   private init() {
     operationQueue.maxConcurrentOperationCount = 4
@@ -49,8 +49,15 @@ public final class PeliasSearchManager {
   }
   
   private func executeOperation(config: APIConfigData) -> PeliasOperation {
+    //Convert to mutable version, and append any query items we have waiting for us
+    var configData = config
+    if let urlQueryItems = urlQueryItems {
+      for queryItem in urlQueryItems {
+        configData.appendQueryItem(queryItem.name, value: queryItem.value)
+      }
+    }
     //Build a operation
-    let searchOp = PeliasOperation(config: config)
+    let searchOp = PeliasOperation(config: configData)
     
     //Enqueue search object so it can begin processing
     operationQueue.addOperation(searchOp)

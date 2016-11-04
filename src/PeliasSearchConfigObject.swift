@@ -22,14 +22,6 @@ public struct PeliasSearchConfig : SearchAPIConfigData {
   
   public var completionHandler: (PeliasResponse) -> Void
   
-  public var apiKey: String? {
-    didSet {
-      if let key = apiKey where apiKey?.isEmpty == false {
-        appendQueryItem(Constants.API.key, value: key)
-      }
-    }
-  }
-  
   //Optional Query Params
   
   public var numberOfResults: Int? {
@@ -97,11 +89,9 @@ public struct PeliasSearchConfig : SearchAPIConfigData {
   public init(searchText: String, completionHandler: (PeliasResponse) -> Void){
     self.searchText = searchText
     self.completionHandler = completionHandler
-    apiKey = PeliasSearchManager.sharedInstance.apiKey
     defer {
       //didSet will not fire because self is not setup so we have to do this manually
       appendQueryItem(Constants.API.text, value: searchText)
-      appendQueryItem(Constants.API.key, value: apiKey)
     }
   }
 }

@@ -18,11 +18,7 @@ class PeliasSearchConfigTests: XCTestCase {
     // Put setup code here. This method is called before the invocation of each test method in the class.
     config = PeliasSearchConfig(searchText: "test", completionHandler: { (searchResponse) -> Void in })
   }
-  
-  override class func setUp(){
-    PeliasSearchManager.sharedInstance.apiKey = "1234"
-  }
-  
+
   override func tearDown() {
     // Put teardown code here. This method is called after the invocation of each test method in the class.
     super.tearDown()
@@ -30,15 +26,10 @@ class PeliasSearchConfigTests: XCTestCase {
   
   func testInit(){
     XCTAssert(config.searchText == "test", "Initialization failed. Search Text is not what we expect")
-    XCTAssert(config.apiKey == "1234", "Initialization failed. API Key is not what we expect")
   }
   
   func testTextQueryItem(){
     XCTAssert(config.queryItems[Constants.API.text]?.value == "test", "Text is not the expected string")
-  }
-  
-  func testApiKeyQueryItem(){
-    XCTAssert(config.queryItems[Constants.API.key]?.value == "1234", "apiKey not set correctly")
   }
   
   func testNumberOfResults(){
@@ -83,7 +74,7 @@ class PeliasSearchConfigTests: XCTestCase {
   }
 
   func testBasicSearchURL(){
-    let validURL = "https://search.mapzen.com/v1/search?text=test&api_key=1234"
+    let validURL = "https://search.mapzen.com/v1/search?text=test"
     let testUrl = config.searchUrl()
     XCTAssert(testUrl.absoluteString == validURL)
   }

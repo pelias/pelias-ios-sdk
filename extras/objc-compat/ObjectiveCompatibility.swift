@@ -176,15 +176,6 @@ public class PeliasSearchConfigWrapper: NSObject {
     }
   }
   
-  var apiKey: String? {
-    get {
-      return configObject.apiKey
-    }
-    set(text) {
-      configObject.apiKey = text
-    }
-  }
-  
   var numberOfResults: Int? {
     get {
       return configObject.numberOfResults
