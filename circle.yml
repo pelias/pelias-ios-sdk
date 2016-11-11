@@ -9,7 +9,7 @@ test:
         CODE_SIGN_IDENTITY=
         PROVISIONING_PROFILE=
         -sdk iphonesimulator
-        -destination "platform=iOS Simulator,OS=10.1,name=iPhone 6"
+        -destination "id=D0D2EBA2-A0DC-4710-87C5-79DFDBF7E123"
         -project pelias-ios-sdk.xcodeproj
         -scheme "pelias-ios-sdk"
         clean build test |
