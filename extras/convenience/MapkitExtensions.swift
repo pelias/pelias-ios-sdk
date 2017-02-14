@@ -103,7 +103,7 @@ extension PeliasResponse {
         
         //MKPlacemark
         let name = featureProperties["label"] as? String
-        let mapAnnotation = PeliasMapkitAnnotation(coordinate: coordinate, title: name, subtitle: nil, data: addressDictionary)
+        let mapAnnotation = PeliasMapkitAnnotation(coordinate: coordinate, title: name, subtitle: nil, data: addressDictionary as [String : AnyObject]?)
         
         mapItems.append(mapAnnotation)
       }

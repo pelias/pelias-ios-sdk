@@ -24,12 +24,12 @@ class FirstViewController: UIViewController, UITextFieldDelegate {
     // Dispose of any resources that can be recreated.
   }
   
-  func textFieldShouldReturn(textField: UITextField) -> Bool {
+  func textFieldShouldReturn(_ textField: UITextField) -> Bool {
     searchTapped(textField)
     return true
   }
 
-  @IBAction func searchTapped(sender: AnyObject) {
+  @IBAction func searchTapped(_ sender: AnyObject) {
     searchField.resignFirstResponder()
     if let searchText = searchField.text{
       let searchConfig = PeliasSearchConfig(searchText: searchText, completionHandler: { (searchResponse) -> Void in

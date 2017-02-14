@@ -42,44 +42,44 @@ class GeoPointWrapper: NSObject {
 }
 
 enum SearchSourceWrapper: Int {
-  case OpenStreetMap = 1, OpenAddresses, Quattroshapes, GeoNames
+  case openStreetMap = 1, openAddresses, quattroshapes, geoNames
 }
 
-func unwrapSearchSourceWrapper(sources: [SearchSourceWrapper]) -> [SearchSource] {
+func unwrapSearchSourceWrapper(_ sources: [SearchSourceWrapper]) -> [SearchSource] {
   var newSources: [SearchSource] = []
   for wrapper in sources {
     switch wrapper {
-    case .OpenStreetMap:
+    case .openStreetMap:
       newSources.append(SearchSource.OpenStreetMap)
-    case .OpenAddresses:
+    case .openAddresses:
       newSources.append(SearchSource.OpenAddresses)
-    case .Quattroshapes:
+    case .quattroshapes:
       newSources.append(SearchSource.Quattroshapes)
-    case.GeoNames:
+    case.geoNames:
       newSources.append(SearchSource.GeoNames)
     }
   }
   return newSources
 }
 
-func wrapSearchSources(sources: [SearchSource]) -> [SearchSourceWrapper] {
+func wrapSearchSources(_ sources: [SearchSource]) -> [SearchSourceWrapper] {
   var newSources: [SearchSourceWrapper] = []
   for wrapper in sources {
     switch wrapper {
     case .OpenStreetMap:
-      newSources.append(SearchSourceWrapper.OpenStreetMap)
+      newSources.append(SearchSourceWrapper.openStreetMap)
     case .OpenAddresses:
-      newSources.append(SearchSourceWrapper.OpenAddresses)
+      newSources.append(SearchSourceWrapper.openAddresses)
     case .Quattroshapes:
-      newSources.append(SearchSourceWrapper.Quattroshapes)
+      newSources.append(SearchSourceWrapper.quattroshapes)
     case.GeoNames:
-      newSources.append(SearchSourceWrapper.GeoNames)
+      newSources.append(SearchSourceWrapper.geoNames)
     }
   }
   return newSources
 }
 
-func searchSourceDataString(sourceList: [SearchSourceWrapper]) -> String? {
+func searchSourceDataString(_ sourceList: [SearchSourceWrapper]) -> String? {
   return SearchSource.dataSourceString(unwrapSearchSourceWrapper(sourceList))
 }
 
@@ -87,7 +87,7 @@ enum LayerFilterWrapper: Int {
   case venue = 1, address, country, region, county, locality, localadmin, neighbourhood, coarse
 }
 
-func unwrapLayerFilterWrapper(layers: [LayerFilterWrapper]) -> [LayerFilter] {
+func unwrapLayerFilterWrapper(_ layers: [LayerFilterWrapper]) -> [LayerFilter] {
   var newLayers: [LayerFilter] = []
   for wrapper in layers {
     switch wrapper {
@@ -114,7 +114,7 @@ func unwrapLayerFilterWrapper(layers: [LayerFilterWrapper]) -> [LayerFilter] {
   return newLayers
 }
 
-func wrapLayerFilter(layers: [LayerFilter]) -> [LayerFilterWrapper] {
+func wrapLayerFilter(_ layers: [LayerFilter]) -> [LayerFilterWrapper] {
   var newLayers: [LayerFilterWrapper] = []
   for wrapper in layers {
     switch wrapper {
@@ -141,14 +141,14 @@ func wrapLayerFilter(layers: [LayerFilter]) -> [LayerFilterWrapper] {
   return newLayers
 }
 
-func layerFilterString(layers: [LayerFilterWrapper]) -> String? {
+func layerFilterString(_ layers: [LayerFilterWrapper]) -> String? {
   return LayerFilter.layerString(unwrapLayerFilterWrapper(layers))
 }
 
-public class PeliasSearchConfigWrapper: NSObject {
+open class PeliasSearchConfigWrapper: NSObject {
   var configObject: PeliasSearchConfig
   
-  var urlEndpoint: NSURL {
+  var urlEndpoint: URL {
     get {
       return self.configObject.urlEndpoint
     }
@@ -167,12 +167,12 @@ public class PeliasSearchConfigWrapper: NSObject {
   }
   
   //Optional Query Params
-  var queryItems: [String:NSURLQueryItem] {
+  var queryItems: [String:URLQueryItem] {
     get {
-      return configObject.queryItems
+      return configObject.queryItems as [String : URLQueryItem]
     }
     set(array) {
-      configObject.queryItems = array
+      configObject.queryItems = array as [String : URLQueryItem]
     }
   }
   
@@ -258,7 +258,7 @@ public class PeliasSearchConfigWrapper: NSObject {
     }
   }
   
-  init(searchText: String, completionHandler: (PeliasResponse) -> Void){
+  init(searchText: String, completionHandler: @escaping (PeliasResponse) -> Void){
     self.configObject = PeliasSearchConfig(searchText: searchText, completionHandler: completionHandler)
   }
 }

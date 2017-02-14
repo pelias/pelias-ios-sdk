@@ -12,34 +12,34 @@ public final class PeliasSearchManager {
   
   //! Singleton access
   public static let sharedInstance = PeliasSearchManager()
-  private let operationQueue = NSOperationQueue()
-  private let autocompleteOperationQueue = NSOperationQueue()
-  private var autocompleteQueryTimer: NSTimer?
+  fileprivate let operationQueue = OperationQueue()
+  fileprivate let autocompleteOperationQueue = OperationQueue()
+  fileprivate var autocompleteQueryTimer: Timer?
   internal var queuedAutocompleteOp: PeliasOperation?
   public var autocompleteTimeDelay: Double = 0.0 //In seconds
-  public var baseUrl: NSURL
-  public var urlQueryItems: [NSURLQueryItem]?
+  public var baseUrl: URL
+  public var urlQueryItems: [URLQueryItem]?
   
-  private init() {
+  fileprivate init() {
     operationQueue.maxConcurrentOperationCount = 4
     autocompleteOperationQueue.maxConcurrentOperationCount = 1
-    baseUrl = NSURL.init(string: Constants.URL.base)! // Force the unwrap because we must have a base URL to operate
+    baseUrl = URL.init(string: Constants.URL.base)! // Force the unwrap because we must have a base URL to operate
   }
   
-  public func performSearch(config: PeliasSearchConfig) -> PeliasOperation {
+  public func performSearch(_ config: PeliasSearchConfig) -> PeliasOperation {
     return executeOperation(config);
   }
   
-  public func reverseGeocode(config: PeliasReverseConfig) -> PeliasOperation {
+  public func reverseGeocode(_ config: PeliasReverseConfig) -> PeliasOperation {
     return executeOperation(config);
   }
   
-  public func autocompleteQuery(config: PeliasAutocompleteConfig) -> PeliasOperation {
+  public func autocompleteQuery(_ config: PeliasAutocompleteConfig) -> PeliasOperation {
     
     return executeAutocompleteOperation(config)
   }
   
-  public func placeQuery(config: PeliasPlaceConfig) -> PeliasOperation {
+  public func placeQuery(_ config: PeliasPlaceConfig) -> PeliasOperation {
     return executeOperation(config)
   }
   
@@ -48,7 +48,7 @@ public final class PeliasSearchManager {
     self.autocompleteOperationQueue.cancelAllOperations()
   }
   
-  private func executeOperation(config: APIConfigData) -> PeliasOperation {
+  fileprivate func executeOperation(_ config: APIConfigData) -> PeliasOperation {
     //Convert to mutable version, and append any query items we have waiting for us
     var configData = config
     if let urlQueryItems = urlQueryItems {
@@ -65,7 +65,7 @@ public final class PeliasSearchManager {
     return searchOp;
   }
   
-  private func executeAutocompleteOperation(config: PeliasAutocompleteConfig) -> PeliasOperation {
+  fileprivate func executeAutocompleteOperation(_ config: PeliasAutocompleteConfig) -> PeliasOperation {
     //Rate Limiter
     //First we check to see if we have a delay stored - if not, we use the existing operation queue to immediately fire
     if (autocompleteTimeDelay <= 0) {
@@ -84,14 +84,14 @@ public final class PeliasSearchManager {
     return operation
   }
   
-  @objc private func autocompleteTimerExecute() {
+  @objc fileprivate func autocompleteTimerExecute() {
     //Check to see if we have an operation waiting for us
     if let operation = queuedAutocompleteOp {
       //We have one! Lets fire it, and then create a new timer that will fire once in whatever delay there is from now
       print("Engaging Rate limiter")
       autocompleteOperationQueue.addOperation(operation)
       queuedAutocompleteOp = nil
-      autocompleteQueryTimer = NSTimer.scheduledTimerWithTimeInterval(autocompleteTimeDelay, target: self, selector: #selector(PeliasSearchManager.autocompleteTimerExecute), userInfo: nil, repeats: false)
+      autocompleteQueryTimer = Timer.scheduledTimer(timeInterval: autocompleteTimeDelay, target: self, selector: #selector(PeliasSearchManager.autocompleteTimerExecute), userInfo: nil, repeats: false)
     }
     else {
       //We don't have one! Set it to nil so we come back into this function
@@ -100,7 +100,7 @@ public final class PeliasSearchManager {
   }
 }
 
-public class PeliasOperation: NSOperation {
+open class PeliasOperation: Operation {
   
   let config: APIConfigData
   
@@ -108,33 +108,46 @@ public class PeliasOperation: NSOperation {
     self.config = config
   }
   
-  override public func main() {
-    if self.cancelled {
+  override open func main() {
+    if self.isCancelled {
       return
     }
-    NSURLSession.sharedSession().dataTaskWithURL(config.searchUrl()) { (data: NSData?, response: NSURLResponse?, error: NSError?) -> Void in
-      if self.cancelled {
+
+    URLSession.shared.dataTask(with: config.searchUrl()) { (data, response, error) in
+      if self.isCancelled {
         return
       }
-      let searchResponse = PeliasResponse(data: data, response: response, error: error)
-      NSOperationQueue.mainQueue().addOperationWithBlock({ () -> Void in
-        if self.cancelled {
+      let searchResponse = PeliasResponse(data: data, response: response, error: error as NSError?)
+      OperationQueue.main.addOperation({ () -> Void in
+        if self.isCancelled {
           return
         }
         self.config.completionHandler(searchResponse)
       })
     }.resume()
+//    URLSession.shared.dataTask(with: config.searchUrl(), completionHandler: { (data: Data?, response: URLResponse?, error: NSError?) -> Void in
+//      if self.isCancelled {
+//        return
+//      }
+//      let searchResponse = PeliasResponse(data: data, response: response, error: error)
+//      OperationQueue.main.addOperation({ () -> Void in
+//        if self.isCancelled {
+//          return
+//        }
+//        self.config.completionHandler(searchResponse)
+//      })
+//    }) .resume()
   }
 }
 
-public class PeliasResponse: APIResponse {
-  public let data: NSData?
-  public let response: NSURLResponse?
-  public let error: NSError?
-  public var parsedResponse: PeliasSearchResponse?
-  public var parsedError: PeliasError?
+open class PeliasResponse: APIResponse {
+  open let data: Data?
+  open let response: URLResponse?
+  open let error: NSError?
+  open var parsedResponse: PeliasSearchResponse?
+  open var parsedError: PeliasError?
   
-  public init(data: NSData?, response: NSURLResponse?, error: NSError?) {
+  public init(data: Data?, response: URLResponse?, error: NSError?) {
     self.data = data
     self.response = response
     self.error = error
@@ -147,7 +160,7 @@ public class PeliasResponse: APIResponse {
     }
   }
   
-  private func parseErrorFromJSON(json: NSDictionary) -> PeliasError? {
+  fileprivate func parseErrorFromJSON(_ json: NSDictionary) -> PeliasError? {
     //First get the error code
     guard let meta = json["meta"] as? NSDictionary else { return nil }
     guard let status_code = meta["status_code"] as? Int else { return nil }
@@ -161,10 +174,10 @@ public class PeliasResponse: APIResponse {
     return peliasError
   }
   
-  private func parseData(data: NSData?) -> NSDictionary? {
+  fileprivate func parseData(_ data: Data?) -> NSDictionary? {
     guard let JSONData = data else { return nil }
     do {
-      let JSON = try NSJSONSerialization.JSONObjectWithData(JSONData, options:NSJSONReadingOptions(rawValue: 0))
+      let JSON = try JSONSerialization.jsonObject(with: JSONData, options:JSONSerialization.ReadingOptions(rawValue: 0))
       guard let JSONDictionary :NSDictionary = JSON as? NSDictionary else {
         print("Not a Dictionary")
         // put in function
@@ -187,14 +200,14 @@ public struct PeliasSearchResponse {
     self.parsedResponse = parsedResponse
   }
   
-  static func encode(response: PeliasSearchResponse) {
+  static func encode(_ response: PeliasSearchResponse) {
     let personClassObject = HelperClass(response: response)
     
     NSKeyedArchiver.archiveRootObject(personClassObject, toFile: HelperClass.path())
   }
   
   static func decode() -> PeliasSearchResponse? {
-    let responseClassObject = NSKeyedUnarchiver.unarchiveObjectWithFile(HelperClass.path()) as? HelperClass
+    let responseClassObject = NSKeyedUnarchiver.unarchiveObject(withFile: HelperClass.path()) as? HelperClass
     
     return responseClassObject?.response
   }
@@ -213,9 +226,9 @@ public struct PeliasError {
 extension PeliasSearchResponse {
   
   //TODO: I'm still not sure of this approach - might be better to implement something more like a proper protocol like http://redqueencoder.com/property-lists-and-user-defaults-in-swift but this works for now
-  public class HelperClass: NSObject, NSCoding {
+  open class HelperClass: NSObject, NSCoding {
     
-    public var response: PeliasSearchResponse?
+    open var response: PeliasSearchResponse?
     
     public init(response: PeliasSearchResponse) {
       self.response = response
@@ -223,21 +236,21 @@ extension PeliasSearchResponse {
     }
     
     class func path() -> String {
-      let documentsPath = NSSearchPathForDirectoriesInDomains(NSSearchPathDirectory.DocumentDirectory, NSSearchPathDomainMask.UserDomainMask, true).first
-      let path = documentsPath?.stringByAppendingString("/Response")
-      return path!
+      let documentsPath = NSSearchPathForDirectoriesInDomains(FileManager.SearchPathDirectory.documentDirectory, FileManager.SearchPathDomainMask.userDomainMask, true).first
+      let path = (documentsPath)! + "/Response"
+      return path
     }
     
     public required init?(coder aDecoder: NSCoder) {
-      guard let parsedResponse = aDecoder.decodeObjectForKey("parsedResponse") as? NSDictionary else { response = nil; super.init(); return nil }
+      guard let parsedResponse = aDecoder.decodeObject(forKey: "parsedResponse") as? NSDictionary else { response = nil; super.init(); return nil }
       
       response = PeliasSearchResponse(parsedResponse: parsedResponse)
       
       super.init()
     }
     
-    public func encodeWithCoder(aCoder: NSCoder) {
-      aCoder.encodeObject(response!.parsedResponse, forKey: "parsedResponse")
+    open func encode(with aCoder: NSCoder) {
+      aCoder.encode(response!.parsedResponse, forKey: "parsedResponse")
     }
   }
 }

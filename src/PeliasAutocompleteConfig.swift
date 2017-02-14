@@ -16,7 +16,7 @@ public struct PeliasAutocompleteConfig : AutocompleteAPIConfigData {
       appendQueryItem(Constants.API.focusPointLon, value: String(focusPoint.longitude))
     }
   }
-  public var urlEndpoint = NSURL.init(string: Constants.URL.autocomplete, relativeToURL: PeliasSearchManager.sharedInstance.baseUrl)!
+  public var urlEndpoint = URL.init(string: Constants.URL.autocomplete, relativeTo: PeliasSearchManager.sharedInstance.baseUrl as URL)!
   
   public var searchText: String{
     didSet {
@@ -24,11 +24,11 @@ public struct PeliasAutocompleteConfig : AutocompleteAPIConfigData {
     }
   }
   
-  public var queryItems = [String:NSURLQueryItem]()
+  public var queryItems = [String:URLQueryItem]()
   
   public var completionHandler: (PeliasResponse) -> Void
   
-  public init(searchText: String, focusPoint: GeoPoint, completionHandler: (PeliasResponse) -> Void){
+  public init(searchText: String, focusPoint: GeoPoint, completionHandler: @escaping (PeliasResponse) -> Void){
     self.searchText = searchText
     self.completionHandler = completionHandler
     self.focusPoint = focusPoint

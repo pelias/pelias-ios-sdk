@@ -28,32 +28,32 @@ class AutocompleteTableVC: UITableViewController, UISearchResultsUpdating, UISea
     manager.delegate = self
   }
   
-  override func viewDidAppear(animated: Bool) {
+  override func viewDidAppear(_ animated: Bool) {
     super.viewDidAppear(animated)
-    if CLLocationManager.authorizationStatus() == .AuthorizedAlways || CLLocationManager.authorizationStatus() == .AuthorizedWhenInUse {
+    if CLLocationManager.authorizationStatus() == .authorizedAlways || CLLocationManager.authorizationStatus() == .authorizedWhenInUse {
       manager.requestLocation()
     }
     
     
-    if CLLocationManager.authorizationStatus() == .NotDetermined {
+    if CLLocationManager.authorizationStatus() == .notDetermined {
       manager.requestWhenInUseAuthorization()
     }
   }
   // MARK: - Table view data source
   
-  override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+  override func numberOfSections(in tableView: UITableView) -> Int {
     return 1
   }
   
-  override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+  override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
     if let unwrappedResults = results {
       return unwrappedResults.count
     }
     return 0
   }
   
-  func updateSearchResultsForSearchController(searchController: UISearchController) {
-    if let searchText = searchController.searchBar.text where searchController.searchBar.text?.isEmpty == false {
+  func updateSearchResults(for searchController: UISearchController) {
+    if let searchText = searchController.searchBar.text, searchController.searchBar.text?.isEmpty == false {
       var geoPoint = GeoPoint(latitude: 40.7312973034393, longitude: -73.99896644276561)
       if let location = currentLocation {
         geoPoint = GeoPoint(latitude: location.coordinate.latitude, longitude: location.coordinate.longitude)
@@ -66,37 +66,37 @@ class AutocompleteTableVC: UITableViewController, UISearchResultsUpdating, UISea
     }
   }
   
-  func searchBar(searchBar: UISearchBar, selectedScopeButtonIndexDidChange selectedScope: Int) {
+  func searchBar(_ searchBar: UISearchBar, selectedScopeButtonIndexDidChange selectedScope: Int) {
     
   }
   
   
-  override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-    let cell = tableView.dequeueReusableCellWithIdentifier("basicCellIdent", forIndexPath: indexPath)
+  override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    let cell = tableView.dequeueReusableCell(withIdentifier: "basicCellIdent", for: indexPath)
     cell.textLabel?.text = results?[indexPath.row].title
     return cell
   }
   
   // CoreLocation Manager Delegate
-  func locationManager(manager: CLLocationManager,
-    didChangeAuthorizationStatus status: CLAuthorizationStatus)
+  func locationManager(_ manager: CLLocationManager,
+    didChangeAuthorization status: CLAuthorizationStatus)
   {
-    if status == .AuthorizedAlways || status == .AuthorizedWhenInUse {
+    if status == .authorizedAlways || status == .authorizedWhenInUse {
       manager.requestLocation()
     }
   }
   
-  func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+  func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
     currentLocation = locations[0]
   }
   
-  func locationManager(manager: CLLocationManager, didFailWithError error: NSError) {
+  func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
     print(error)
   }
   
-  override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+  override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
     searchController.searchBar.resignFirstResponder()
-    tableView.deselectRowAtIndexPath(indexPath, animated: true)
+    tableView.deselectRow(at: indexPath, animated: true)
   }
   
   
