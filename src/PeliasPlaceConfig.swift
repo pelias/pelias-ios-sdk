@@ -20,7 +20,7 @@ public struct PeliasPlaceConfig : PlaceAPIConfigData {
     }
   }
   
-  public init(places: [PlaceAPIQueryItem], completionHandler: @escaping (PeliasResponse) -> Void){
+  public init(places: [PlaceAPIQueryItem], completionHandler: @escaping (PeliasResponse) -> Void) {
     self.places = places
     self.completionHandler = completionHandler
 

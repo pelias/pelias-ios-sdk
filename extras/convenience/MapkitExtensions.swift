@@ -127,7 +127,7 @@ extension MKMapItem: MKAnnotation {
 }
 
 extension SearchBoundaryRect {
-  init(mapRect: MKMapRect){
+  init(mapRect: MKMapRect) {
     //Since we get a coordinate anda size, we need to convert this into the bounding box pelias expects.
     //First convert the origin point to the min lat/long
     let minCoordinate = MKCoordinateForMapPoint(mapRect.origin)

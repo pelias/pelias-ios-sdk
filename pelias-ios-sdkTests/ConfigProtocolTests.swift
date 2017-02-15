@@ -11,7 +11,7 @@ import XCTest
 
 class ConfigProtocolTests: XCTestCase {
   
-  func testBoundaryRectEquatableImplementation(){
+  func testBoundaryRectEquatableImplementation() {
     let boundaryRect1 = SearchBoundaryRect(
       minLatLong: GeoPoint(latitude: 40.713008, longitude: -74.013169),
       maxLatLong: GeoPoint(latitude: 40.706866, longitude: -74.011319))

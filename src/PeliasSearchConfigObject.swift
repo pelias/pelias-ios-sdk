@@ -110,7 +110,7 @@ public struct PeliasSearchConfig : SearchAPIConfigData {
     }
   }
   
-  public init(searchText: String, completionHandler: @escaping (PeliasResponse) -> Void){
+  public init(searchText: String, completionHandler: @escaping (PeliasResponse) -> Void) {
     self.searchText = searchText
     self.completionHandler = completionHandler
     defer {

@@ -28,7 +28,7 @@ public struct PeliasAutocompleteConfig : AutocompleteAPIConfigData {
   
   public var completionHandler: (PeliasResponse) -> Void
   
-  public init(searchText: String, focusPoint: GeoPoint, completionHandler: @escaping (PeliasResponse) -> Void){
+  public init(searchText: String, focusPoint: GeoPoint, completionHandler: @escaping (PeliasResponse) -> Void) {
     self.searchText = searchText
     self.completionHandler = completionHandler
     self.focusPoint = focusPoint

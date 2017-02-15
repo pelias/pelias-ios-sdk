@@ -80,7 +80,7 @@ public struct PeliasReverseConfig : ReverseAPIConfigData {
     }
   }
   
-  public init(point: GeoPoint, completionHandler: @escaping (PeliasResponse) -> Void){
+  public init(point: GeoPoint, completionHandler: @escaping (PeliasResponse) -> Void) {
     self.point = point
     self.completionHandler = completionHandler
     defer {

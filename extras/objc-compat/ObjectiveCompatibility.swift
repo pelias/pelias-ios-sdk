@@ -25,7 +25,7 @@ class SearchCircleWrapper: NSObject {
     circle = SearchBoundaryCircle(center: center.point, radius: radius)
   }
   
-  init(boundaryCircle: SearchBoundaryCircle){
+  init(boundaryCircle: SearchBoundaryCircle) {
     circle = boundaryCircle
   }
 }
@@ -258,7 +258,7 @@ open class PeliasSearchConfigWrapper: NSObject {
     }
   }
   
-  init(searchText: String, completionHandler: @escaping (PeliasResponse) -> Void){
+  init(searchText: String, completionHandler: @escaping (PeliasResponse) -> Void) {
     self.configObject = PeliasSearchConfig(searchText: searchText, completionHandler: completionHandler)
   }
 }

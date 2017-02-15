@@ -36,7 +36,7 @@ class SecondViewController: UIViewController, UITextFieldDelegate, CLLocationMan
   
   
   override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-    if (segue.destination.isKind(of: PinDetailVC.self)){
+    if (segue.destination.isKind(of: PinDetailVC.self)) {
       guard let vc = segue.destination as? PinDetailVC else { return }
       vc.annotation = selectedAnnotation
     }

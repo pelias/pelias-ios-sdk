@@ -24,25 +24,25 @@ class PeliasSearchConfigTests: XCTestCase {
     super.tearDown()
   }
   
-  func testInit(){
+  func testInit() {
     XCTAssert(config.searchText == "test", "Initialization failed. Search Text is not what we expect")
   }
   
-  func testTextQueryItem(){
+  func testTextQueryItem( ){
     XCTAssert(config.queryItems[Constants.API.text]?.value == "test", "Text is not the expected string")
   }
   
-  func testNumberOfResults(){
+  func testNumberOfResults() {
     config.numberOfResults = 5;
     XCTAssert(config.queryItems[Constants.API.size]?.value == "5", "numberOfResults not set correctly")
   }
   
-  func testBoundaryCountry(){
+  func testBoundaryCountry() {
     config.boundaryCountry = "USA"
     XCTAssert(config.queryItems[Constants.Boundary.country]?.value == "USA", "boundaryCountry not set correctly")
   }
   
-  func testBoundaryRect(){
+  func testBoundaryRect() {
     var boundaryRect: SearchBoundaryRect?
     boundaryRect = SearchBoundaryRect(
       minLatLong: GeoPoint(latitude: 40.713008, longitude: -74.013169),
@@ -54,7 +54,7 @@ class PeliasSearchConfigTests: XCTestCase {
     XCTAssert(config.queryItems[Constants.Boundary.Rect.maxLon]?.value == "-74.011319", "boundary.rect.max_lon not set correctly")
   }
   
-  func testBoundardCircle(){
+  func testBoundardCircle() {
     var boundaryCircle: SearchBoundaryCircle?
     boundaryCircle = SearchBoundaryCircle(
       center: GeoPoint(latitude: 40.713008, longitude: -74.013169),
@@ -73,7 +73,7 @@ class PeliasSearchConfigTests: XCTestCase {
     XCTAssert(config.queryItems[Constants.API.focusPointLon]?.value == "-74.013169", "boundary.cirle.lon not set correctly")
   }
 
-  func testBasicSearchURL(){
+  func testBasicSearchURL() {
     let validURL = "https://search.mapzen.com/v1/search?text=test"
     let testUrl = config.searchUrl()
     XCTAssert(testUrl.absoluteString == validURL)
