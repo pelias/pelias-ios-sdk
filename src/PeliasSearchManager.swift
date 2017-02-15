@@ -125,18 +125,6 @@ open class PeliasOperation: Operation {
         self.config.completionHandler(searchResponse)
       })
     }.resume()
-//    URLSession.shared.dataTask(with: config.searchUrl(), completionHandler: { (data: Data?, response: URLResponse?, error: NSError?) -> Void in
-//      if self.isCancelled {
-//        return
-//      }
-//      let searchResponse = PeliasResponse(data: data, response: response, error: error)
-//      OperationQueue.main.addOperation({ () -> Void in
-//        if self.isCancelled {
-//          return
-//        }
-//        self.config.completionHandler(searchResponse)
-//      })
-//    }) .resume()
   }
 }
 
@@ -201,13 +189,15 @@ public struct PeliasSearchResponse {
   }
   
   static func encode(_ response: PeliasSearchResponse) {
+    guard let docsPath = HelperClass.path() else { return }
     let personClassObject = HelperClass(response: response)
     
-    NSKeyedArchiver.archiveRootObject(personClassObject, toFile: HelperClass.path())
+    NSKeyedArchiver.archiveRootObject(personClassObject, toFile: docsPath)
   }
   
   static func decode() -> PeliasSearchResponse? {
-    let responseClassObject = NSKeyedUnarchiver.unarchiveObject(withFile: HelperClass.path()) as? HelperClass
+    guard let docsPath = HelperClass.path() else { return nil }
+    let responseClassObject = NSKeyedUnarchiver.unarchiveObject(withFile: docsPath) as? HelperClass
     
     return responseClassObject?.response
   }
@@ -235,9 +225,10 @@ extension PeliasSearchResponse {
       super.init()
     }
     
-    class func path() -> String {
+    class func path() -> String? {
       let documentsPath = NSSearchPathForDirectoriesInDomains(FileManager.SearchPathDirectory.documentDirectory, FileManager.SearchPathDomainMask.userDomainMask, true).first
-      let path = (documentsPath)! + "/Response"
+      guard let docsPath = documentsPath else { return nil }
+      let path = docsPath + "/Response"
       return path
     }
     

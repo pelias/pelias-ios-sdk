@@ -58,7 +58,7 @@ public struct PeliasSearchConfig : SearchAPIConfigData {
   
   public var boundaryCountry: String? {
     didSet {
-      if let country = boundaryCountry, boundaryCountry?.isEmpty == false{
+      if let country = boundaryCountry, boundaryCountry?.isEmpty == false {
         appendQueryItem(Constants.Boundary.country, value: country)
       }
     }
