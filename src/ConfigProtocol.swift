@@ -56,41 +56,41 @@ public enum SearchSource: String {
   case Quattroshapes = "qs"
   case GeoNames = "gn"
   
-  public static func dataSourceString(sourceList: [SearchSource]) -> String {
-    return sourceList.map{$0.rawValue}.joinWithSeparator(",")
+  public static func dataSourceString(_ sourceList: [SearchSource]) -> String {
+    return sourceList.map{$0.rawValue}.joined(separator: ",")
   }
 }
 
 public enum LayerFilter: String {
   case venue, address, country, region, county, locality, localadmin, neighbourhood, coarse
   
-  public static func layerString(layers: [LayerFilter]) -> String {
-    return layers.map{$0.rawValue}.joinWithSeparator(",")
+  public static func layerString(_ layers: [LayerFilter]) -> String {
+    return layers.map{$0.rawValue}.joined(separator: ",")
   }
 }
 
 public protocol APIConfigData {
-  var urlEndpoint: NSURL { get }
-  var queryItems: [String:NSURLQueryItem] { get set }
+  var urlEndpoint: URL { get }
+  var queryItems: [String:URLQueryItem] { get set }
   var completionHandler: (PeliasResponse) -> Void { get set }
   
-  func searchUrl() -> NSURL
-  mutating func appendQueryItem(name: String, value: String?)
+  func searchUrl() -> URL
+  mutating func appendQueryItem(_ name: String, value: String?)
 }
 
 public extension APIConfigData {
-  mutating public func appendQueryItem(name: String, value: String?) {
-    if let queryValue = value where queryValue.isEmpty == false{
-      let queryItem = NSURLQueryItem(name: name, value: queryValue)
+  mutating public func appendQueryItem(_ name: String, value: String?) {
+    if let queryValue = value, queryValue.isEmpty == false{
+      let queryItem = URLQueryItem(name: name, value: queryValue)
       queryItems[name] = queryItem;
       
     }
   }
   
-  public func searchUrl() -> NSURL {
-    let urlComponents = NSURLComponents(URL: urlEndpoint, resolvingAgainstBaseURL: true)
+  public func searchUrl() -> URL {
+    var urlComponents = URLComponents(url: urlEndpoint, resolvingAgainstBaseURL: true)
     urlComponents?.queryItems = Array(queryItems.values)
-    return urlComponents!.URL!
+    return urlComponents!.url!
   }
 }
 
@@ -132,7 +132,7 @@ public protocol PlaceAPIQueryItem {
 }
 
 public protocol APIResponse {
-  var data: NSData? { get }
-  var response: NSURLResponse? { get }
+  var data: Data? { get }
+  var response: URLResponse? { get }
   var error: NSError? { get }
 }

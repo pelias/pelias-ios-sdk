@@ -35,9 +35,9 @@ class SecondViewController: UIViewController, UITextFieldDelegate, CLLocationMan
   }
   
   
-  override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-    if (segue.destinationViewController.isKindOfClass(PinDetailVC)){
-      guard let vc = segue.destinationViewController as? PinDetailVC else { return }
+  override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+    if (segue.destination.isKind(of: PinDetailVC.self)) {
+      guard let vc = segue.destination as? PinDetailVC else { return }
       vc.annotation = selectedAnnotation
     }
   }
@@ -47,11 +47,11 @@ class SecondViewController: UIViewController, UITextFieldDelegate, CLLocationMan
     // Dispose of any resources that can be recreated.
   }
   
-  func textFieldDidEndEditing(textField: UITextField) {
+  func textFieldDidEndEditing(_ textField: UITextField) {
     
   }
   
-  func textFieldShouldReturn(textField: UITextField) -> Bool {
+  func textFieldShouldReturn(_ textField: UITextField) -> Bool {
     let searchRect = SearchBoundaryRect(mapRect: mapView.visibleMapRect)
     if let searchText = searchBox.text{
       var searchConfig = PeliasSearchConfig(searchText: searchText, completionHandler: { (searchResponse) -> Void in
@@ -70,20 +70,20 @@ class SecondViewController: UIViewController, UITextFieldDelegate, CLLocationMan
     return true
   }
 
-  @IBAction func reverseGeoPressed(sender: AnyObject) {
+  @IBAction func reverseGeoPressed(_ sender: AnyObject) {
     
-    if CLLocationManager.authorizationStatus() == .AuthorizedAlways || CLLocationManager.authorizationStatus() == .AuthorizedWhenInUse {
+    if CLLocationManager.authorizationStatus() == .authorizedAlways || CLLocationManager.authorizationStatus() == .authorizedWhenInUse {
       manager.requestLocation()
       mapView.showsUserLocation = true
     }
 
     
-    if CLLocationManager.authorizationStatus() == .NotDetermined {
+    if CLLocationManager.authorizationStatus() == .notDetermined {
       manager.requestWhenInUseAuthorization()
     }
   }
   
-  func performReverseGeo(location: CLLocation) {
+  func performReverseGeo(_ location: CLLocation) {
     let point = GeoPoint(latitude: location.coordinate.latitude, longitude: location.coordinate.longitude)
     let config = PeliasReverseConfig(point: point) { (response) -> Void in
       if let annotations = response.parsedMapItems(){
@@ -104,41 +104,41 @@ class SecondViewController: UIViewController, UITextFieldDelegate, CLLocationMan
   }
   
   // MARK: - CoreLocation Manager Delegate
-  func locationManager(manager: CLLocationManager,
-    didChangeAuthorizationStatus status: CLAuthorizationStatus)
+  func locationManager(_ manager: CLLocationManager,
+    didChangeAuthorization status: CLAuthorizationStatus)
   {
-    if status == .AuthorizedAlways || status == .AuthorizedWhenInUse {
+    if status == .authorizedAlways || status == .authorizedWhenInUse {
       manager.requestLocation()
       mapView.showsUserLocation = true
     }
   }
   
-  func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+  func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
     performReverseGeo(locations[0])
   }
   
-  func locationManager(manager: CLLocationManager, didFailWithError error: NSError) {
+  func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
     print(error)
   }
   
   // MARK: - Mapview Delegate
-  func mapView(mapView: MKMapView, viewForAnnotation annotation: MKAnnotation) -> MKAnnotationView? {
-    if annotation.isKindOfClass(MKUserLocation) {
+  func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
+    if annotation.isKind(of: MKUserLocation.self) {
       return nil
     }
     
     let annotationView = MKPinAnnotationView(annotation: annotation, reuseIdentifier: PinReuseIdentifier)
     annotationView.canShowCallout = true
-    annotationView.rightCalloutAccessoryView = UIButton(type: .DetailDisclosure)
+    annotationView.rightCalloutAccessoryView = UIButton(type: .detailDisclosure)
     
     return annotationView
   }
   
-  func mapView(mapView: MKMapView, annotationView view: MKAnnotationView, calloutAccessoryControlTapped control: UIControl) {
+  func mapView(_ mapView: MKMapView, annotationView view: MKAnnotationView, calloutAccessoryControlTapped control: UIControl) {
     if let annotation = view.annotation {
       guard let mapAnnotation = annotation as? PeliasMapkitAnnotation else { return }
       self.selectedAnnotation = mapAnnotation
-      self.performSegueWithIdentifier("showPlace", sender: self)
+      self.performSegue(withIdentifier: "showPlace", sender: self)
     }
   }
 }

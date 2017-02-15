@@ -103,7 +103,7 @@ extension PeliasResponse {
         
         //MKPlacemark
         let name = featureProperties["label"] as? String
-        let mapAnnotation = PeliasMapkitAnnotation(coordinate: coordinate, title: name, subtitle: nil, data: addressDictionary)
+        let mapAnnotation = PeliasMapkitAnnotation(coordinate: coordinate, title: name, subtitle: nil, data: addressDictionary as [String : AnyObject]?)
         
         mapItems.append(mapAnnotation)
       }
@@ -127,7 +127,7 @@ extension MKMapItem: MKAnnotation {
 }
 
 extension SearchBoundaryRect {
-  init(mapRect: MKMapRect){
+  init(mapRect: MKMapRect) {
     //Since we get a coordinate anda size, we need to convert this into the bounding box pelias expects.
     //First convert the origin point to the min lat/long
     let minCoordinate = MKCoordinateForMapPoint(mapRect.origin)

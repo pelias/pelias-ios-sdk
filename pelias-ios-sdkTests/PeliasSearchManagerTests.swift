@@ -10,12 +10,12 @@ import XCTest
 @testable import pelias_ios_sdk
 
 class PeliasSearchManagerTests: XCTestCase {
-  var testOperationQueue = NSOperationQueue()
+  var testOperationQueue = OperationQueue()
   
   override func setUp() {
     super.setUp()
     // Put setup code here. This method is called before the invocation of each test method in the class.
-    testOperationQueue.suspended = true
+    testOperationQueue.isSuspended = true
     PeliasSearchManager.sharedInstance.autocompleteTimeDelay = 0.0
   }
   
@@ -26,8 +26,8 @@ class PeliasSearchManagerTests: XCTestCase {
     let op = PeliasOperation(config: searchConfig)
     testOperationQueue.addOperation(op)
     op.cancel()
-    testOperationQueue.suspended = false
-    XCTAssert(op.cancelled == true)
+    testOperationQueue.isSuspended = false
+    XCTAssert(op.isCancelled == true)
   }
 
 //Commented out - Mapzen's hosted pelias doesn't always respond in time which causes failing tests. Will need to rethink how to effectively test this
@@ -56,7 +56,7 @@ class PeliasSearchManagerTests: XCTestCase {
 //  }
 
   func testResponseObjectEncoding() {
-    let seed:[String:AnyObject] = ["SuperSweetKey":"SuperSweetValue"]
+    let seed: NSDictionary = ["SuperSweetKey": "SuperSweetValue"]
     
     let testResponse = PeliasSearchResponse(parsedResponse: seed)
     
@@ -68,8 +68,8 @@ class PeliasSearchManagerTests: XCTestCase {
   
   func testErrorHandling() {
     //Little known fact: Getting the tests bundle that contains the fixtures is not done the normal NSBundle.mainBundle() route, because that will still yield the application bundle
-    let testBundle = NSBundle.init(forClass: PeliasSearchManagerTests.self)
-    let jsonData: NSData? = NSData(contentsOfFile: testBundle.pathForResource("error_response", ofType: "json")!)
+    let testBundle = Bundle.init(for: PeliasSearchManagerTests.self)
+    let jsonData: Data? = try? Data(contentsOf: URL(fileURLWithPath: testBundle.path(forResource: "error_response", ofType: "json")!))
     let testResponse = PeliasResponse(data: jsonData, response: nil, error: nil)
     XCTAssertNotNil(testResponse.parsedError)
     XCTAssertNil(testResponse.parsedResponse)

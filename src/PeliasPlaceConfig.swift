@@ -10,8 +10,8 @@ import Foundation
 
 public struct PeliasPlaceConfig : PlaceAPIConfigData {
   
-  public var urlEndpoint = NSURL.init(string: Constants.URL.place, relativeToURL: PeliasSearchManager.sharedInstance.baseUrl)!
-  public var queryItems = [String:NSURLQueryItem]()
+  public var urlEndpoint = URL.init(string: Constants.URL.place, relativeTo: PeliasSearchManager.sharedInstance.baseUrl as URL)!
+  public var queryItems = [String:URLQueryItem]()
   public var completionHandler: (PeliasResponse) -> Void
   
   public var places: [PlaceAPIQueryItem] {
@@ -20,7 +20,7 @@ public struct PeliasPlaceConfig : PlaceAPIConfigData {
     }
   }
   
-  public init(places: [PlaceAPIQueryItem], completionHandler: (PeliasResponse) -> Void){
+  public init(places: [PlaceAPIQueryItem], completionHandler: @escaping (PeliasResponse) -> Void) {
     self.places = places
     self.completionHandler = completionHandler
 
