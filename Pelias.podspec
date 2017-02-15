@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name             =  'Pelias'
-  s.version          =  '1.0.0-beta3'
+  s.version          =  '1.0.0-beta4'
   s.summary          =  'A distributed full-text geographic search engine. An open source project sponsored by Mapzen.'
   s.homepage         =  'https://github.com/pelias/pelias-ios-sdk'
   s.social_media_url =  'https://twitter.com/mapzen'
@@ -10,7 +10,7 @@ Pod::Spec.new do |s|
 
   # Platform setup
   s.requires_arc = true
-  s.ios.deployment_target = '9.0'
+  s.ios.deployment_target = '9.3'
   s.osx.deployment_target = '10.11'
 
   # Exclude optional Convenience modules
