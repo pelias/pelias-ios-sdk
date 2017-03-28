@@ -33,7 +33,7 @@ public final class PeliasSearchManager {
   public func reverseGeocode(_ config: PeliasReverseConfig) -> PeliasOperation {
     return executeOperation(config);
   }
-  
+
   public func autocompleteQuery(_ config: PeliasAutocompleteConfig) -> PeliasOperation {
     
     return executeAutocompleteOperation(config)
@@ -188,14 +188,14 @@ public struct PeliasSearchResponse {
     self.parsedResponse = parsedResponse
   }
   
-  static func encode(_ response: PeliasSearchResponse) {
+  public static func encode(_ response: PeliasSearchResponse) {
     guard let docsPath = HelperClass.path() else { return }
     let personClassObject = HelperClass(response: response)
     
     NSKeyedArchiver.archiveRootObject(personClassObject, toFile: docsPath)
   }
   
-  static func decode() -> PeliasSearchResponse? {
+  public static func decode() -> PeliasSearchResponse? {
     guard let docsPath = HelperClass.path() else { return nil }
     let responseClassObject = NSKeyedUnarchiver.unarchiveObject(withFile: docsPath) as? HelperClass
     
