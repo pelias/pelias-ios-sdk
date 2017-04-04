@@ -8,6 +8,7 @@
 
 import Foundation
 
+/// Main entry point for Pelias. Use this singleton to execute geo requests.
 public final class PeliasSearchManager {
   
   //! Singleton access
@@ -16,8 +17,11 @@ public final class PeliasSearchManager {
   fileprivate let autocompleteOperationQueue = OperationQueue()
   fileprivate var autocompleteQueryTimer: Timer?
   internal var queuedAutocompleteOp: PeliasOperation?
-  public var autocompleteTimeDelay: Double = 0.0 //In seconds
+  /// Delay in seconds that the manager should wait between keystrokes to fire a new autocomplete request
+  public var autocompleteTimeDelay: Double = 0.0
+  /// Base url to execute requests against. Default value is https://search.mapzen.com.
   public var baseUrl: URL
+  /// The query items that should be applied to every request (such as an api key).
   public var urlQueryItems: [URLQueryItem]?
   
   fileprivate init() {
@@ -25,24 +29,37 @@ public final class PeliasSearchManager {
     autocompleteOperationQueue.maxConcurrentOperationCount = 1
     baseUrl = URL.init(string: Constants.URL.base)! // Force the unwrap because we must have a base URL to operate
   }
-  
+
+  /** Perform an asyncronous search request given parameters defined by the search config. Returns the queued operation.
+    - parameter config: Object holding search request parameter information.
+  */
   public func performSearch(_ config: PeliasSearchConfig) -> PeliasOperation {
     return executeOperation(config);
   }
-  
+
+  /** Perform an asyncronous reverse geocode request given parameters defined by the config. Returns the queued operation.
+   - parameter config: Object holding reverse geo request parameter information.
+   */
   public func reverseGeocode(_ config: PeliasReverseConfig) -> PeliasOperation {
     return executeOperation(config);
   }
 
+  /** Perform an asyncronous autocomplete request given parameters defined by the config. Returns the queued operation.
+   - parameter config: Object holding autocomplete request parameter information.
+   */
   public func autocompleteQuery(_ config: PeliasAutocompleteConfig) -> PeliasOperation {
     
     return executeAutocompleteOperation(config)
   }
-  
+
+  /** Perform an asyncronous place request given parameters defined by the search config. Returns the queued operation.
+   - parameter config: Object holding place request parameter information.
+   */
   public func placeQuery(_ config: PeliasPlaceConfig) -> PeliasOperation {
     return executeOperation(config)
   }
-  
+
+  /// Cancel all requests
   public func cancelOperations() {
     self.operationQueue.cancelAllOperations()
     self.autocompleteOperationQueue.cancelAllOperations()
@@ -100,10 +117,15 @@ public final class PeliasSearchManager {
   }
 }
 
+/// Represents a queued operation executed by the search manager. Handles creating a PeliasResponse object and sending it to the completion handler.
 open class PeliasOperation: Operation {
   
   let config: APIConfigData
-  
+
+  /**
+   Creates a new operation given a config. The config will be used to construct a proper response object.
+   - parameter config: The config used to create a new operation and response
+   */
   public init(config: APIConfigData) {
     self.config = config
   }
@@ -128,11 +150,17 @@ open class PeliasOperation: Operation {
   }
 }
 
+/// Represents a response for a request executed by the 'PeliasSearchManager'
 open class PeliasResponse: APIResponse {
+  /// The raw data response
   open let data: Data?
+  /// The url response if the request completed successfully.
   open let response: URLResponse?
+  /// The error if an error occured executing the operation.
   open let error: NSError?
+  ///
   open var parsedResponse: PeliasSearchResponse?
+  ///
   open var parsedError: PeliasError?
   
   public init(data: Data?, response: URLResponse?, error: NSError?) {
@@ -181,20 +209,25 @@ open class PeliasResponse: APIResponse {
   }
 }
 
+/// Response that can be saved to disk
 public struct PeliasSearchResponse {
+  /// Response data that will be saved to disk.
   public let parsedResponse: NSDictionary
-  
+
+  /// Constructs a new response given a response dictionary from the server.
   public init(parsedResponse: NSDictionary) {
     self.parsedResponse = parsedResponse
   }
-  
+
+  /// Saves the response's data to documents directory.
   public static func encode(_ response: PeliasSearchResponse) {
     guard let docsPath = HelperClass.path() else { return }
     let personClassObject = HelperClass(response: response)
     
     NSKeyedArchiver.archiveRootObject(personClassObject, toFile: docsPath)
   }
-  
+
+  /// Returns a response read from the documents directory and populated with all of the saved searches.
   public static func decode() -> PeliasSearchResponse? {
     guard let docsPath = HelperClass.path() else { return nil }
     let responseClassObject = NSKeyedUnarchiver.unarchiveObject(withFile: docsPath) as? HelperClass
@@ -213,6 +246,7 @@ public struct PeliasError {
   }
 }
 
+///
 extension PeliasSearchResponse {
   
   //TODO: I'm still not sure of this approach - might be better to implement something more like a proper protocol like http://redqueencoder.com/property-lists-and-user-defaults-in-swift but this works for now
