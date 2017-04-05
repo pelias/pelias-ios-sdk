@@ -57,7 +57,7 @@ Example:
 
 */
 
-public let PeliasIDKey: String = "PeliasOSMIDKey"
+public let PeliasGIDKey: String = "PeliasGIDKey"
 public let PeliasDataSourceKey: String = "PeliasDataSourceKey"
 
 class PeliasMapkitAnnotation: NSObject, MKAnnotation {
@@ -75,14 +75,6 @@ class PeliasMapkitAnnotation: NSObject, MKAnnotation {
   }
 }
 
-extension PeliasPlaceQueryItem {
-  init?(annotation: PeliasMapkitAnnotation, layer: LayerFilter) {
-    guard let place = annotation.data?[PeliasIDKey] as? String else { return nil }
-    guard let source = SearchSource(rawValue: annotation.data?[PeliasDataSourceKey] as? String ?? "") else { return nil }
-    self.init(placeId: place, dataSource: source, layer: layer)
-  }
-}
-
 extension PeliasResponse {
   func parsedMapItems() -> [PeliasMapkitAnnotation]? {
     //TODO: This should get refactored into eventually being a real GeoJSON decoder, and split out the MapItem creation
@@ -93,7 +85,7 @@ extension PeliasResponse {
         //Address Dictionary for Placemark Creation
         let featureProperties = feature["properties"] as! [String:AnyObject]
         var addressDictionary = [String:String]()
-        addressDictionary[PeliasIDKey] = featureProperties["id"] as? String
+        addressDictionary[PeliasGIDKey] = featureProperties["gid"] as? String
         addressDictionary[PeliasDataSourceKey] = featureProperties["source"] as? String
         
         //Coordinate Creation

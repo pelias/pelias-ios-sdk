@@ -15,13 +15,11 @@ class PinDetailVC: UIViewController {
   var annotation: PeliasMapkitAnnotation?
     override func viewDidLoad() {
       super.viewDidLoad()
-      if let placeAnnotation = annotation {
-        guard let queryItem = PeliasPlaceQueryItem(annotation: placeAnnotation, layer: LayerFilter.address) else { return }
-        
-        let config = PeliasPlaceConfig(places: [queryItem], completionHandler: { (response) -> Void in
+      if let placeAnnotation = annotation, let gid = placeAnnotation.data?[PeliasGIDKey] as? String {
+        let config = PeliasPlaceConfig(gids: [gid], completionHandler: { (response) -> Void in
           self.textView.text = NSString.init(format: "%@", response.parsedResponse!.parsedResponse) as String
         })
-        PeliasSearchManager.sharedInstance.placeQuery(config)
+        _ = PeliasSearchManager.sharedInstance.placeQuery(config)
       }
 
         // Do any additional setup after loading the view.

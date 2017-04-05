@@ -122,13 +122,7 @@ public protocol ReverseAPIConfigData: APIConfigData {
 }
 
 public protocol PlaceAPIConfigData: APIConfigData {
-  var places: [PlaceAPIQueryItem] { get set }
-}
-
-public protocol PlaceAPIQueryItem {
-  var placeId: String { get set }
-  var dataSource: SearchSource { get set }
-  var layer: LayerFilter { get set }
+  var gids: [String] { get set }
 }
 
 public protocol APIResponse {
