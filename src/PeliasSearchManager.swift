@@ -133,35 +133,16 @@ open class PeliasResponse: APIResponse {
   open let response: URLResponse?
   open let error: NSError?
   open var parsedResponse: PeliasSearchResponse?
-  open var parsedError: PeliasError?
   
   public init(data: Data?, response: URLResponse?, error: NSError?) {
     self.data = data
     self.response = response
     self.error = error
     if let dictResponse = parseData(data) {
-      if let peliasError = parseErrorFromJSON(dictResponse) {
-        self.parsedError = peliasError
-        return
-      }
       parsedResponse = PeliasSearchResponse(parsedResponse: dictResponse)
     }
   }
-  
-  fileprivate func parseErrorFromJSON(_ json: NSDictionary) -> PeliasError? {
-    //First get the error code
-    guard let meta = json["meta"] as? NSDictionary else { return nil }
-    guard let status_code = meta["status_code"] as? Int else { return nil }
-    
-    //Next the message
-    guard let results = json["results"] as? NSDictionary else { return nil }
-    guard let error = results["error"] as? NSDictionary else { return nil }
-    guard let message = error["message"] as? String else { return nil }
-    
-    let peliasError = PeliasError(code: String(status_code), message: message)
-    return peliasError
-  }
-  
+
   fileprivate func parseData(_ data: Data?) -> NSDictionary? {
     guard let JSONData = data else { return nil }
     do {
@@ -200,16 +181,6 @@ public struct PeliasSearchResponse {
     let responseClassObject = NSKeyedUnarchiver.unarchiveObject(withFile: docsPath) as? HelperClass
     
     return responseClassObject?.response
-  }
-}
-
-public struct PeliasError {
-  public let code: String
-  public let message: String
-  
-  public init (code: String, message: String) {
-    self.code = code
-    self.message = message
   }
 }
 
