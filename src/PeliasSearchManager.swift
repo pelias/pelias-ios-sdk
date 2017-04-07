@@ -30,21 +30,21 @@ public final class PeliasSearchManager {
     baseUrl = URL.init(string: Constants.URL.base)! // Force the unwrap because we must have a base URL to operate
   }
 
-  /** Perform an asyncronous search request given parameters defined by the search config. Returns the queued operation.
+  /** Perform an asynchronous search request given parameters defined by the search config. Returns the queued operation.
     - parameter config: Object holding search request parameter information.
   */
   public func performSearch(_ config: PeliasSearchConfig) -> PeliasOperation {
     return executeOperation(config);
   }
 
-  /** Perform an asyncronous reverse geocode request given parameters defined by the config. Returns the queued operation.
+  /** Perform an asynchronous reverse geocode request given parameters defined by the config. Returns the queued operation.
    - parameter config: Object holding reverse geo request parameter information.
    */
   public func reverseGeocode(_ config: PeliasReverseConfig) -> PeliasOperation {
     return executeOperation(config);
   }
 
-  /** Perform an asyncronous autocomplete request given parameters defined by the config. Returns the queued operation.
+  /** Perform an asynchronous autocomplete request given parameters defined by the config. Returns the queued operation.
    - parameter config: Object holding autocomplete request parameter information.
    */
   public func autocompleteQuery(_ config: PeliasAutocompleteConfig) -> PeliasOperation {
@@ -52,7 +52,7 @@ public final class PeliasSearchManager {
     return executeAutocompleteOperation(config)
   }
 
-  /** Perform an asyncronous place request given parameters defined by the search config. Returns the queued operation.
+  /** Perform an asynchronous place request given parameters defined by the search config. Returns the queued operation.
    - parameter config: Object holding place request parameter information.
    */
   public func placeQuery(_ config: PeliasPlaceConfig) -> PeliasOperation {
