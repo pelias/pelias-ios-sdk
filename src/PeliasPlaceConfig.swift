@@ -14,14 +14,14 @@ public struct PeliasPlaceConfig : PlaceAPIConfigData {
   public var queryItems = [String:URLQueryItem]()
   public var completionHandler: (PeliasResponse) -> Void
   
-  public var places: [PlaceAPIQueryItem] {
+  public var gids: [String] {
     didSet {
       buildPlaceQueryItem()
     }
   }
   
-  public init(places: [PlaceAPIQueryItem], completionHandler: @escaping (PeliasResponse) -> Void) {
-    self.places = places
+  public init(gids: [String], completionHandler: @escaping (PeliasResponse) -> Void) {
+    self.gids = gids
     self.completionHandler = completionHandler
 
     defer {
@@ -31,31 +31,18 @@ public struct PeliasPlaceConfig : PlaceAPIConfigData {
   }
   
   mutating func buildPlaceQueryItem() {
-    if places.count <= 0 {
+    if gids.count <= 0 {
       return
     }
     var queryString = ""
-    for place in places {
-      let addition = "\(place.dataSource.rawValue):\(place.layer.rawValue):\(place.placeId)"
+    for gid in gids {
       if queryString.isEmpty {
-        queryString = addition
+        queryString = gid
       } else {
-        queryString += "&\(addition)"
+        queryString += ",\(gid)"
       }
     }
     
     appendQueryItem(Constants.API.ids, value: queryString)
-  }
-}
-
-public struct PeliasPlaceQueryItem : PlaceAPIQueryItem {
-  public var placeId: String
-  public var dataSource: SearchSource
-  public var layer: LayerFilter
-  
-  public init(placeId: String, dataSource: SearchSource, layer: LayerFilter) {
-    self.placeId = placeId
-    self.dataSource = dataSource
-    self.layer = layer
   }
 }

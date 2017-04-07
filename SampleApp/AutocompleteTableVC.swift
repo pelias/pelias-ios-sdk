@@ -62,7 +62,7 @@ class AutocompleteTableVC: UITableViewController, UISearchResultsUpdating, UISea
         self.results = autocompleteResponse.parsedMapItems()
         self.tableView.reloadData()
       })
-      PeliasSearchManager.sharedInstance.autocompleteQuery(config)
+      _ = PeliasSearchManager.sharedInstance.autocompleteQuery(config)
     }
   }
   

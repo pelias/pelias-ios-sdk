@@ -64,7 +64,7 @@ class SecondViewController: UIViewController, UITextFieldDelegate, CLLocationMan
         }
       })
       searchConfig.boundaryRect = searchRect
-      PeliasSearchManager.sharedInstance.performSearch(searchConfig)
+      _ = PeliasSearchManager.sharedInstance.performSearch(searchConfig)
     }
     searchBox.resignFirstResponder()
     return true
@@ -100,7 +100,7 @@ class SecondViewController: UIViewController, UITextFieldDelegate, CLLocationMan
         }
       }
     }
-    PeliasSearchManager.sharedInstance.reverseGeocode(config)
+    _ = PeliasSearchManager.sharedInstance.reverseGeocode(config)
   }
   
   // MARK: - CoreLocation Manager Delegate

@@ -35,7 +35,7 @@ class FirstViewController: UIViewController, UITextFieldDelegate {
       let searchConfig = PeliasSearchConfig(searchText: searchText, completionHandler: { (searchResponse) -> Void in
         self.responseTextView.text = NSString.init(format: "%@", searchResponse.parsedResponse!.parsedResponse) as String
       })
-      PeliasSearchManager.sharedInstance.performSearch(searchConfig)
+      _ = PeliasSearchManager.sharedInstance.performSearch(searchConfig)
     }
   }
 }
