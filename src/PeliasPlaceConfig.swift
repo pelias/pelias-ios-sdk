@@ -8,18 +8,26 @@
 
 import Foundation
 
+/// Structure used to encapsulate request parameters for place requests.
 public struct PeliasPlaceConfig : PlaceAPIConfigData {
-  
+  /// Place endpoint on Pelias.
   public var urlEndpoint = URL.init(string: Constants.URL.place, relativeTo: PeliasSearchManager.sharedInstance.baseUrl as URL)!
+  /// All the query items that will be used to make the request.
   public var queryItems = [String:URLQueryItem]()
+  /// Completion handler invoked on success or failure.
   public var completionHandler: (PeliasResponse) -> Void
-  
+  /// The place gids to fetch info for. These values will get converted into the appropriate query items.
   public var gids: [String] {
     didSet {
       buildPlaceQueryItem()
     }
   }
-  
+  /**
+   Initialize a place config with all the required parameters. These values will get converted into the appropriate query items.
+
+   - parameter gids: The place gids to request info for.
+   - parameter completionHandler: The closure to execute when the request suceeds or fails.
+   */
   public init(gids: [String], completionHandler: @escaping (PeliasResponse) -> Void) {
     self.gids = gids
     self.completionHandler = completionHandler
