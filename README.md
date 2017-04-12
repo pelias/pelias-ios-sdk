@@ -13,7 +13,7 @@ the iOS 9.0+ Contacts Framework being available (and will add these to your proj
 if you install using CocoaPods).
 
 ### Example Usage
-Here are some examples which show how easy it is to use the SDK. Be sure to read the documentation to see all the properties you can customize when making requests.
+Here are some examples which show how easy it is to use the SDK. Be sure to read the [documentation](http://cocoadocs.org/docsets/Pelias/1.0.0/) to see all the properties you can customize when making requests.
 
 #### Search
 Find a place by searching for an address or name:
