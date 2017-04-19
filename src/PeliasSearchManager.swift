@@ -157,16 +157,29 @@ open class PeliasResponse: APIResponse {
   /// The url response if the request completed successfully.
   open let response: URLResponse?
   /// The error if an error occured executing the operation.
-  open let error: NSError?
+  open var error: NSError?
   ///
   open var parsedResponse: PeliasSearchResponse?
-  
+
+  private static let validTypes: Set = ["Point", "MultiPoint", "LineString", "MultiLineString", "Polygon", "MultiPolygon", "GeometryCollection", "Feature", "FeatureCollection"]
+
   public init(data: Data?, response: URLResponse?, error: NSError?) {
     self.data = data
     self.response = response
     self.error = error
     if let dictResponse = parseData(data) {
-      parsedResponse = PeliasSearchResponse(parsedResponse: dictResponse)
+      if let type = dictResponse.value(forKey: "type") as? String {
+        if PeliasResponse.validTypes.contains(type) {
+          parsedResponse = PeliasSearchResponse(parsedResponse: dictResponse)
+        }
+      } else {
+        let meta = dictResponse.object(forKey: "meta") as? NSDictionary
+        guard let code = meta?.object(forKey: "status_code") as? Int else { return }
+        let results = dictResponse.object(forKey: "results") as? NSDictionary
+        let error = results?.object(forKey: "error")  as? NSDictionary
+        guard let message = error?.object(forKey: "message") else { return }
+        self.error = NSError.init(domain: "Pelias", code: code, userInfo: [NSLocalizedDescriptionKey:message])
+      }
     }
   }
 
