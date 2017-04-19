@@ -157,45 +157,46 @@ open class PeliasResponse: APIResponse {
   /// The url response if the request completed successfully.
   open let response: URLResponse?
   /// The error if an error occured executing the operation.
-  open let error: NSError?
+  open var error: NSError?
   ///
   open var parsedResponse: PeliasSearchResponse?
-  
+
+  private static let validTypes: Set = ["Point", "MultiPoint", "LineString", "MultiLineString", "Polygon", "MultiPolygon", "GeometryCollection", "Feature", "FeatureCollection"]
+
   public init(data: Data?, response: URLResponse?, error: NSError?) {
     self.data = data
     self.response = response
     self.error = error
-    if let dictResponse = parseData(data) {
-      parsedResponse = PeliasSearchResponse(parsedResponse: dictResponse)
+    if let dictResponse: Dictionary<String, Any> = parseData(data) {
+      if let type = dictResponse["type"] as? String {
+        if PeliasResponse.validTypes.contains(type) {
+          parsedResponse = PeliasSearchResponse(parsedResponse: dictResponse)
+        }
+      } else {
+        let meta = dictResponse["meta"] as? NSDictionary
+        guard let code = meta?["status_code"] as? Int else { return }
+        let results = dictResponse["results"] as? NSDictionary
+        let error = results?["error"]  as? NSDictionary
+        guard let message = error?["message"] else { return }
+        self.error = NSError.init(domain: "Pelias", code: code, userInfo: [NSLocalizedDescriptionKey:message])
+      }
     }
   }
 
-  fileprivate func parseData(_ data: Data?) -> NSDictionary? {
-    guard let JSONData = data else { return nil }
-    do {
-      let JSON = try JSONSerialization.jsonObject(with: JSONData, options:JSONSerialization.ReadingOptions(rawValue: 0))
-      guard let JSONDictionary :NSDictionary = JSON as? NSDictionary else {
-        print("Not a Dictionary")
-        // put in function
-        return nil
-      }
-      print("JSONDictionary! \(JSONDictionary)")
-      return JSONDictionary
-    }
-    catch let JSONError as NSError {
-      print("\(JSONError)")
-    }
-    return nil
+  fileprivate func parseData<T>(_ data: Data?) -> T?  {
+    guard let jsonData = data else { return nil }
+    let jsonObj = try? JSONSerialization.jsonObject(with: jsonData, options: .mutableContainers)
+    return jsonObj as? T
   }
 }
 
 /// Response that can be saved to disk
 public struct PeliasSearchResponse {
   /// Response data that will be saved to disk.
-  public let parsedResponse: NSDictionary
+  public let parsedResponse: Dictionary<String, Any>
 
   /// Constructs a new response given a response dictionary from the server.
-  public init(parsedResponse: NSDictionary) {
+  public init(parsedResponse: Dictionary<String, Any>) {
     self.parsedResponse = parsedResponse
   }
 
@@ -236,7 +237,7 @@ extension PeliasSearchResponse {
     }
     
     public required init?(coder aDecoder: NSCoder) {
-      guard let parsedResponse = aDecoder.decodeObject(forKey: "parsedResponse") as? NSDictionary else { response = nil; super.init(); return nil }
+      guard let parsedResponse = aDecoder.decodeObject(forKey: "parsedResponse") as? Dictionary<String, Any> else { response = nil; super.init(); return nil }
       
       response = PeliasSearchResponse(parsedResponse: parsedResponse)
       

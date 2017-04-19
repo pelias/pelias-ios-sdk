@@ -56,15 +56,17 @@ class PeliasSearchManagerTests: XCTestCase {
 //  }
 
   func testResponseObjectEncoding() {
-    let seed: NSDictionary = ["SuperSweetKey": "SuperSweetValue"]
+    let seed: Dictionary = ["SuperSweetKey": "SuperSweetValue"]
     
     let testResponse = PeliasSearchResponse(parsedResponse: seed)
     
     PeliasSearchResponse.encode(testResponse)
     
     let decodedObject = PeliasSearchResponse.decode()
-    XCTAssert(testResponse.parsedResponse == decodedObject?.parsedResponse)
+    guard let response = decodedObject?.parsedResponse else { return }
+    XCTAssertTrue(testResponse.parsedResponse.elementsEqual(response, by: { (obj1, obj2) -> Bool in
+      return obj1.key == obj2.key && obj1.value as? String == obj2.value as? String
+    }))
   }
-  
-  
+
 }
