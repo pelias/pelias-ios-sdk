@@ -184,13 +184,9 @@ open class PeliasResponse: APIResponse {
   }
 
   fileprivate func parseData<T>(_ data: Data?) -> T?  {
-    guard let JSONData = data else { return nil }
-    do {
-      return try JSONSerialization.jsonObject(with: JSONData, options:JSONSerialization.ReadingOptions(rawValue: 0)) as? T
-    }
-    catch {
-    }
-    return nil
+    guard let jsonData = data else { return nil }
+    let jsonObj = try? JSONSerialization.jsonObject(with: jsonData, options: .mutableContainers)
+    return jsonObj as? T
   }
 }
 
