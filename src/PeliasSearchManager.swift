@@ -64,8 +64,8 @@ public final class PeliasSearchManager {
     self.operationQueue.cancelAllOperations()
     self.autocompleteOperationQueue.cancelAllOperations()
   }
-  
-  fileprivate func executeOperation(_ config: APIConfigData) -> PeliasOperation {
+
+  fileprivate func createOperation(_ config: APIConfigData) -> PeliasOperation {
     //Convert to mutable version, and append any query items we have waiting for us
     var configData = config
     if let urlQueryItems = urlQueryItems {
@@ -74,8 +74,11 @@ public final class PeliasSearchManager {
       }
     }
     //Build a operation
-    let searchOp = PeliasOperation(config: configData)
-    
+    return PeliasOperation(config: configData)
+  }
+  
+  fileprivate func executeOperation(_ config: APIConfigData) -> PeliasOperation {
+    let searchOp = createOperation(config)
     //Enqueue search object so it can begin processing
     operationQueue.addOperation(searchOp)
     
@@ -89,7 +92,7 @@ public final class PeliasSearchManager {
       return executeOperation(config)
     }
     
-    let operation = PeliasOperation(config: config)
+    let operation = createOperation(config)
     queuedAutocompleteOp = operation
     // We may be executing an existing operation, so lets see if we have a timer
     // Conceivably this could get called from multiple threads, in which case we should probably synchronize on the timer variable. We'll deal with that if it comes to that
