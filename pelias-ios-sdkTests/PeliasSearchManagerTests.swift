@@ -69,4 +69,21 @@ class PeliasSearchManagerTests: XCTestCase {
     }))
   }
 
+  func testQueryParamsAppended() {
+    PeliasSearchManager.sharedInstance.autocompleteTimeDelay = 10.0
+    PeliasSearchManager.sharedInstance.urlQueryItems = [URLQueryItem.init(name: "query_item", value: "query_item_value")]
+    let point = GeoPoint.init(latitude: 40.0, longitude: 70.0)
+    let config = PeliasAutocompleteConfig.init(searchText: "test", focusPoint: point) { (response) in
+      //
+    }
+    _ = PeliasSearchManager.sharedInstance.autocompleteQuery(config)
+    _ = PeliasSearchManager.sharedInstance.autocompleteQuery(config)
+
+    let searchUrlStr = PeliasSearchManager.sharedInstance.queuedAutocompleteOp?.config.searchUrl().absoluteString
+    XCTAssertTrue((searchUrlStr?.contains("query_item=query_item_value"))!)
+    XCTAssertTrue((searchUrlStr?.contains("text=test"))!)
+    XCTAssertTrue((searchUrlStr?.contains("focus.point.lat=40.0"))!)
+    XCTAssertTrue((searchUrlStr?.contains("focus.point.lon=70.0"))!)
+  }
+
 }
