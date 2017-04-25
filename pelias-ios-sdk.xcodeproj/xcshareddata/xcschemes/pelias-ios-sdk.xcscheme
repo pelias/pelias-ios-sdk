@@ -28,26 +28,6 @@
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
       shouldUseLaunchSchemeArgsEnv = "YES">
       <Testables>
-         <TestableReference
-            skipped = "NO">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "DBF601A71C0C997900EEEE98"
-               BuildableName = "pelias-ios-sdkTests.xctest"
-               BlueprintName = "pelias-ios-sdkTests"
-               ReferencedContainer = "container:pelias-ios-sdk.xcodeproj">
-            </BuildableReference>
-         </TestableReference>
-         <TestableReference
-            skipped = "NO">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "7D5A43241EAFBEFA0024D339"
-               BuildableName = "PeliasTests.xctest"
-               BlueprintName = "PeliasTests"
-               ReferencedContainer = "container:pelias-ios-sdk.xcodeproj">
-            </BuildableReference>
-         </TestableReference>
       </Testables>
       <MacroExpansion>
          <BuildableReference
