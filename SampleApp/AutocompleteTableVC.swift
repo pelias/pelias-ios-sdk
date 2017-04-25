@@ -9,6 +9,7 @@
 import UIKit
 import MapKit
 import CoreLocation
+import Pelias
 
 class AutocompleteTableVC: UITableViewController, UISearchResultsUpdating, UISearchBarDelegate, CLLocationManagerDelegate {
   

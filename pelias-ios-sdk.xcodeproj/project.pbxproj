@@ -193,7 +193,7 @@
 				DBCB7E8C1C6245AA0090FDCD /* Default-568h@2x.png */,
 				DBB667181C3AD0AA003AD8E0 /* MapKit.framework */,
 				DB96FA6C1C0DE65D00477BD3 /* CoreLocation.framework */,
-				DBF601941C0C997900EEEE98 /* pelias-ios-sdk */,
+				DBF601941C0C997900EEEE98 /* SampleApp */,
 				7D5A431E1EAFBEFA0024D339 /* Pelias */,
 				7D5A432B1EAFBEFA0024D339 /* PeliasTests */,
 				DBF601931C0C997900EEEE98 /* Products */,
@@ -210,7 +210,7 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		DBF601941C0C997900EEEE98 /* pelias-ios-sdk */ = {
+		DBF601941C0C997900EEEE98 /* SampleApp */ = {
 			isa = PBXGroup;
 			children = (
 				DBF601951C0C997900EEEE98 /* AppDelegate.swift */,
@@ -223,7 +223,6 @@
 				DBF601A01C0C997900EEEE98 /* LaunchScreen.storyboard */,
 				DBF601A31C0C997900EEEE98 /* Info.plist */,
 			);
-			name = "pelias-ios-sdk";
 			path = SampleApp;
 			sourceTree = "<group>";
 		};
@@ -304,7 +303,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0830;
-				LastUpgradeCheck = 0810;
+				LastUpgradeCheck = 0830;
 				ORGANIZATIONNAME = Mapzen;
 				TargetAttributes = {
 					7D5A431C1EAFBEFA0024D339 = {
@@ -464,7 +463,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				CURRENT_PROJECT_VERSION = 1;
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = LTQC954SPQ;
@@ -473,7 +472,7 @@
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				INFOPLIST_FILE = Pelias/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.mapzen.Pelias;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -494,7 +493,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				CURRENT_PROJECT_VERSION = 1;
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = LTQC954SPQ;
@@ -503,7 +502,7 @@
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				INFOPLIST_FILE = Pelias/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.mapzen.Pelias;
 				PRODUCT_NAME = "$(TARGET_NAME)";

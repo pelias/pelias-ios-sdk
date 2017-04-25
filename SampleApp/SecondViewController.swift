@@ -9,6 +9,7 @@
 import UIKit
 import MapKit
 import CoreLocation
+import Pelias
 
 class SecondViewController: UIViewController, UITextFieldDelegate, CLLocationManagerDelegate, MKMapViewDelegate {
   
