@@ -38,6 +38,16 @@
                ReferencedContainer = "container:pelias-ios-sdk.xcodeproj">
             </BuildableReference>
          </TestableReference>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "7D5A43241EAFBEFA0024D339"
+               BuildableName = "PeliasTests.xctest"
+               BlueprintName = "PeliasTests"
+               ReferencedContainer = "container:pelias-ios-sdk.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
       </Testables>
       <MacroExpansion>
          <BuildableReference
