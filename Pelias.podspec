@@ -12,6 +12,7 @@ Pod::Spec.new do |s|
   s.requires_arc = true
   s.ios.deployment_target = '9.3'
   s.osx.deployment_target = '10.11'
+  s.pod_target_xcconfig = { 'SWIFT_VERSION' => '3.0' }
 
   # Exclude optional Convenience modules
   s.default_subspec = 'Core'
