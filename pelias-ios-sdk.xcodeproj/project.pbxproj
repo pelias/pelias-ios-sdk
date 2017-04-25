@@ -146,6 +146,16 @@
 			path = json_fixtures;
 			sourceTree = "<group>";
 		};
+		7D4639521EAFD80C0074BEC5 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				DBB667181C3AD0AA003AD8E0 /* MapKit.framework */,
+				DB96FA6C1C0DE65D00477BD3 /* CoreLocation.framework */,
+			);
+			name = Frameworks;
+			path = ..;
+			sourceTree = "<group>";
+		};
 		7D5A431E1EAFBEFA0024D339 /* Pelias */ = {
 			isa = PBXGroup;
 			children = (
@@ -188,8 +198,6 @@
 			isa = PBXGroup;
 			children = (
 				DBCB7E8C1C6245AA0090FDCD /* Default-568h@2x.png */,
-				DBB667181C3AD0AA003AD8E0 /* MapKit.framework */,
-				DB96FA6C1C0DE65D00477BD3 /* CoreLocation.framework */,
 				DBF601941C0C997900EEEE98 /* SampleApp */,
 				7D5A431E1EAFBEFA0024D339 /* Pelias */,
 				7D5A432B1EAFBEFA0024D339 /* PeliasTests */,
@@ -219,6 +227,7 @@
 				DBF6019E1C0C997900EEEE98 /* Assets.xcassets */,
 				DBF601A01C0C997900EEEE98 /* LaunchScreen.storyboard */,
 				DBF601A31C0C997900EEEE98 /* Info.plist */,
+				7D4639521EAFD80C0074BEC5 /* Frameworks */,
 			);
 			path = SampleApp;
 			sourceTree = "<group>";
