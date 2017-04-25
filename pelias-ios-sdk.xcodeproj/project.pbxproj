@@ -27,7 +27,6 @@
 		DB7409A41C5AC98900D88EC3 /* AutocompleteTableVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB7409A31C5AC98900D88EC3 /* AutocompleteTableVC.swift */; };
 		DB7A33C31C7CB1DE009CC743 /* PinDetailVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB7A33C21C7CB1DE009CC743 /* PinDetailVC.swift */; };
 		DB96FA6D1C0DE65D00477BD3 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DB96FA6C1C0DE65D00477BD3 /* CoreLocation.framework */; };
-		DBCB7E8D1C6245AA0090FDCD /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DBCB7E8C1C6245AA0090FDCD /* Default-568h@2x.png */; };
 		DBF601961C0C997900EEEE98 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBF601951C0C997900EEEE98 /* AppDelegate.swift */; };
 		DBF601981C0C997900EEEE98 /* FirstViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBF601971C0C997900EEEE98 /* FirstViewController.swift */; };
 		DBF6019A1C0C997900EEEE98 /* SecondViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBF601991C0C997900EEEE98 /* SecondViewController.swift */; };
@@ -98,7 +97,6 @@
 		DB7A33C21C7CB1DE009CC743 /* PinDetailVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PinDetailVC.swift; sourceTree = "<group>"; };
 		DB96FA6C1C0DE65D00477BD3 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		DBB667181C3AD0AA003AD8E0 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
-		DBCB7E8C1C6245AA0090FDCD /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		DBF601921C0C997900EEEE98 /* pelias-ios-sdk.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "pelias-ios-sdk.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		DBF601951C0C997900EEEE98 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		DBF601971C0C997900EEEE98 /* FirstViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstViewController.swift; sourceTree = "<group>"; };
@@ -197,7 +195,6 @@
 		DBF601891C0C997900EEEE98 = {
 			isa = PBXGroup;
 			children = (
-				DBCB7E8C1C6245AA0090FDCD /* Default-568h@2x.png */,
 				DBF601941C0C997900EEEE98 /* SampleApp */,
 				7D5A431E1EAFBEFA0024D339 /* Pelias */,
 				7D5A432B1EAFBEFA0024D339 /* PeliasTests */,
@@ -373,7 +370,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				DBF601A21C0C997900EEEE98 /* LaunchScreen.storyboard in Resources */,
-				DBCB7E8D1C6245AA0090FDCD /* Default-568h@2x.png in Resources */,
 				DBF6019F1C0C997900EEEE98 /* Assets.xcassets in Resources */,
 				DBF6019D1C0C997900EEEE98 /* Main.storyboard in Resources */,
 			);
