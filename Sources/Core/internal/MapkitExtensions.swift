@@ -60,12 +60,12 @@ Example:
 public let PeliasGIDKey: String = "PeliasGIDKey"
 public let PeliasDataSourceKey: String = "PeliasDataSourceKey"
 
-class PeliasMapkitAnnotation: NSObject, MKAnnotation {
+public class PeliasMapkitAnnotation: NSObject, MKAnnotation {
   
-  let coordinate: CLLocationCoordinate2D
-  let title: String?
-  let subtitle: String?
-  let data: [String: AnyObject]?
+  public let coordinate: CLLocationCoordinate2D
+  public let title: String?
+  public let subtitle: String?
+  public let data: [String: AnyObject]?
   
   init(coordinate: CLLocationCoordinate2D, title: String?, subtitle: String?, data: [String:AnyObject]?) {
     self.coordinate = coordinate
@@ -76,7 +76,7 @@ class PeliasMapkitAnnotation: NSObject, MKAnnotation {
 }
 
 extension PeliasResponse {
-  func parsedMapItems() -> [PeliasMapkitAnnotation]? {
+  public func parsedMapItems() -> [PeliasMapkitAnnotation]? {
     //TODO: This should get refactored into eventually being a real GeoJSON decoder, and split out the MapItem creation
     var mapItems = [PeliasMapkitAnnotation]()
     if let jsonDictionary = parsedResponse?.parsedResponse {
@@ -119,7 +119,7 @@ extension MKMapItem: MKAnnotation {
 }
 
 extension SearchBoundaryRect {
-  init(mapRect: MKMapRect) {
+  public init(mapRect: MKMapRect) {
     //Since we get a coordinate anda size, we need to convert this into the bounding box pelias expects.
     //First convert the origin point to the min lat/long
     let minCoordinate = MKCoordinateForMapPoint(mapRect.origin)

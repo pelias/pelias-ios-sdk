@@ -7,7 +7,7 @@
 //
 
 import XCTest
-@testable import pelias_ios_sdk
+@testable import Pelias
 
 class ConfigProtocolTests: XCTestCase {
   

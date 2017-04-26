@@ -7,7 +7,7 @@
 //
 
 import XCTest
-@testable import pelias_ios_sdk
+@testable import Pelias
 
 class PeliasPlaceConfigTests: XCTestCase {
   
@@ -27,7 +27,7 @@ class PeliasPlaceConfigTests: XCTestCase {
 
     let queryItem = place.queryItems[Constants.API.ids]
     let queryString = queryItem?.value
-    XCTAssert(queryString == "gn:address:1234", "String is not equal - \(queryString)")
+    XCTAssert(queryString == "gn:address:1234", "String is not equal - \(String(describing: queryString))")
   }
 
   func testQueryItemsBuildMultipleIds() {
@@ -38,6 +38,6 @@ class PeliasPlaceConfigTests: XCTestCase {
     
     let queryItem = place.queryItems[Constants.API.ids]
     let queryString = queryItem?.value
-    XCTAssert(queryString == "gn:address:1234,test:key:gid", "String is not equal - \(queryString)")
+    XCTAssert(queryString == "gn:address:1234,test:key:gid", "String is not equal - \(String(describing: queryString))")
   }
 }

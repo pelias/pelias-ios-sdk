@@ -11,7 +11,7 @@ test:
         -sdk iphonesimulator
         -destination 'platform=iOS Simulator,name=iPhone 6,OS=latest'
         -project pelias-ios-sdk.xcodeproj
-        -scheme "pelias-ios-sdk"
+        -scheme "SampleApp"
         clean build test |
       tee $CIRCLE_ARTIFACTS/xcode_raw.log |
       xcpretty --color --report junit --output $CIRCLE_TEST_REPORTS/xcode/results.xml
