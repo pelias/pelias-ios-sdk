@@ -20,6 +20,6 @@ Pod::Spec.new do |s|
   ### Subspecs
 
   s.subspec 'Core' do |cs|
-    cs.source_files   = 'Pelias/*.swift'
+    cs.source_files   = 'Sources/Core/*.swift'
   end
 end
