@@ -124,6 +124,10 @@ public final class PeliasSearchManager {
 open class PeliasOperation: Operation {
   
   let config: APIConfigData
+  var session = URLSession.shared
+
+  /// An optional configuration you can pass to the underlying URLSession system if you need some special handling.
+  public var sessionConfig: URLSessionConfiguration?
 
   /**
    Creates a new operation given a config. The config will be used to construct a proper response object.
@@ -138,7 +142,11 @@ open class PeliasOperation: Operation {
       return
     }
 
-    URLSession.shared.dataTask(with: config.searchUrl()) { (data, response, error) in
+    if let sessionConfig = sessionConfig {
+      session = URLSession(configuration: sessionConfig)
+    }
+    
+    session.dataTask(with: config.searchUrl()) { (data, response, error) in
       if self.isCancelled {
         return
       }

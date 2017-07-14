@@ -86,4 +86,18 @@ class PeliasSearchManagerTests: XCTestCase {
     XCTAssertTrue((searchUrlStr?.contains("focus.point.lon=70.0"))!)
   }
 
+  func testSessionConfiguration() {
+    let point = GeoPoint.init(latitude: 40.0, longitude: 70.0)
+    let config = PeliasAutocompleteConfig.init(searchText: "test", focusPoint: point) { (response) in
+      //
+    }
+    let operation = PeliasOperation(config: config)
+
+    let sessionConfig = URLSessionConfiguration.ephemeral
+    operation.sessionConfig = sessionConfig
+    XCTAssertEqual(operation.session.configuration, URLSession.shared.configuration)
+    operation.main()
+    XCTAssertEqual(operation.session.configuration, sessionConfig)
+  }
+
 }
