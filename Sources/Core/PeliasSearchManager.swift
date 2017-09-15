@@ -13,7 +13,7 @@ public final class PeliasSearchManager {
   
   //! Singleton access
   public static let sharedInstance = PeliasSearchManager()
-  fileprivate let operationQueue = OperationQueue()
+  internal let operationQueue = OperationQueue()
   fileprivate let autocompleteOperationQueue = OperationQueue()
   fileprivate var autocompleteQueryTimer: Timer?
   internal var queuedAutocompleteOp: PeliasOperation?
@@ -23,6 +23,7 @@ public final class PeliasSearchManager {
   public var baseUrl: URL
   /// The query items that should be applied to every request (such as an api key).
   public var urlQueryItems: [URLQueryItem]?
+  public var additionalHttpHeaders: [String:String]?
   
   fileprivate init() {
     operationQueue.maxConcurrentOperationCount = 4
@@ -73,8 +74,16 @@ public final class PeliasSearchManager {
         configData.appendQueryItem(queryItem.name, value: queryItem.value)
       }
     }
+
+    let operation = PeliasOperation(config: configData)
+    if let headers = additionalHttpHeaders {
+      let config = URLSessionConfiguration.default
+      config.httpAdditionalHeaders = headers
+      operation.sessionConfig = config
+    }
+
     //Build a operation
-    return PeliasOperation(config: configData)
+    return operation
   }
   
   fileprivate func executeOperation(_ config: APIConfigData) -> PeliasOperation {

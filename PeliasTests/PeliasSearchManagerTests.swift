@@ -16,6 +16,7 @@ class PeliasSearchManagerTests: XCTestCase {
     super.setUp()
     // Put setup code here. This method is called before the invocation of each test method in the class.
     testOperationQueue.isSuspended = true
+    PeliasSearchManager.sharedInstance.operationQueue.isSuspended = true
     PeliasSearchManager.sharedInstance.autocompleteTimeDelay = 0.0
   }
   
@@ -98,6 +99,23 @@ class PeliasSearchManagerTests: XCTestCase {
     XCTAssertEqual(operation.session.configuration, URLSession.shared.configuration)
     operation.main()
     XCTAssertEqual(operation.session.configuration, sessionConfig)
+  }
+
+  func testAddingHttpHeaders() {
+    let testHeaders = ["Hello" : "Hi"]
+    PeliasSearchManager.sharedInstance.additionalHttpHeaders = testHeaders
+
+    let point = GeoPoint.init(latitude: 40.0, longitude: 70.0)
+    let config = PeliasAutocompleteConfig.init(searchText: "test", focusPoint: point) { (response) in
+      //
+    }
+    let testOp = PeliasSearchManager.sharedInstance.autocompleteQuery(config)
+    XCTAssertNotNil(testOp.sessionConfig, "Session configuration not created for additional headers")
+    guard let sessionheaders = testOp.sessionConfig?.httpAdditionalHeaders else {
+      XCTFail("Headers dictionary not created")
+      return
+    }
+    XCTAssertEqual(sessionheaders["Hello"] as? String, testHeaders["Hello"])
   }
 
 }
