@@ -23,6 +23,7 @@ public final class PeliasSearchManager {
   public var baseUrl: URL
   /// The query items that should be applied to every request (such as an api key).
   public var urlQueryItems: [URLQueryItem]?
+  // Additional HTTP Headers to append to outbound requests
   public var additionalHttpHeaders: [String:String]?
   
   fileprivate init() {
