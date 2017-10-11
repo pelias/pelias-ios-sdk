@@ -1,9 +1,7 @@
 language: objective-c
-
 branches:
- only:
- - master
-
+  only:
+    - master
 xcode_project: pelias-ios-sdk.xcodeproj
 xcode_scheme: pelias-ios-sdk
 osx_image: xcode8
