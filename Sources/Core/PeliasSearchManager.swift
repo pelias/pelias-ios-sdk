@@ -241,6 +241,7 @@ public struct PeliasSearchResponse {
 extension PeliasSearchResponse {
   
   //TODO: I'm still not sure of this approach - might be better to implement something more like a proper protocol like http://redqueencoder.com/property-lists-and-user-defaults-in-swift but this works for now
+  @objc(_TtCV6Pelias20PeliasSearchResponse11HelperClass) // To maintain backwards compatibility with existing archives
   open class HelperClass: NSObject, NSCoding {
     
     open var response: PeliasSearchResponse?
